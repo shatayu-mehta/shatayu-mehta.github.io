@@ -1,28 +1,24 @@
 import { Suspense, useState } from 'react'
+import StartupScreen from './components/StartupScreen'
 import { Canvas } from '@react-three/fiber'
 import { Environment, OrbitControls } from '@react-three/drei'
 import { Physics } from '@react-three/cannon'
-import { motion } from 'framer-motion'
 import Scene3D from './components/Scene3D'
 import Portfolio from './components/Portfolio'
 import Navigation from './components/Navigation'
-import LoadingScreen from './components/LoadingScreen'
 import useCursor from './hooks/useCursor'
 import './App.css'
 
 function App() {
   const [currentSection, setCurrentSection] = useState('home')
-  const [isLoading, setIsLoading] = useState(true)
-  
+  const [startupDone, setStartupDone] = useState(false)
   // Custom cursor hook
   useCursor()
 
-  const handleLoadingComplete = () => {
-    setIsLoading(false)
-  }
-
-  if (isLoading) {
-    return <LoadingScreen onComplete={handleLoadingComplete} />
+  if (!startupDone) {
+    return (
+      <StartupScreen imageUrl="/cyberpunk_city_bg.jpg" duration={3500} onComplete={() => setStartupDone(true)} />
+    )
   }
 
   return (

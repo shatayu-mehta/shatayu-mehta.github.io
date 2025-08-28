@@ -5,7 +5,7 @@ interface LoadingScreenProps {
   onComplete: () => void
 }
 
-const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
+const LoadingScreen = ({ onComplete, duration = 3500 }: LoadingScreenProps & { duration?: number }) => {
   const [progress, setProgress] = useState(0)
   const [loadingText, setLoadingText] = useState('INITIALIZING...')
 
@@ -19,23 +19,23 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   ]
 
   useEffect(() => {
+    const start = Date.now();
     const interval = setInterval(() => {
       setProgress(prev => {
-        const newProgress = prev + Math.random() * 15
-        const stepIndex = Math.floor((newProgress / 100) * loadingSteps.length)
-        setLoadingText(loadingSteps[Math.min(stepIndex, loadingSteps.length - 1)])
-        
-        if (newProgress >= 100) {
-          clearInterval(interval)
-          setTimeout(onComplete, 1000)
-          return 100
+        const elapsed = Date.now() - start;
+        const percent = Math.min((elapsed / duration) * 100, 100);
+        const stepIndex = Math.floor((percent / 100) * loadingSteps.length);
+        setLoadingText(loadingSteps[Math.min(stepIndex, loadingSteps.length - 1)]);
+        if (percent >= 100) {
+          clearInterval(interval);
+          setTimeout(onComplete, 200);
+          return 100;
         }
-        return newProgress
-      })
-    }, 200)
-
-    return () => clearInterval(interval)
-  }, [onComplete])
+        return percent;
+      });
+    }, 50);
+    return () => clearInterval(interval);
+  }, [onComplete, duration]);
 
   return (
     <motion.div 
@@ -43,6 +43,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
+      style={{ background: 'rgba(0,0,0,0.7)', zIndex: 1000, position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}
     >
       <div className="loading-content">
         <motion.h1 
