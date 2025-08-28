@@ -59,7 +59,7 @@ const HexReveal: React.FC<HexRevealProps> = ({ imageUrl, hexRadius = 60, duratio
         if (!ctx) return;
         ctx.save();
         ctx.beginPath();
-        const pts = getHexPoints(cx, cy, hexRadius);
+        const pts = getHexPoints(cx, cy, hexRadius + 2); // Slightly larger radius to prevent gaps
         ctx.moveTo(pts[0][0], pts[0][1]);
         for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
         ctx.closePath();
@@ -114,7 +114,7 @@ const HexReveal: React.FC<HexRevealProps> = ({ imageUrl, hexRadius = 60, duratio
         if (!ctx) return;
         ctx.save();
         ctx.beginPath();
-        const pts = getHexPoints(cx, cy, hexRadius);
+        const pts = getHexPoints(cx, cy, hexRadius + 2); // Slightly larger radius to prevent gaps
         ctx.moveTo(pts[0][0], pts[0][1]);
         for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
         ctx.closePath();
@@ -160,7 +160,6 @@ const HexReveal: React.FC<HexRevealProps> = ({ imageUrl, hexRadius = 60, duratio
         height: '100vh',
         zIndex: 9999,
         background: 'transparent',
-        border: '4px solid magenta',
         pointerEvents: 'auto',
       }}
     />

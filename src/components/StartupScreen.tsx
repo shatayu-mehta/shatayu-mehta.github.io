@@ -61,28 +61,31 @@ const StartupScreen: React.FC<StartupScreenProps> = ({ imageUrl, duration = 3500
     img.src = imageUrl;
     img.onload = () => {
       const { width, height } = canvas;
-      const hexRadius = 60;
+      const hexRadius = 55; // Slightly smaller base radius
       const hexHeight = Math.sqrt(3) * hexRadius;
-      // Start grid well outside the visible area
-      const xStart = -2 * hexRadius;
-      const yStart = -2 * hexHeight;
-      const xEnd = width + 2 * hexRadius;
-      const yEnd = height + 2 * hexHeight;
+      // Start grid well outside the visible area with more overlap
+      const xStart = -3 * hexRadius;
+      const yStart = -3 * hexHeight;
+      const xEnd = width + 3 * hexRadius;
+      const yEnd = height + 3 * hexHeight;
       const hexes: { x: number; y: number; dist: number }[] = [];
       const centerX = width / 2;
       const centerY = height / 2;
-      for (let y = yStart, row = 0; y < yEnd; y += hexHeight, row++) {
-        for (let x = xStart + (row % 2 ? 0.75 * hexRadius : 0); x < xEnd; x += 1.5 * hexRadius) {
+      
+      // Create a tighter hex grid for better coverage
+      for (let y = yStart, row = 0; y < yEnd; y += hexHeight * 0.85, row++) { // Reduce spacing
+        for (let x = xStart + (row % 2 ? 0.65 * hexRadius : 0); x < xEnd; x += 1.3 * hexRadius) { // Reduce spacing
           const dist = Math.hypot(x - centerX, y - centerY);
           hexes.push({ x, y, dist });
         }
       }
       hexes.sort((a, b) => a.dist - b.dist);
+      
       function drawHex(cx: number, cy: number) {
         if (!ctx) return;
         ctx.save();
         ctx.beginPath();
-        const pts = getHexPoints(cx, cy, hexRadius);
+        const pts = getHexPoints(cx, cy, hexRadius + 5); // Even larger overlap to eliminate gaps
         ctx.moveTo(pts[0][0], pts[0][1]);
         for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
         ctx.closePath();
