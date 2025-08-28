@@ -19,18 +19,29 @@ function getHexPoints(cx: number, cy: number, r: number) {
 }
 
 const loadingSteps = [
-  'INITIALIZING...',
-  'LOADING NEURAL NETWORKS...',
-  'CALIBRATING ROBOTICS SYSTEMS...',
-  'RENDERING CAD MODELS...',
-  'ESTABLISHING CONNECTION...',
-  'WELCOME TO THE MATRIX'
+  'INITIALIZING VISUAL CORTEX...',
+  'CALIBRATING OPTICAL SENSORS...',
+  'ACTIVATING PATTERN RECOGNITION...',
+  'ANALYZING ENVIRONMENTAL DATA...',
+  'PROCESSING SPATIAL MAPPING...',
+  'VISUAL RECOGNITION COMPLETE'
+];
+
+const analysisStates = [
+  'SCANNING...',
+  'ANALYZING...',
+  'PROCESSING...',
+  'IDENTIFYING...',
+  'MAPPING...',
+  'RECOGNIZED'
 ];
 
 const StartupScreen: React.FC<StartupScreenProps> = ({ imageUrl, duration = 3500, onComplete }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [progress, setProgress] = useState(0);
   const [loadingText, setLoadingText] = useState(loadingSteps[0]);
+  const [analyzedHexes, setAnalyzedHexes] = useState(new Set<number>());
+  const [currentScanLine, setCurrentScanLine] = useState(0);
 
   useEffect(() => {
     // Animate loading bar and text
@@ -41,9 +52,13 @@ const StartupScreen: React.FC<StartupScreenProps> = ({ imageUrl, duration = 3500
       setProgress(percent);
       const stepIndex = Math.floor((percent / 100) * loadingSteps.length);
       setLoadingText(loadingSteps[Math.min(stepIndex, loadingSteps.length - 1)]);
+      
+      // Update scan line for robot eye effect
+      setCurrentScanLine((percent / 100) * window.innerHeight);
+      
       if (percent >= 100) {
         clearInterval(interval);
-        setTimeout(onComplete, 200);
+        setTimeout(onComplete, 500); // Slightly longer delay for dramatic effect
       }
     }, 50);
     return () => clearInterval(interval);
@@ -81,31 +96,80 @@ const StartupScreen: React.FC<StartupScreenProps> = ({ imageUrl, duration = 3500
       }
       hexes.sort((a, b) => a.dist - b.dist);
       
-      function drawHex(cx: number, cy: number) {
+      function drawHex(cx: number, cy: number, index: number, isProcessing: boolean) {
         if (!ctx) return;
         ctx.save();
+        
+        // Draw the image clipped to hexagon
         ctx.beginPath();
-        const pts = getHexPoints(cx, cy, hexRadius + 5); // Even larger overlap to eliminate gaps
+        const pts = getHexPoints(cx, cy, hexRadius + 5);
         ctx.moveTo(pts[0][0], pts[0][1]);
         for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
         ctx.closePath();
         ctx.clip();
         ctx.drawImage(img, 0, 0, width, height);
         ctx.restore();
+        
+        // Add processing effects for active hexagons
+        if (isProcessing) {
+          ctx.save();
+          ctx.strokeStyle = '#00ffff';
+          ctx.lineWidth = 2;
+          ctx.shadowColor = '#00ffff';
+          ctx.shadowBlur = 10;
+          
+          ctx.beginPath();
+          const pts2 = getHexPoints(cx, cy, hexRadius + 3);
+          ctx.moveTo(pts2[0][0], pts2[0][1]);
+          for (let i = 1; i < pts2.length; i++) ctx.lineTo(pts2[i][0], pts2[i][1]);
+          ctx.closePath();
+          ctx.stroke();
+          
+          // Add scanning lines
+          ctx.strokeStyle = 'rgba(0, 255, 255, 0.6)';
+          ctx.lineWidth = 1;
+          for (let i = 0; i < 3; i++) {
+            const y = cy - hexRadius + (i * hexRadius * 0.6);
+            ctx.beginPath();
+            ctx.moveTo(cx - hexRadius, y);
+            ctx.lineTo(cx + hexRadius, y);
+            ctx.stroke();
+          }
+          
+          // Add analysis text
+          ctx.fillStyle = '#00ffff';
+          ctx.font = '8px monospace';
+          ctx.textAlign = 'center';
+          const state = analysisStates[Math.floor(Math.random() * analysisStates.length)];
+          ctx.fillText(state, cx, cy + 2);
+          
+          ctx.restore();
+        }
       }
       function animateHexReveal(ts: number) {
         if (!ctx) return;
         if (!startTime) startTime = ts;
         const elapsed = ts - startTime;
         ctx.clearRect(0, 0, width, height);
+        
+        // How many hexes to reveal
         const revealCount = Math.floor((elapsed / duration) * hexes.length);
+        const processingBuffer = Math.min(5, hexes.length - revealCount); // Show processing on next few hexagons
+        
         for (let i = 0; i < revealCount; i++) {
-          drawHex(hexes[i].x, hexes[i].y);
+          drawHex(hexes[i].x, hexes[i].y, i, false);
         }
+        
+        // Show processing hexagons
+        for (let i = revealCount; i < Math.min(revealCount + processingBuffer, hexes.length); i++) {
+          drawHex(hexes[i].x, hexes[i].y, i, true);
+        }
+        
         if (revealCount < hexes.length) {
           animationFrame = requestAnimationFrame(animateHexReveal);
         } else {
-          for (let i = 0; i < hexes.length; i++) drawHex(hexes[i].x, hexes[i].y);
+          // Draw all at end
+          for (let i = 0; i < hexes.length; i++) drawHex(hexes[i].x, hexes[i].y, i, false);
         }
       }
       animationFrame = requestAnimationFrame(animateHexReveal);
@@ -126,8 +190,9 @@ const StartupScreen: React.FC<StartupScreenProps> = ({ imageUrl, duration = 3500
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      background: 'rgba(0,0,0,0.85)'
+      background: 'rgba(0,0,0,0.95)'
     }}>
+      {/* Robot Vision Canvas */}
       <canvas
         ref={canvasRef}
         width={window.innerWidth}
@@ -142,23 +207,97 @@ const StartupScreen: React.FC<StartupScreenProps> = ({ imageUrl, duration = 3500
           background: 'transparent',
         }}
       />
+      
+      {/* Robot Eye Scanning Overlay */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 2,
+        pointerEvents: 'none',
+      }}>
+        {/* Scanning line */}
+        <div style={{
+          position: 'absolute',
+          left: 0,
+          width: '100%',
+          height: '2px',
+          background: 'linear-gradient(90deg, transparent, #00ffff, transparent)',
+          top: `${currentScanLine}px`,
+          boxShadow: '0 0 20px #00ffff',
+          animation: 'pulse 1s infinite',
+        }} />
+        
+        {/* Crosshair in center */}
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '40px',
+          height: '40px',
+          border: '2px solid #ff0080',
+          borderRadius: '50%',
+          boxShadow: '0 0 15px #ff0080',
+        }}>
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '20px',
+            height: '2px',
+            background: '#ff0080',
+            boxShadow: '0 0 5px #ff0080',
+          }} />
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) rotate(90deg)',
+            width: '20px',
+            height: '2px',
+            background: '#ff0080',
+            boxShadow: '0 0 5px #ff0080',
+          }} />
+        </div>
+      </div>
+      
+      {/* Status Display */}
       <div style={{
         position: 'relative',
-        zIndex: 2,
+        zIndex: 3,
         color: '#fff',
         textAlign: 'center',
         width: '100vw',
         maxWidth: 600,
         margin: '0 auto',
       }}>
+        {/* Robot ID Header */}
+        <div style={{
+          position: 'absolute',
+          top: '-200px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          fontFamily: 'monospace',
+          fontSize: '1rem',
+          color: '#00ffff',
+          textShadow: '0 0 10px #00ffff',
+        }}>
+          VISUAL CORTEX v2.1.4 | UNIT: SHATAYU-7
+        </div>
+        
         <h1 style={{
           fontFamily: 'monospace',
           fontSize: '2.5rem',
           marginBottom: 24,
           textShadow: '0 0 10px #00ffff, 0 0 30px #ff0080',
         }}>
-          <span className="glitch" data-text="SHATAYU.EXE">SHATAYU.EXE</span>
+          <span className="glitch" data-text="ANALYZING...">ANALYZING...</span>
         </h1>
+        
         <div style={{ marginBottom: 16 }}>
           <div style={{
             background: '#222',
@@ -167,32 +306,65 @@ const StartupScreen: React.FC<StartupScreenProps> = ({ imageUrl, duration = 3500
             height: 16,
             width: '100%',
             marginBottom: 8,
+            border: '1px solid #00ffff',
+            boxShadow: '0 0 10px rgba(0, 255, 255, 0.3)',
           }}>
             <div style={{
               background: 'linear-gradient(90deg, #00ffff, #ff0080)',
               width: `${progress}%`,
               height: '100%',
               transition: 'width 0.3s',
+              boxShadow: '0 0 10px rgba(0, 255, 255, 0.5)',
             }} />
           </div>
-          <span style={{ fontFamily: 'monospace' }}>{Math.floor(progress)}%</span>
+          <span style={{ fontFamily: 'monospace' }}>PATTERN RECOGNITION: {Math.floor(progress)}%</span>
         </div>
-        <p style={{ fontFamily: 'monospace', fontSize: '1.1rem', marginBottom: 24 }}>{loadingText}</p>
+        
+        <p style={{ 
+          fontFamily: 'monospace', 
+          fontSize: '1.1rem', 
+          marginBottom: 24,
+          color: '#00ff99',
+          textShadow: '0 0 5px #00ff99',
+        }}>
+          {loadingText}
+        </p>
+        
+        {/* Processing matrix */}
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 2 }}>
           {Array.from({ length: 20 }, (_, i) => (
             <span
               key={i}
               style={{
-                color: '#00ff99',
+                color: i < (progress / 5) ? '#00ff99' : '#333',
                 opacity: Math.random(),
                 fontFamily: 'monospace',
                 fontSize: '1.2rem',
                 animation: `fadeInOut 2s infinite ${Math.random()}s`,
+                textShadow: i < (progress / 5) ? '0 0 5px #00ff99' : 'none',
               }}
             >
               {String.fromCharCode(65 + Math.random() * 26)}
             </span>
           ))}
+        </div>
+        
+        {/* Analysis data */}
+        <div style={{
+          position: 'absolute',
+          bottom: '-150px',
+          left: '0',
+          right: '0',
+          fontFamily: 'monospace',
+          fontSize: '0.8rem',
+          color: '#00ffff',
+          textAlign: 'left',
+          padding: '0 20px',
+        }}>
+          <div>SECTORS ANALYZED: {Math.floor((progress / 100) * 127)}/127</div>
+          <div>PATTERN MATCHES: {Math.floor((progress / 100) * 2847)}</div>
+          <div>CONFIDENCE LEVEL: {Math.floor(progress)}%</div>
+          <div>RECOGNITION MODE: ACTIVE</div>
         </div>
       </div>
     </div>
