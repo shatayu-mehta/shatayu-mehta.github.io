@@ -6,6 +6,7 @@ import { Physics } from '@react-three/cannon'
 import Scene3D from './components/Scene3D'
 import Portfolio from './components/Portfolio'
 import Navigation from './components/Navigation'
+import EstablishContact from './components/EstablishContact'
 import useCursor from './hooks/useCursor'
 import './App.css'
 
@@ -46,6 +47,7 @@ function App() {
       </div>
 
       <Portfolio currentSection={currentSection} />
+      <EstablishContact currentSection={currentSection} />
       
       {/* Cyberpunk grid overlay */}
       <div className="grid-overlay" />

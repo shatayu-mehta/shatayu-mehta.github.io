@@ -776,3 +776,94 @@ body::after {
   80% { transform: translate(2px, -2px); }
   100% { transform: translate(0); }
 }
+
+/* Establish Contact Component Styles */
+.establish-contact {
+  font-family: 'Orbitron', monospace;
+}
+
+.social-icon-overlay {
+  font-family: 'Orbitron', monospace;
+  font-weight: bold;
+  user-select: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 0 5px currentColor);
+}
+
+.social-icon-overlay:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+  filter: drop-shadow(0 0 15px currentColor);
+}
+
+.social-icon-overlay.hovered {
+  animation: pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+/* Additional cyberpunk styling for contact section */
+.establish-contact .cyber-title {
+  position: relative;
+}
+
+.establish-contact .cyber-title::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.1) 50%, transparent 70%);
+  z-index: -1;
+  border-radius: 10px;
+}
+
+/* Glitch effect for title */
+.establish-contact .glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.establish-contact .glitch::before,
+.establish-contact .glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.establish-contact .glitch::before {
+  animation: glitch-1 0.5s ease-in-out infinite alternate;
+  color: #ff00ff;
+  z-index: -1;
+}
+
+.establish-contact .glitch::after {
+  animation: glitch-2 0.5s ease-in-out infinite alternate;
+  color: #00ffff;
+  z-index: -2;
+}
+
+@keyframes glitch-1 {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-2 {
+  0% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(-2px, 2px); }
+  100% { transform: translate(0); }
+}

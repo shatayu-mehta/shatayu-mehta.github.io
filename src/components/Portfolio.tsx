@@ -240,49 +240,7 @@ const Portfolio = ({ currentSection }: PortfolioProps) => {
         )
 
       case 'contact':
-        return (
-          <motion.div
-            className="section-content"
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 100 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <h2 className="section-title">ESTABLISH CONNECTION</h2>
-            <div className="contact-content">
-              <p className="contact-intro">
-                Ready to collaborate on the next generation of intelligent machines? 
-                Or just want to chat about the inevitable robot uprising? Drop me a line!
-              </p>
-              
-              <div className="contact-methods">
-                <a href="mailto:shatayu@example.com" className="contact-link">
-                  <span className="contact-icon">📧</span>
-                  <span>shatayu@example.com</span>
-                </a>
-                
-                <a href="https://linkedin.com/in/shatayu-mehta" className="contact-link">
-                  <span className="contact-icon">💼</span>
-                  <span>LinkedIn Profile</span>
-                </a>
-                
-                <a href="https://github.com/shatayu-mehta" className="contact-link">
-                  <span className="contact-icon">💻</span>
-                  <span>GitHub Repository</span>
-                </a>
-                
-                <a href="/RESUME_S_A_M.pdf" className="contact-link" download>
-                  <span className="contact-icon">📄</span>
-                  <span>Download Resume</span>
-                </a>
-              </div>
-              
-              <div className="contact-note">
-                <p>Available for remote work, on-site collaboration, or interdimensional projects.</p>
-              </div>
-            </div>
-          </motion.div>
-        )
+        return null // EstablishContact component is rendered separately
 
       default:
         return null
@@ -290,7 +248,9 @@ const Portfolio = ({ currentSection }: PortfolioProps) => {
   }
 
   return (
-    <div className="portfolio-container">
+    <div className="portfolio-container" style={{ 
+      display: currentSection === 'contact' ? 'none' : 'block' 
+    }}>
       <AnimatePresence mode="wait">
         {renderContent()}
       </AnimatePresence>
