@@ -71,7 +71,7 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
       groupRef.current.position.x = newX;
       
       // Gentle floating animation
-      groupRef.current.position.y = 2 + Math.sin(state.clock.getElapsedTime() * 1.2) * 0.1;
+      groupRef.current.position.y = 1.5 + Math.sin(state.clock.getElapsedTime() * 1.2) * 0.1;
       
       // Slight tilt based on movement direction - more subtle
       const movement = droneTargetX - currentX;
@@ -123,7 +123,7 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
   });
 
   return (
-    <group ref={groupRef} position={[0, 2, 0]} scale={0.8}>
+    <group ref={groupRef} position={[0, 1.5, 0]} scale={0.8}>
       {/* Main drone body */}
       <mesh position={[0, 0, 0]}>
         <cylinderGeometry args={[0.3, 0.25, 0.8, 8]} />
@@ -175,8 +175,8 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
         {hoveredSocial && (
           <>
             {/* Main spotlight cone - extends far down like a theater light */}
-            <mesh position={[0, -8, 0]} rotation={[0, 0, 0]}>
-              <coneGeometry args={[3, 16, 16, 1, false]} />
+            <mesh position={[0, -6.5, 0]} rotation={[0, 0, 0]}>
+              <coneGeometry args={[3, 13, 16, 1, false]} />
               <meshBasicMaterial 
                 color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
                 transparent 
@@ -186,8 +186,8 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
             </mesh>
             
             {/* Inner focused beam - brighter center */}
-            <mesh position={[0, -8, 0]} rotation={[0, 0, 0]}>
-              <coneGeometry args={[2, 16, 16, 1, false]} />
+            <mesh position={[0, -6.5, 0]} rotation={[0, 0, 0]}>
+              <coneGeometry args={[2, 13, 16, 1, false]} />
               <meshBasicMaterial 
                 color="#ffffff" 
                 transparent 
@@ -197,8 +197,8 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
             </mesh>
             
             {/* Core spotlight beam - most intense */}
-            <mesh position={[0, -8, 0]} rotation={[0, 0, 0]}>
-              <coneGeometry args={[1, 16, 16, 1, false]} />
+            <mesh position={[0, -6.5, 0]} rotation={[0, 0, 0]}>
+              <coneGeometry args={[1, 13, 16, 1, false]} />
               <meshBasicMaterial 
                 color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
                 transparent 
@@ -316,7 +316,7 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
       }}>
         {/* Title */}
         <h1 style={{
-          fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', // Reduced font size
+          fontSize: 'clamp(2rem, 5vw, 3.2rem)', // Increased title size
           fontFamily: 'Orbitron, monospace',
           fontWeight: 'bold',
           color: '#00ffff',
