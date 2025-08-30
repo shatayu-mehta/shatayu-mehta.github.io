@@ -8,25 +8,249 @@ const socialPlatforms = [
   {
     id: 'github',
     name: 'GitHub',
-    symbol: '</>', // Coding symbol for GitHub
+    symbol: '', // Will use 3D GitHub logo
     url: 'https://github.com/shatayu-mehta',
     color: '#00ff88'
   },
   {
     id: 'linkedin',
     name: 'LinkedIn',
-    symbol: 'in', // Actual LinkedIn symbol
+    symbol: '', // Will use 3D LinkedIn logo
     url: 'https://linkedin.com/in/shatayu-mehta',
     color: '#0077b5'
   },
   {
     id: 'email',
     name: 'Email',
-    symbol: '@',
+    symbol: '', // Will use 3D email symbol
     url: 'mailto:shatayu.mehta@example.com',
     color: '#ff4444'
   }
 ];
+
+// 3D Hologram Components
+function GitHubHologram({ isHovered, color }: { isHovered: boolean; color: string }) {
+  const meshRef = useRef<THREE.Group>(null);
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.01;
+      meshRef.current.position.y = Math.sin(state.clock.getElapsedTime() * 2) * 0.1;
+    }
+  });
+
+  return (
+    <group ref={meshRef}>
+      {/* GitHub Octocat body */}
+      <mesh position={[0, 0, 0]}>
+        <sphereGeometry args={[0.4, 16, 16]} />
+        <meshBasicMaterial 
+          color={isHovered ? color : '#00ffff'} 
+          wireframe 
+          transparent 
+          opacity={isHovered ? 0.9 : 0.6}
+        />
+      </mesh>
+      
+      {/* GitHub ears/tentacles */}
+      <mesh position={[-0.3, 0.3, 0]}>
+        <sphereGeometry args={[0.15, 8, 8]} />
+        <meshBasicMaterial 
+          color={isHovered ? color : '#00ffff'} 
+          wireframe 
+          transparent 
+          opacity={isHovered ? 0.8 : 0.5}
+        />
+      </mesh>
+      <mesh position={[0.3, 0.3, 0]}>
+        <sphereGeometry args={[0.15, 8, 8]} />
+        <meshBasicMaterial 
+          color={isHovered ? color : '#00ffff'} 
+          wireframe 
+          transparent 
+          opacity={isHovered ? 0.8 : 0.5}
+        />
+      </mesh>
+      
+      {/* Center hub - representing the code/repository concept */}
+      <mesh position={[0, 0, 0]}>
+        <octahedronGeometry args={[0.2]} />
+        <meshBasicMaterial 
+          color={isHovered ? '#ffffff' : '#00ffff'} 
+          wireframe 
+          transparent 
+          opacity={isHovered ? 1 : 0.7}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+function LinkedInHologram({ isHovered, color }: { isHovered: boolean; color: string }) {
+  const meshRef = useRef<THREE.Group>(null);
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.01;
+      meshRef.current.position.y = Math.sin(state.clock.getElapsedTime() * 2 + 1) * 0.1;
+    }
+  });
+
+  return (
+    <group ref={meshRef}>
+      {/* LinkedIn "in" letterforms as 3D blocks */}
+      {/* Letter "i" */}
+      <mesh position={[-0.2, 0, 0]}>
+        <boxGeometry args={[0.1, 0.6, 0.1]} />
+        <meshBasicMaterial 
+          color={isHovered ? color : '#00ffff'} 
+          wireframe 
+          transparent 
+          opacity={isHovered ? 0.9 : 0.6}
+        />
+      </mesh>
+      <mesh position={[-0.2, 0.4, 0]}>
+        <sphereGeometry args={[0.05, 8, 8]} />
+        <meshBasicMaterial 
+          color={isHovered ? color : '#00ffff'} 
+          wireframe 
+          transparent 
+          opacity={isHovered ? 0.9 : 0.6}
+        />
+      </mesh>
+      
+      {/* Letter "n" */}
+      <mesh position={[0.1, 0, 0]}>
+        <boxGeometry args={[0.1, 0.6, 0.1]} />
+        <meshBasicMaterial 
+          color={isHovered ? color : '#00ffff'} 
+          wireframe 
+          transparent 
+          opacity={isHovered ? 0.9 : 0.6}
+        />
+      </mesh>
+      <mesh position={[0.25, 0.2, 0]}>
+        <boxGeometry args={[0.2, 0.1, 0.1]} />
+        <meshBasicMaterial 
+          color={isHovered ? color : '#00ffff'} 
+          wireframe 
+          transparent 
+          opacity={isHovered ? 0.9 : 0.6}
+        />
+      </mesh>
+      <mesh position={[0.3, 0, 0]}>
+        <boxGeometry args={[0.1, 0.4, 0.1]} />
+        <meshBasicMaterial 
+          color={isHovered ? color : '#00ffff'} 
+          wireframe 
+          transparent 
+          opacity={isHovered ? 0.9 : 0.6}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+function EmailHologram({ isHovered, color }: { isHovered: boolean; color: string }) {
+  const meshRef = useRef<THREE.Group>(null);
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.01;
+      meshRef.current.position.y = Math.sin(state.clock.getElapsedTime() * 2 + 2) * 0.1;
+    }
+  });
+
+  return (
+    <group ref={meshRef}>
+      {/* Email envelope */}
+      <mesh position={[0, 0, 0]}>
+        <boxGeometry args={[0.6, 0.4, 0.05]} />
+        <meshBasicMaterial 
+          color={isHovered ? color : '#00ffff'} 
+          wireframe 
+          transparent 
+          opacity={isHovered ? 0.9 : 0.6}
+        />
+      </mesh>
+      
+      {/* Email flap - triangle */}
+      <mesh position={[0, 0.1, 0.03]} rotation={[0, 0, 0]}>
+        <coneGeometry args={[0.3, 0.05, 3]} />
+        <meshBasicMaterial 
+          color={isHovered ? color : '#00ffff'} 
+          wireframe 
+          transparent 
+          opacity={isHovered ? 0.8 : 0.5}
+        />
+      </mesh>
+      
+      {/* @ symbol ring */}
+      <mesh position={[0, 0, 0.1]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.15, 0.03, 8, 16]} />
+        <meshBasicMaterial 
+          color={isHovered ? '#ffffff' : '#00ffff'} 
+          wireframe 
+          transparent 
+          opacity={isHovered ? 1 : 0.7}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+// Social Media 3D Holograms Component
+function SocialHolograms({ hoveredSocial }: { hoveredSocial: string | null }) {
+  return (
+    <group position={[0, -2.5, 0]}>
+      {socialPlatforms.map((social, index) => {
+        const xPosition = (index - 1) * 3; // Reduced spacing from 4 to 3
+        const isHovered = hoveredSocial === social.id;
+        
+        return (
+          <group key={social.id} position={[xPosition, 0, 0]} scale={isHovered ? 1.5 : 1}>
+            {social.id === 'github' && <GitHubHologram isHovered={isHovered} color={social.color} />}
+            {social.id === 'linkedin' && <LinkedInHologram isHovered={isHovered} color={social.color} />}
+            {social.id === 'email' && <EmailHologram isHovered={isHovered} color={social.color} />}
+            
+            {/* Hologram base platform */}
+            <mesh position={[0, -0.8, 0]} rotation={[0, 0, 0]}>
+              <cylinderGeometry args={[0.5, 0.5, 0.05, 16]} />
+              <meshBasicMaterial 
+                color={isHovered ? social.color : '#00ffff'} 
+                wireframe 
+                transparent 
+                opacity={isHovered ? 0.6 : 0.3}
+              />
+            </mesh>
+            
+            {/* Hologram energy rings */}
+            {isHovered && (
+              <>
+                <mesh position={[0, -0.5, 0]} rotation={[Math.PI / 2, 0, 0]}>
+                  <torusGeometry args={[0.7, 0.02, 8, 32]} />
+                  <meshBasicMaterial 
+                    color={social.color} 
+                    transparent 
+                    opacity={0.4}
+                  />
+                </mesh>
+                <mesh position={[0, -0.3, 0]} rotation={[Math.PI / 2, 0, 0]}>
+                  <torusGeometry args={[0.9, 0.02, 8, 32]} />
+                  <meshBasicMaterial 
+                    color={social.color} 
+                    transparent 
+                    opacity={0.2}
+                  />
+                </mesh>
+              </>
+            )}
+          </group>
+        );
+      })}
+    </group>
+  );
+}
 
 // DJI Inspire 3 Drone with Projector
 interface DroneProps {
@@ -54,8 +278,8 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
         const socialIndex = socialPlatforms.findIndex(s => s.id === hoveredSocial);
         if (socialIndex !== -1) {
           // Map social index to specific X positions matching the icon layout
-          // Adjusted for 3 icons instead of 5
-          const socialPositions = [-4, 0, 4]; // X positions for 3 social icons
+          // Adjusted for 3 icons with reduced spacing
+          const socialPositions = [-3, 0, 3]; // X positions for 3 social icons
           droneTargetX = socialPositions[socialIndex] || 0;
         }
       } else {
@@ -175,8 +399,8 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
         {hoveredSocial && (
           <>
             {/* Main spotlight cone - extends far down like a theater light */}
-            <mesh position={[0, -6.5, 0]} rotation={[0, 0, 0]}>
-              <coneGeometry args={[3, 13, 16, 1, false]} />
+            <mesh position={[0, -5, 0]} rotation={[0, 0, 0]}>
+              <coneGeometry args={[2.5, 10, 16, 1, false]} />
               <meshBasicMaterial 
                 color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
                 transparent 
@@ -186,8 +410,8 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
             </mesh>
             
             {/* Inner focused beam - brighter center */}
-            <mesh position={[0, -6.5, 0]} rotation={[0, 0, 0]}>
-              <coneGeometry args={[2, 13, 16, 1, false]} />
+            <mesh position={[0, -5, 0]} rotation={[0, 0, 0]}>
+              <coneGeometry args={[1.8, 10, 16, 1, false]} />
               <meshBasicMaterial 
                 color="#ffffff" 
                 transparent 
@@ -197,8 +421,8 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
             </mesh>
             
             {/* Core spotlight beam - most intense */}
-            <mesh position={[0, -6.5, 0]} rotation={[0, 0, 0]}>
-              <coneGeometry args={[1, 13, 16, 1, false]} />
+            <mesh position={[0, -5, 0]} rotation={[0, 0, 0]}>
+              <coneGeometry args={[1, 10, 16, 1, false]} />
               <meshBasicMaterial 
                 color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
                 transparent 
@@ -370,6 +594,7 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
           gl={{ antialias: true, alpha: true }}
         >
           <DroneWithProjector targetX={mouseX} hoveredSocial={hoveredSocial} socialPlatforms={socialPlatforms} />
+          <SocialHolograms hoveredSocial={hoveredSocial} />
           <ambientLight intensity={0.6} />
           <pointLight position={[0, 5, 5]} intensity={1.2} color="#00ffff" />
           <pointLight position={[5, 0, 5]} intensity={0.8} color="#ff00ff" />
@@ -377,10 +602,10 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
         </Canvas>
       </div>
 
-      {/* Bottom Section - Social Media Icons */}
+      {/* Bottom Section - Invisible Interaction Areas for 3D Holograms */}
       <div style={{
         display: 'flex',
-        gap: 'clamp(0.8rem, 2.5vw, 2.5rem)', // Reduced gap
+        gap: 'clamp(0.5rem, 2vw, 2rem)', // Further reduced gap to match hologram spacing
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'flex-end',
@@ -395,34 +620,16 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
           <div
             key={social.id}
             style={{
-              fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', // Reduced icon size
-              color: hoveredSocial === social.id ? social.color : '#00ffff',
+              width: 'clamp(80px, 12vw, 120px)',
+              height: 'clamp(80px, 12vw, 120px)',
               cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              textShadow: hoveredSocial === social.id 
-                ? `0 0 40px ${social.color}, 0 0 80px ${social.color}, 0 0 120px ${social.color}` 
-                : `0 0 20px #00ffff`,
-              transform: hoveredSocial === social.id ? 'scale(1.2)' : 'scale(1)', // Reduced scale to prevent overflow
+              background: 'transparent', // Make invisible
+              borderRadius: '15px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '0.5rem',
-              padding: 'clamp(0.8rem, 2vw, 1.5rem)', // Responsive padding
-              borderRadius: '15px',
-              background: hoveredSocial === social.id 
-                ? `radial-gradient(circle, ${social.color}40, ${social.color}20, ${social.color}10, transparent)` 
-                : 'rgba(0, 0, 0, 0.2)', // More transparent background
-              border: 'none', // Remove borders
-              boxShadow: hoveredSocial === social.id 
-                ? `
-                  0 0 40px ${social.color}60, 
-                  inset 0 0 20px ${social.color}20,
-                  0 5px 20px rgba(0, 0, 0, 0.5)
-                ` 
-                : '0 3px 15px rgba(0, 0, 0, 0.2)', // Reduced shadow when not hovered
+              justifyContent: 'center',
               position: 'relative',
-              zIndex: hoveredSocial === social.id ? 10 : 1,
-              minWidth: 'clamp(80px, 12vw, 120px)', // Prevent icons from getting too small
             }}
             onMouseEnter={() => setHoveredSocial(social.id)}
             onMouseLeave={() => setHoveredSocial(null)}
@@ -434,49 +641,23 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
               }
             }}
           >
-            {/* Theater spotlight stage effect - simplified */}
+            {/* Optional: Show label on hover */}
             {hoveredSocial === social.id && (
               <div style={{
                 position: 'absolute',
-                top: '-30px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: 'clamp(100px, 15vw, 150px)',
-                height: 'clamp(100px, 15vw, 150px)',
-                background: `
-                  radial-gradient(
-                    circle, 
-                    ${social.color}25 0%, 
-                    ${social.color}15 40%, 
-                    ${social.color}05 70%, 
-                    transparent 100%
-                  )
-                `,
-                borderRadius: '50%',
-                animation: 'spotlightPulse 2s ease-in-out infinite',
-                zIndex: -1,
-              }} />
+                bottom: '-30px',
+                fontSize: 'clamp(0.7rem, 1.5vw, 1rem)',
+                fontFamily: 'Orbitron, monospace',
+                fontWeight: 'bold',
+                color: social.color,
+                textShadow: `0 0 15px ${social.color}`,
+                textAlign: 'center',
+                whiteSpace: 'nowrap',
+                pointerEvents: 'none',
+              }}>
+                {social.name}
+              </div>
             )}
-            
-            <span style={{
-              filter: hoveredSocial === social.id ? `drop-shadow(0 0 8px ${social.color})` : 'none',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-              {social.symbol}
-            </span>
-            <span style={{
-              fontSize: 'clamp(0.7rem, 1.5vw, 1rem)', // Responsive label size
-              fontFamily: 'Orbitron, monospace',
-              fontWeight: 'bold',
-              opacity: hoveredSocial === social.id ? 1 : 0.8,
-              textShadow: hoveredSocial === social.id ? `0 0 15px ${social.color}` : 'none',
-              textAlign: 'center',
-              whiteSpace: 'nowrap', // Prevent text wrapping
-            }}>
-              {social.name}
-            </span>
           </div>
         ))}
       </div>
