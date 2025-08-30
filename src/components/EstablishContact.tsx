@@ -61,19 +61,37 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
 
   useFrame((state) => {
     if (groupRef.current) {
-      // Smooth horizontal movement following cursor
+      let targetX = 0; // Default center position
+      
+      // If hovering over a social icon, move drone to that position
+      if (hoveredSocial) {
+        const socialIndex = socialPlatforms.findIndex(s => s.id === hoveredSocial);
+        if (socialIndex !== -1) {
+          // Create precise mapping for each social icon
+          const socialPositionMap: Record<string, number> = {
+            'github': -7.0,
+            'linkedin': -3.5,
+            'email': 0,
+            'twitter': 3.5,
+            'resume': 7.2 // Slightly adjusted for Resume
+          };
+          targetX = socialPositionMap[hoveredSocial] || 0;
+        }
+      }
+      
+      // Smooth horizontal movement
       const currentX = groupRef.current.position.x;
-      const newX = THREE.MathUtils.lerp(currentX, targetX, 0.05);
+      const newX = THREE.MathUtils.lerp(currentX, targetX, 0.15); // Even faster movement for better alignment
       groupRef.current.position.x = newX;
       
       // Gentle floating animation
-      groupRef.current.position.y = Math.sin(state.clock.getElapsedTime() * 1.2) * 0.1;
+      groupRef.current.position.y = 2 + Math.sin(state.clock.getElapsedTime() * 1.2) * 0.1;
       
       // Slight tilt based on movement direction
       const movement = targetX - currentX;
       groupRef.current.rotation.z = THREE.MathUtils.lerp(
         groupRef.current.rotation.z, 
-        movement * 0.1, 
+        movement * 0.05, // Reduced tilt for smoother movement
         0.05
       );
       
@@ -85,43 +103,28 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
       });
     }
 
-    // Projector light effect - rotate towards hovered social but stay attached to drone
+    // Projector light effect - point straight down when over social icon
     if (projectorRef.current && hoveredSocial) {
-      const socialIndex = socialPlatforms.findIndex(s => s.id === hoveredSocial);
-      if (socialIndex !== -1) {
-        // Calculate precise position for each social icon
-        // Map social index to specific X positions where icons are placed
-        const socialPositions = [-6, -3, 0, 3, 6]; // X positions for 5 social icons
-        const targetSocialX = socialPositions[socialIndex] || 0;
-        
-        // Don't move the projector position - keep it attached to drone
-        // Instead, rotate the projector to aim at the target
-        const droneX = groupRef.current?.position.x || 0;
-        const angleTo = Math.atan2(targetSocialX - droneX, -8); // Angle to aim at social icon
-        
-        // Rotate projector to aim at the social icon
-        projectorRef.current.rotation.z = THREE.MathUtils.lerp(
-          projectorRef.current.rotation.z,
-          angleTo,
-          0.15
-        );
-        
-        // Point slightly downward towards the social icons
-        projectorRef.current.rotation.x = THREE.MathUtils.lerp(
-          projectorRef.current.rotation.x,
-          0.3, // Point downward
-          0.1
-        );
-      }
+      // Point straight down when over the target
+      projectorRef.current.rotation.y = THREE.MathUtils.lerp(
+        projectorRef.current.rotation.y,
+        0, // Straight down
+        0.1
+      );
+      projectorRef.current.rotation.x = THREE.MathUtils.lerp(
+        projectorRef.current.rotation.x,
+        0.3, // Point downward
+        0.1
+      );
     } else if (projectorRef.current) {
       // Return to neutral position when not hovering
+      projectorRef.current.rotation.y = THREE.MathUtils.lerp(projectorRef.current.rotation.y, 0, 0.05);
       projectorRef.current.rotation.x = THREE.MathUtils.lerp(projectorRef.current.rotation.x, 0, 0.05);
-      projectorRef.current.rotation.z = THREE.MathUtils.lerp(projectorRef.current.rotation.z, 0, 0.05);
     }
   });
 
   return (
-    <group ref={groupRef} position={[0, 2, 0]} scale={0.8}>
+    <group ref={groupRef} position={[0, 1.5, 0]} scale={0.8}>
       {/* Main drone body */}
       <mesh position={[0, 0, 0]}>
         <cylinderGeometry args={[0.3, 0.25, 0.8, 8]} />
@@ -174,22 +177,22 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
           <>
             {/* Main spotlight cone - extends far down like a theater light */}
             <mesh position={[0, -8, 0]} rotation={[0, 0, 0]}>
-              <coneGeometry args={[2.5, 16, 16, 1, false]} />
+              <coneGeometry args={[3, 16, 16, 1, false]} />
               <meshBasicMaterial 
                 color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
                 transparent 
-                opacity={0.12} 
+                opacity={0.1} 
                 side={THREE.DoubleSide}
               />
             </mesh>
             
             {/* Inner focused beam - brighter center */}
             <mesh position={[0, -8, 0]} rotation={[0, 0, 0]}>
-              <coneGeometry args={[1.5, 16, 16, 1, false]} />
+              <coneGeometry args={[2, 16, 16, 1, false]} />
               <meshBasicMaterial 
                 color="#ffffff" 
                 transparent 
-                opacity={0.18} 
+                opacity={0.15} 
                 side={THREE.DoubleSide}
               />
             </mesh>
@@ -200,7 +203,7 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
               <meshBasicMaterial 
                 color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
                 transparent 
-                opacity={0.3} 
+                opacity={0.25} 
                 side={THREE.DoubleSide}
               />
             </mesh>
@@ -220,18 +223,18 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
                 <meshBasicMaterial 
                   color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
                   transparent 
-                  opacity={0.5}
+                  opacity={0.4}
                 />
               </mesh>
             ))}
             
             {/* Ground illumination circle - where the spotlight hits */}
             <mesh position={[0, -15.5, 0]} rotation={[Math.PI / 2, 0, 0]}>
-              <circleGeometry args={[2.5, 32]} />
+              <circleGeometry args={[3, 32]} />
               <meshBasicMaterial 
                 color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
                 transparent 
-                opacity={0.2} 
+                opacity={0.15} 
                 side={THREE.DoubleSide}
               />
             </mesh>
@@ -277,23 +280,28 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
   console.log('EstablishContact rendering, mouseX:', mouseX, 'hoveredSocial:', hoveredSocial);
 
   return (
-    <motion.div 
+    <motion.div
       className="establish-contact"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      ref={containerRef}
       style={{
         position: 'fixed',
         top: 0,
         left: 0,
         width: '100vw',
         height: '100vh',
-        background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f0f23 100%)',
-        overflow: 'hidden',
+        zIndex: 50,
+        background: 'rgba(0, 0, 0, 0.95)',
         display: 'flex',
         flexDirection: 'column',
-        zIndex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start', // Start from top instead of space-between
+        padding: '100px 2vw 1vh 2vw', // Increased top padding for more space from navigation
+        boxSizing: 'border-box',
+        overflow: 'hidden', // Prevent any scrolling
       }}
     >
       {/* Top Section - Title and Description */}
@@ -302,22 +310,19 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
         flexDirection: 'column',
         alignItems: 'center',
         textAlign: 'center',
+        flex: '0 0 auto', // Don't grow/shrink
         width: '100%',
         maxWidth: '1200px',
-        margin: '0 auto',
-        paddingTop: 'clamp(80px, 10vh, 120px)', // Ensure it's below navigation
-        paddingBottom: 'clamp(0.5rem, 1vh, 1rem)',
-        paddingLeft: '1rem',
-        paddingRight: '1rem',
+        marginTop: '1rem', // Add top margin for better spacing
       }}>
         {/* Title */}
         <h1 style={{
-          fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)', // Reduced size to prevent clipping
+          fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', // Reduced font size
           fontFamily: 'Orbitron, monospace',
           fontWeight: 'bold',
           color: '#00ffff',
           textShadow: '0 0 30px #00ffff, 0 0 60px #00ffff',
-          margin: '0 0 clamp(0.5rem, 1vh, 1rem) 0',
+          margin: '0 0 0.5rem 0', // Reduced margin
           lineHeight: '1.1',
           wordBreak: 'break-word', // Prevent overflow
         }}>
@@ -327,10 +332,10 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
         {/* Description */}
         <p style={{
           color: '#ffffff',
-          fontSize: 'clamp(0.8rem, 1.8vw, 1.1rem)', // Responsive font size
+          fontSize: 'clamp(0.8rem, 1.5vw, 1rem)', // Reduced font size
           lineHeight: '1.4',
           maxWidth: '800px',
-          margin: '0 0 clamp(0.8rem, 1.5vh, 1.5rem) 0',
+          margin: '0',
           padding: '0 1rem',
         }}>
           Ready to collaborate on the next breakthrough in robotics? Let's connect and build the future together.
@@ -343,7 +348,7 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
           height: '2px',
           background: 'linear-gradient(90deg, transparent, #00ffff, transparent)',
           boxShadow: '0 0 20px #00ffff',
-          margin: '0',
+          margin: '0.8rem 0 0.5rem 0', // Reduced margins
         }} />
       </div>
 
@@ -358,8 +363,8 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
       }}>
         <Canvas
           camera={{ 
-            position: [0, 0, 15], // Further back to see more
-            fov: 75, // Wider field of view
+            position: [0, 0, 12], // Closer camera for better scale matching
+            fov: 60, // Narrower field of view for more precise positioning
             near: 0.1, 
             far: 100 
           }}
@@ -375,24 +380,23 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
 
       {/* Bottom Section - Social Media Icons */}
       <div style={{
-        position: 'absolute',
-        bottom: 'clamp(0.5rem, 2vh, 2rem)', // Reduced bottom positioning
-        left: '50%',
-        transform: 'translateX(-50%)',
         display: 'flex',
         gap: 'clamp(0.8rem, 2.5vw, 2.5rem)', // Reduced gap
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'flex-end',
-        width: '90%',
+        marginTop: 'auto', // Push to bottom
+        marginBottom: '1rem', // Small margin from bottom
+        width: '100%',
         maxWidth: '1000px', // Reduced max width
+        paddingBottom: '1rem',
         zIndex: 10, // Above 3D scene
       }}>
         {socialPlatforms.map((social) => (
           <div
             key={social.id}
             style={{
-              fontSize: 'clamp(2rem, 4vw, 3rem)', // Responsive icon size
+              fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', // Reduced icon size
               color: hoveredSocial === social.id ? social.color : '#00ffff',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
@@ -421,7 +425,7 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
                 : '0 3px 15px rgba(0, 0, 0, 0.3)',
               position: 'relative',
               zIndex: hoveredSocial === social.id ? 10 : 1,
-              minWidth: 'clamp(60px, 10vw, 100px)', // Reduced icon size to prevent clipping
+              minWidth: 'clamp(80px, 12vw, 120px)', // Prevent icons from getting too small
             }}
             onMouseEnter={() => setHoveredSocial(social.id)}
             onMouseLeave={() => setHoveredSocial(null)}
