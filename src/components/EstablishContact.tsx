@@ -8,14 +8,14 @@ const socialPlatforms = [
   {
     id: 'github',
     name: 'GitHub',
-    symbol: '⧰', // Git symbol
+    symbol: '</>', // Coding symbol for GitHub
     url: 'https://github.com/shatayu-mehta',
     color: '#00ff88'
   },
   {
     id: 'linkedin',
     name: 'LinkedIn',
-    symbol: 'IN',
+    symbol: 'in', // Actual LinkedIn symbol
     url: 'https://linkedin.com/in/shatayu-mehta',
     color: '#0077b5'
   },
@@ -25,20 +25,6 @@ const socialPlatforms = [
     symbol: '@',
     url: 'mailto:shatayu.mehta@example.com',
     color: '#ff4444'
-  },
-  {
-    id: 'twitter',
-    name: 'Twitter',
-    symbol: '𝕏',
-    url: 'https://twitter.com/shatayumehta',
-    color: '#1da1f2'
-  },
-  {
-    id: 'resume',
-    name: 'Resume',
-    symbol: '📄',
-    url: '/RESUME_S_A_M.pdf',
-    color: '#ffa500'
   }
 ];
 
@@ -61,37 +47,37 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
 
   useFrame((state) => {
     if (groupRef.current) {
-      let targetX = 0; // Default center position
+      let droneTargetX = 0; // Default center position
       
       // If hovering over a social icon, move drone to that position
       if (hoveredSocial) {
         const socialIndex = socialPlatforms.findIndex(s => s.id === hoveredSocial);
         if (socialIndex !== -1) {
-          // Create precise mapping for each social icon
-          const socialPositionMap: Record<string, number> = {
-            'github': -7.0,
-            'linkedin': -3.5,
-            'email': 0,
-            'twitter': 3.5,
-            'resume': 7.2 // Slightly adjusted for Resume
-          };
-          targetX = socialPositionMap[hoveredSocial] || 0;
+          // Map social index to specific X positions matching the icon layout
+          // Adjusted for 3 icons instead of 5
+          const socialPositions = [-4, 0, 4]; // X positions for 3 social icons
+          droneTargetX = socialPositions[socialIndex] || 0;
         }
+      } else {
+        // When not hovering over icons, follow cursor smoothly
+        // Use the passed targetX parameter for free movement
+        droneTargetX = targetX * 0.8; // Scale down cursor movement for smoother feel
       }
       
-      // Smooth horizontal movement
+      // Smooth horizontal movement with different speeds for different contexts
       const currentX = groupRef.current.position.x;
-      const newX = THREE.MathUtils.lerp(currentX, targetX, 0.15); // Even faster movement for better alignment
+      const lerpSpeed = hoveredSocial ? 0.08 : 0.05; // Slower when following cursor, faster when snapping to icons
+      const newX = THREE.MathUtils.lerp(currentX, droneTargetX, lerpSpeed);
       groupRef.current.position.x = newX;
       
       // Gentle floating animation
       groupRef.current.position.y = 2 + Math.sin(state.clock.getElapsedTime() * 1.2) * 0.1;
       
-      // Slight tilt based on movement direction
-      const movement = targetX - currentX;
+      // Slight tilt based on movement direction - more subtle
+      const movement = droneTargetX - currentX;
       groupRef.current.rotation.z = THREE.MathUtils.lerp(
         groupRef.current.rotation.z, 
-        movement * 0.05, // Reduced tilt for smoother movement
+        movement * 0.03, // Reduced tilt for more natural movement
         0.05
       );
       
@@ -103,28 +89,41 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
       });
     }
 
-    // Projector light effect - point straight down when over social icon
-    if (projectorRef.current && hoveredSocial) {
-      // Point straight down when over the target
-      projectorRef.current.rotation.y = THREE.MathUtils.lerp(
-        projectorRef.current.rotation.y,
-        0, // Straight down
-        0.1
-      );
-      projectorRef.current.rotation.x = THREE.MathUtils.lerp(
-        projectorRef.current.rotation.x,
-        0.3, // Point downward
-        0.1
-      );
-    } else if (projectorRef.current) {
-      // Return to neutral position when not hovering
-      projectorRef.current.rotation.y = THREE.MathUtils.lerp(projectorRef.current.rotation.y, 0, 0.05);
-      projectorRef.current.rotation.x = THREE.MathUtils.lerp(projectorRef.current.rotation.x, 0, 0.05);
+    // Projector light effect
+    if (projectorRef.current) {
+      if (hoveredSocial) {
+        // Point straight down when over the target
+        projectorRef.current.rotation.y = THREE.MathUtils.lerp(
+          projectorRef.current.rotation.y,
+          0, // Straight down
+          0.08
+        );
+        projectorRef.current.rotation.x = THREE.MathUtils.lerp(
+          projectorRef.current.rotation.x,
+          0.3, // Point downward
+          0.08
+        );
+      } else {
+        // When not hovering, gently follow drone movement
+        const droneX = groupRef.current?.position.x || 0;
+        const followAngle = droneX * 0.02; // Very subtle following of drone movement
+        
+        projectorRef.current.rotation.y = THREE.MathUtils.lerp(
+          projectorRef.current.rotation.y, 
+          followAngle, 
+          0.02
+        );
+        projectorRef.current.rotation.x = THREE.MathUtils.lerp(
+          projectorRef.current.rotation.x, 
+          0.1, // Slight downward angle when following cursor
+          0.03
+        );
+      }
     }
   });
 
   return (
-    <group ref={groupRef} position={[0, 1.5, 0]} scale={0.8}>
+    <group ref={groupRef} position={[0, 2, 0]} scale={0.8}>
       {/* Main drone body */}
       <mesh position={[0, 0, 0]}>
         <cylinderGeometry args={[0.3, 0.25, 0.8, 8]} />
@@ -363,8 +362,8 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
       }}>
         <Canvas
           camera={{ 
-            position: [0, 0, 12], // Closer camera for better scale matching
-            fov: 60, // Narrower field of view for more precise positioning
+            position: [0, 0, 15], // Further back to see more
+            fov: 75, // Wider field of view
             near: 0.1, 
             far: 100 
           }}
@@ -412,17 +411,15 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
               borderRadius: '15px',
               background: hoveredSocial === social.id 
                 ? `radial-gradient(circle, ${social.color}40, ${social.color}20, ${social.color}10, transparent)` 
-                : 'rgba(0, 0, 0, 0.4)',
-              border: hoveredSocial === social.id 
-                ? `2px solid ${social.color}` 
-                : '1px solid rgba(0, 255, 255, 0.3)',
+                : 'rgba(0, 0, 0, 0.2)', // More transparent background
+              border: 'none', // Remove borders
               boxShadow: hoveredSocial === social.id 
                 ? `
                   0 0 40px ${social.color}60, 
                   inset 0 0 20px ${social.color}20,
                   0 5px 20px rgba(0, 0, 0, 0.5)
                 ` 
-                : '0 3px 15px rgba(0, 0, 0, 0.3)',
+                : '0 3px 15px rgba(0, 0, 0, 0.2)', // Reduced shadow when not hovered
               position: 'relative',
               zIndex: hoveredSocial === social.id ? 10 : 1,
               minWidth: 'clamp(80px, 12vw, 120px)', // Prevent icons from getting too small
