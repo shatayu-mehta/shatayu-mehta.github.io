@@ -163,7 +163,7 @@ function EmailHologram({ isHovered, color }: { isHovered: boolean; color: string
 
   return (
     <group ref={meshRef}>
-      {/* Email envelope */}
+      {/* Email envelope body */}
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[0.6, 0.4, 0.05]} />
         <meshBasicMaterial 
@@ -174,9 +174,9 @@ function EmailHologram({ isHovered, color }: { isHovered: boolean; color: string
         />
       </mesh>
       
-      {/* Email flap - triangle */}
-      <mesh position={[0, 0.1, 0.03]} rotation={[0, 0, 0]}>
-        <coneGeometry args={[0.3, 0.05, 3]} />
+      {/* Email envelope flap - top triangle */}
+      <mesh position={[0, 0.15, 0.03]} rotation={[0, 0, Math.PI]}>
+        <boxGeometry args={[0.5, 0.1, 0.02]} />
         <meshBasicMaterial 
           color={isHovered ? color : '#00ffff'} 
           wireframe 
@@ -185,9 +185,19 @@ function EmailHologram({ isHovered, color }: { isHovered: boolean; color: string
         />
       </mesh>
       
-      {/* @ symbol ring */}
-      <mesh position={[0, 0, 0.1]} rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[0.15, 0.03, 8, 16]} />
+      {/* Email lines inside envelope */}
+      <mesh position={[0, 0.05, 0.06]}>
+        <boxGeometry args={[0.4, 0.02, 0.01]} />
+        <meshBasicMaterial 
+          color={isHovered ? '#ffffff' : '#00ffff'} 
+          wireframe 
+          transparent 
+          opacity={isHovered ? 1 : 0.7}
+        />
+      </mesh>
+      
+      <mesh position={[0, -0.05, 0.06]}>
+        <boxGeometry args={[0.3, 0.02, 0.01]} />
         <meshBasicMaterial 
           color={isHovered ? '#ffffff' : '#00ffff'} 
           wireframe 
@@ -202,7 +212,7 @@ function EmailHologram({ isHovered, color }: { isHovered: boolean; color: string
 // Social Media 3D Holograms Component
 function SocialHolograms({ hoveredSocial }: { hoveredSocial: string | null }) {
   return (
-    <group position={[0, -2.5, 0]}>
+    <group position={[0, -8, 0]}>
       {socialPlatforms.map((social, index) => {
         const xPosition = (index - 1) * 3; // Reduced spacing from 4 to 3
         const isHovered = hoveredSocial === social.id;
@@ -399,8 +409,8 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
         {hoveredSocial && (
           <>
             {/* Main spotlight cone - extends far down like a theater light */}
-            <mesh position={[0, -5, 0]} rotation={[0, 0, 0]}>
-              <coneGeometry args={[2.5, 10, 16, 1, false]} />
+            <mesh position={[0, -9.5, 0]} rotation={[0, 0, 0]}>
+              <coneGeometry args={[3, 19, 16, 1, false]} />
               <meshBasicMaterial 
                 color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
                 transparent 
@@ -410,8 +420,8 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
             </mesh>
             
             {/* Inner focused beam - brighter center */}
-            <mesh position={[0, -5, 0]} rotation={[0, 0, 0]}>
-              <coneGeometry args={[1.8, 10, 16, 1, false]} />
+            <mesh position={[0, -9.5, 0]} rotation={[0, 0, 0]}>
+              <coneGeometry args={[2, 19, 16, 1, false]} />
               <meshBasicMaterial 
                 color="#ffffff" 
                 transparent 
@@ -421,8 +431,8 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
             </mesh>
             
             {/* Core spotlight beam - most intense */}
-            <mesh position={[0, -5, 0]} rotation={[0, 0, 0]}>
-              <coneGeometry args={[1, 10, 16, 1, false]} />
+            <mesh position={[0, -9.5, 0]} rotation={[0, 0, 0]}>
+              <coneGeometry args={[1.2, 19, 16, 1, false]} />
               <meshBasicMaterial 
                 color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
                 transparent 
@@ -610,10 +620,10 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
         justifyContent: 'center',
         alignItems: 'flex-end',
         marginTop: 'auto', // Push to bottom
-        marginBottom: '1rem', // Small margin from bottom
+        marginBottom: '0.5rem', // Reduced margin from bottom
         width: '100%',
         maxWidth: '1000px', // Reduced max width
-        paddingBottom: '1rem',
+        paddingBottom: '0.5rem', // Reduced padding
         zIndex: 10, // Above 3D scene
       }}>
         {socialPlatforms.map((social) => (
@@ -645,7 +655,9 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
             {hoveredSocial === social.id && (
               <div style={{
                 position: 'absolute',
-                bottom: '-30px',
+                bottom: '-15px', // Slightly lower to align with the lowered holograms
+                left: '50%',
+                transform: 'translateX(-50%)', // Center horizontally
                 fontSize: 'clamp(0.7rem, 1.5vw, 1rem)',
                 fontFamily: 'Orbitron, monospace',
                 fontWeight: 'bold',
