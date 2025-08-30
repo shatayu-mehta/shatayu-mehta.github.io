@@ -45,7 +45,7 @@ function GitHubHologram({ isHovered, color }: { isHovered: boolean; color: strin
       <mesh position={[0, 0, 0]}>
         <sphereGeometry args={[0.4, 16, 16]} />
         <meshBasicMaterial 
-          color={isHovered ? color : '#00ffff'} 
+          color={isHovered ? color : '#ffffff'} 
           wireframe 
           transparent 
           opacity={isHovered ? 0.9 : 0.6}
@@ -56,7 +56,7 @@ function GitHubHologram({ isHovered, color }: { isHovered: boolean; color: strin
       <mesh position={[-0.3, 0.3, 0]}>
         <sphereGeometry args={[0.15, 8, 8]} />
         <meshBasicMaterial 
-          color={isHovered ? color : '#00ffff'} 
+          color={isHovered ? color : '#ffffff'} 
           wireframe 
           transparent 
           opacity={isHovered ? 0.8 : 0.5}
@@ -65,7 +65,7 @@ function GitHubHologram({ isHovered, color }: { isHovered: boolean; color: strin
       <mesh position={[0.3, 0.3, 0]}>
         <sphereGeometry args={[0.15, 8, 8]} />
         <meshBasicMaterial 
-          color={isHovered ? color : '#00ffff'} 
+          color={isHovered ? color : '#ffffff'} 
           wireframe 
           transparent 
           opacity={isHovered ? 0.8 : 0.5}
@@ -76,7 +76,7 @@ function GitHubHologram({ isHovered, color }: { isHovered: boolean; color: strin
       <mesh position={[0, 0, 0]}>
         <octahedronGeometry args={[0.2]} />
         <meshBasicMaterial 
-          color={isHovered ? '#ffffff' : '#00ffff'} 
+          color={isHovered ? '#ffffff' : '#ffffff'} 
           wireframe 
           transparent 
           opacity={isHovered ? 1 : 0.7}
@@ -103,7 +103,7 @@ function LinkedInHologram({ isHovered, color }: { isHovered: boolean; color: str
       <mesh position={[-0.2, 0, 0]}>
         <boxGeometry args={[0.1, 0.6, 0.1]} />
         <meshBasicMaterial 
-          color={isHovered ? color : '#00ffff'} 
+          color={isHovered ? color : '#ffffff'} 
           wireframe 
           transparent 
           opacity={isHovered ? 0.9 : 0.6}
@@ -112,7 +112,7 @@ function LinkedInHologram({ isHovered, color }: { isHovered: boolean; color: str
       <mesh position={[-0.2, 0.4, 0]}>
         <sphereGeometry args={[0.05, 8, 8]} />
         <meshBasicMaterial 
-          color={isHovered ? color : '#00ffff'} 
+          color={isHovered ? color : '#ffffff'} 
           wireframe 
           transparent 
           opacity={isHovered ? 0.9 : 0.6}
@@ -123,7 +123,7 @@ function LinkedInHologram({ isHovered, color }: { isHovered: boolean; color: str
       <mesh position={[0.1, 0, 0]}>
         <boxGeometry args={[0.1, 0.6, 0.1]} />
         <meshBasicMaterial 
-          color={isHovered ? color : '#00ffff'} 
+          color={isHovered ? color : '#ffffff'} 
           wireframe 
           transparent 
           opacity={isHovered ? 0.9 : 0.6}
@@ -132,7 +132,7 @@ function LinkedInHologram({ isHovered, color }: { isHovered: boolean; color: str
       <mesh position={[0.25, 0.2, 0]}>
         <boxGeometry args={[0.2, 0.1, 0.1]} />
         <meshBasicMaterial 
-          color={isHovered ? color : '#00ffff'} 
+          color={isHovered ? color : '#ffffff'} 
           wireframe 
           transparent 
           opacity={isHovered ? 0.9 : 0.6}
@@ -141,7 +141,7 @@ function LinkedInHologram({ isHovered, color }: { isHovered: boolean; color: str
       <mesh position={[0.3, 0, 0]}>
         <boxGeometry args={[0.1, 0.4, 0.1]} />
         <meshBasicMaterial 
-          color={isHovered ? color : '#00ffff'} 
+          color={isHovered ? color : '#ffffff'} 
           wireframe 
           transparent 
           opacity={isHovered ? 0.9 : 0.6}
@@ -167,7 +167,7 @@ function EmailHologram({ isHovered, color }: { isHovered: boolean; color: string
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[0.6, 0.4, 0.05]} />
         <meshBasicMaterial 
-          color={isHovered ? color : '#00ffff'} 
+          color={isHovered ? color : '#ffffff'} 
           wireframe 
           transparent 
           opacity={isHovered ? 0.9 : 0.6}
@@ -178,7 +178,7 @@ function EmailHologram({ isHovered, color }: { isHovered: boolean; color: string
       <mesh position={[0, 0.15, 0.03]} rotation={[0, 0, Math.PI]}>
         <boxGeometry args={[0.5, 0.1, 0.02]} />
         <meshBasicMaterial 
-          color={isHovered ? color : '#00ffff'} 
+          color={isHovered ? color : '#ffffff'} 
           wireframe 
           transparent 
           opacity={isHovered ? 0.8 : 0.5}
@@ -189,7 +189,7 @@ function EmailHologram({ isHovered, color }: { isHovered: boolean; color: string
       <mesh position={[0, 0.05, 0.06]}>
         <boxGeometry args={[0.4, 0.02, 0.01]} />
         <meshBasicMaterial 
-          color={isHovered ? '#ffffff' : '#00ffff'} 
+          color={isHovered ? '#ffffff' : '#ffffff'} 
           wireframe 
           transparent 
           opacity={isHovered ? 1 : 0.7}
@@ -199,7 +199,7 @@ function EmailHologram({ isHovered, color }: { isHovered: boolean; color: string
       <mesh position={[0, -0.05, 0.06]}>
         <boxGeometry args={[0.3, 0.02, 0.01]} />
         <meshBasicMaterial 
-          color={isHovered ? '#ffffff' : '#00ffff'} 
+          color={isHovered ? '#ffffff' : '#ffffff'} 
           wireframe 
           transparent 
           opacity={isHovered ? 1 : 0.7}
@@ -361,7 +361,7 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
       {/* Main drone body */}
       <mesh position={[0, 0, 0]}>
         <cylinderGeometry args={[0.3, 0.25, 0.8, 8]} />
-        <meshBasicMaterial color="#00ffff" wireframe transparent opacity={0.9} />
+        <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.9} />
       </mesh>
       
       {/* Drone arms */}
@@ -375,7 +375,7 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
           {/* Arm connecting body to motor */}
           <mesh position={[0.6, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
             <cylinderGeometry args={[0.03, 0.03, 1.2, 6]} />
-            <meshBasicMaterial color="#00ffff" wireframe />
+            <meshBasicMaterial color="#ffffff" wireframe />
           </mesh>
           
           {/* Motor at end of arm */}
@@ -387,7 +387,7 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
           {/* Propeller */}
           <mesh ref={propellerRefs[index]} position={[1.2, 0.08, 0]}>
             <cylinderGeometry args={[0.35, 0.35, 0.01, 3]} />
-            <meshBasicMaterial color="#00ffff" wireframe transparent opacity={0.7} />
+            <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.7} />
           </mesh>
         </group>
       ))}
@@ -412,7 +412,7 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
             <mesh position={[0, -9.5, 0]} rotation={[0, 0, 0]}>
               <coneGeometry args={[3, 19, 16, 1, false]} />
               <meshBasicMaterial 
-                color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
+                color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#ffffff'} 
                 transparent 
                 opacity={0.1} 
                 side={THREE.DoubleSide}
@@ -434,7 +434,7 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
             <mesh position={[0, -9.5, 0]} rotation={[0, 0, 0]}>
               <coneGeometry args={[1.2, 19, 16, 1, false]} />
               <meshBasicMaterial 
-                color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
+                color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#ffffff'} 
                 transparent 
                 opacity={0.25} 
                 side={THREE.DoubleSide}
@@ -454,7 +454,7 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
               >
                 <cylinderGeometry args={[0.005, 0.005, 16, 4]} />
                 <meshBasicMaterial 
-                  color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
+                  color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#ffffff'} 
                   transparent 
                   opacity={0.4}
                 />
@@ -465,7 +465,7 @@ function DroneWithProjector({ targetX, hoveredSocial, socialPlatforms }: DronePr
             <mesh position={[0, -15.5, 0]} rotation={[Math.PI / 2, 0, 0]}>
               <circleGeometry args={[3, 32]} />
               <meshBasicMaterial 
-                color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#00ffff'} 
+                color={socialPlatforms.find(s => s.id === hoveredSocial)?.color || '#ffffff'} 
                 transparent 
                 opacity={0.15} 
                 side={THREE.DoubleSide}
@@ -527,7 +527,10 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
         width: '100vw',
         height: '100vh',
         zIndex: 50,
-        background: 'rgba(0, 0, 0, 0.95)',
+        backgroundImage: 'url(/Establish_contact_bg.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -537,6 +540,162 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
         overflow: 'hidden', // Prevent any scrolling
       }}
     >
+      {/* Flying Cars Animation Layer */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: -1,
+      }}>
+        <div className="flying-car car-1">
+          <div className="window window-left" style={{background: '#ff00ff'}}></div>
+          <div className="window window-right" style={{background: '#ffff00'}}></div>
+          <div className="trail trail-left"></div>
+        </div>
+        <div className="flying-car car-2">
+          <div className="window window-left" style={{background: '#ffffff'}}></div>
+          <div className="window window-right" style={{background: '#ff0080'}}></div>
+          <div className="trail trail-right"></div>
+        </div>
+        <div className="flying-car car-3">
+          <div className="window window-left" style={{background: '#80ff00'}}></div>
+          <div className="window window-right" style={{background: '#ff4000'}}></div>
+          <div className="trail trail-left"></div>
+        </div>
+        <div className="flying-car car-4">
+          <div className="window window-left" style={{background: '#4080ff'}}></div>
+          <div className="window window-right" style={{background: '#ff8040'}}></div>
+          <div className="trail trail-right"></div>
+        </div>
+        <div className="flying-car car-5">
+          <div className="window window-left" style={{background: '#ff0040'}}></div>
+          <div className="window window-right" style={{background: '#40ff80'}}></div>
+          <div className="trail trail-left"></div>
+        </div>
+        <div className="flying-car car-6">
+          <div className="window window-left" style={{background: '#8040ff'}}></div>
+          <div className="window window-right" style={{background: '#ffff80'}}></div>
+          <div className="trail trail-right"></div>
+        </div>
+      </div>
+
+      <style>{`
+        .flying-car {
+          position: absolute;
+          width: 18px;
+          height: 7px;
+          background: #000;
+          border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        }
+
+        .window {
+          position: absolute;
+          width: 2px;
+          height: 1px;
+          border-radius: 50%;
+          top: 2px;
+        }
+
+        .window-left {
+          left: 3px;
+        }
+
+        .window-right {
+          right: 3px;
+        }
+
+        .trail {
+          position: absolute;
+          top: 50%;
+          width: 30px;
+          height: 2px;
+          border-radius: 50%;
+          transform: translateY(-50%);
+        }
+
+        .trail-left {
+          left: -30px;
+          background: linear-gradient(270deg, orange, transparent);
+        }
+
+        .trail-right {
+          right: -30px;
+          background: linear-gradient(90deg, orange, transparent);
+        }
+
+        .car-1 {
+          top: 15%;
+          left: -25px;
+          animation: fly-right-slow 25s linear infinite;
+        }
+
+        .car-2 {
+          top: 35%;
+          right: -25px;
+          animation: fly-left-medium 20s linear infinite;
+        }
+
+        .car-3 {
+          top: 55%;
+          left: -25px;
+          animation: fly-right-fast 15s linear infinite;
+        }
+
+        .car-4 {
+          top: 75%;
+          right: -25px;
+          animation: fly-left-slow 22s linear infinite;
+        }
+
+        .car-5 {
+          top: 25%;
+          left: -25px;
+          animation: fly-right-medium 18s linear infinite;
+          animation-delay: 8s;
+        }
+
+        .car-6 {
+          top: 65%;
+          right: -25px;
+          animation: fly-left-fast 16s linear infinite;
+          animation-delay: 5s;
+        }
+
+        /* Horizontal-only movement animations */
+        @keyframes fly-right-slow {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(100vw + 50px)); }
+        }
+
+        @keyframes fly-right-medium {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(100vw + 50px)); }
+        }
+
+        @keyframes fly-right-fast {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(100vw + 50px)); }
+        }
+
+        @keyframes fly-left-slow {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-100vw - 50px)); }
+        }
+
+        @keyframes fly-left-medium {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-100vw - 50px)); }
+        }
+
+        @keyframes fly-left-fast {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-100vw - 50px)); }
+        }
+      `}</style>
+
       {/* Top Section - Title and Description */}
       <div style={{
         display: 'flex',
@@ -606,7 +765,7 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
           <DroneWithProjector targetX={mouseX} hoveredSocial={hoveredSocial} socialPlatforms={socialPlatforms} />
           <SocialHolograms hoveredSocial={hoveredSocial} />
           <ambientLight intensity={0.6} />
-          <pointLight position={[0, 5, 5]} intensity={1.2} color="#00ffff" />
+          <pointLight position={[0, 5, 5]} intensity={1.2} color="#ffffff" />
           <pointLight position={[5, 0, 5]} intensity={0.8} color="#ff00ff" />
           <pointLight position={[-5, 0, 5]} intensity={0.8} color="#ff00ff" />
         </Canvas>
