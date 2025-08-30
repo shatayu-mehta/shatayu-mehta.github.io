@@ -651,25 +651,24 @@ const EstablishContact: React.FC<EstablishContactProps> = ({ currentSection }) =
               }
             }}
           >
-            {/* Optional: Show label on hover */}
-            {hoveredSocial === social.id && (
-              <div style={{
-                position: 'absolute',
-                bottom: '-15px', // Slightly lower to align with the lowered holograms
-                left: '50%',
-                transform: 'translateX(-50%)', // Center horizontally
-                fontSize: 'clamp(0.7rem, 1.5vw, 1rem)',
-                fontFamily: 'Orbitron, monospace',
-                fontWeight: 'bold',
-                color: social.color,
-                textShadow: `0 0 15px ${social.color}`,
-                textAlign: 'center',
-                whiteSpace: 'nowrap',
-                pointerEvents: 'none',
-              }}>
-                {social.name}
-              </div>
-            )}
+            {/* Always show label - highlighted when hovered */}
+            <div style={{
+              position: 'absolute',
+              bottom: '-15px', // Slightly lower to align with the lowered holograms
+              left: '50%',
+              transform: 'translateX(-50%)', // Center horizontally
+              fontSize: 'clamp(0.7rem, 1.5vw, 1rem)',
+              fontFamily: 'Orbitron, monospace',
+              fontWeight: 'bold',
+              color: hoveredSocial === social.id ? social.color : '#ffffff',
+              textShadow: hoveredSocial === social.id ? `0 0 15px ${social.color}` : '0 0 5px #ffffff',
+              textAlign: 'center',
+              whiteSpace: 'nowrap',
+              pointerEvents: 'none',
+              transition: 'all 0.3s ease',
+            }}>
+              {social.name}
+            </div>
           </div>
         ))}
       </div>
