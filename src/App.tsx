@@ -49,8 +49,19 @@ function App() {
       <Portfolio currentSection={currentSection} />
       <EstablishContact currentSection={currentSection} />
       
+      {/* About page background image */}
+      {currentSection === 'about' && (
+        <div className="about-background-image">
+          <img 
+            src="/For_about_page.png" 
+            alt="Shatayu Mehta - Robotics Engineer" 
+            className="about-bg-image"
+          />
+        </div>
+      )}
+      
       {/* Cyberpunk grid overlay */}
-      <div className="grid-overlay" />
+      {currentSection !== 'about' && <div className="grid-overlay" />}
       
       {/* Glitch effects */}
       <div className="glitch-overlay" />

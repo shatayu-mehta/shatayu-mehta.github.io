@@ -239,6 +239,8 @@ body::after {
 
 .section-content {
   max-width: 600px;
+  position: relative;
+  z-index: 2;
 }
 
 /* Typography */
@@ -309,6 +311,36 @@ body::after {
 /* About section */
 .about-content {
   margin-bottom: 20px;
+  position: relative;
+}
+
+.about-background-image {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 50vw;
+  height: 100vh;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+.about-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border: none;
+  box-shadow: none;
+  transition: none;
+  transform: none;
+  pointer-events: none;
+}
+
+.about-bg-image:hover {
+  transform: none !important;
+  scale: none !important;
+  box-shadow: none !important;
+  opacity: 0.9 !important;
 }
 
 .about-text {
@@ -316,10 +348,14 @@ body::after {
   line-height: 1.8;
   margin-bottom: 20px;
   color: var(--text-gray);
+  position: relative;
+  z-index: 1;
 }
 
 .bio-stats {
   margin-top: 30px;
+  position: relative;
+  z-index: 1;
   /* space-y: 15px; */
 }
 
@@ -881,5 +917,26 @@ body::after {
   100% { 
     opacity: 0.8; 
     transform: translateX(-50%) scale(1);
+  }
+}
+
+/* Responsive design for about section */
+@media (max-width: 768px) {
+  .about-background-image {
+    position: static;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+    opacity: 1;
+  }
+  
+  .about-bg-image {
+    width: 90%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .about-content {
+    text-align: center;
   }
 }
