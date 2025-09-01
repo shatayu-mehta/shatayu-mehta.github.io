@@ -56,23 +56,23 @@ const Portfolio = ({ currentSection }: PortfolioProps) => {
             <div className="about-content">
               <p className="about-text">
                 I'm Shatayu Mehta, a robotics engineer who speaks fluent robot and occasionally human. 
-                With a Master's in Robotics Engineering from UC San Diego, I've spent years teaching 
-                machines to be less mechanical and more... well, still mechanical, but cooler.
+                Currently pursuing a Master's in Robotics at the University of Minnesota, I've spent years teaching 
+                machines to be less mechanical and more... well, still mechanical, but significantly cooler.
               </p>
               <p className="about-text">
-                When I'm not busy making robots do my bidding, you'll find me deep in CAD models, 
-                designing the next generation of automated overlords. My specialty? Making control 
-                systems so precise, they make Swiss watches jealous.
+                When I'm not busy making VTOLs fly better or teaching robots to sort tools with computer vision, 
+                you'll find me deep in CAD models, designing the next generation of automated overlords. My specialty? 
+                Making control systems so precise, they make Swiss watches jealous.
               </p>
               <div className="bio-stats">
                 <div className="bio-item">
-                  <strong>Location:</strong> San Diego, CA (Land of Eternal Sunshine)
+                  <strong>Location:</strong> Minneapolis, MN (Land of 10,000 Lakes and Infinite Robots)
                 </div>
                 <div className="bio-item">
-                  <strong>Status:</strong> Available for hire (Robots not included)
+                  <strong>Status:</strong> Available for hire (VTOL aircraft not included)
                 </div>
                 <div className="bio-item">
-                  <strong>Superpower:</strong> Turning coffee into code and CAD models
+                  <strong>Superpower:</strong> Turning coffee into code, CAD models, and flying machines
                 </div>
               </div>
             </div>
@@ -93,33 +93,33 @@ const Portfolio = ({ currentSection }: PortfolioProps) => {
               <div className="timeline-item">
                 <div className="timeline-dot"></div>
                 <div className="timeline-content">
-                  <h3>Graduate Research Assistant</h3>
-                  <h4>UC San Diego</h4>
-                  <span className="timeline-date">2022 - 2024</span>
-                  <p>Conquered the academic world while making robots dance to my algorithms. 
-                     Specialized in making machines smarter than their creators (don't tell my professors).</p>
+                  <h3>Masters Student - Robotics</h3>
+                  <h4>University of Minnesota Twin Cities</h4>
+                  <span className="timeline-date">Sept 2024 - Present</span>
+                  <p>Currently conquering the academic world of robotics while learning to make machines even smarter. 
+                     Specializing in making robots that might eventually take over the world (responsibly).</p>
                 </div>
               </div>
               
               <div className="timeline-item">
                 <div className="timeline-dot"></div>
                 <div className="timeline-content">
-                  <h3>Robotics Intern</h3>
-                  <h4>Tech Startup (Stealth Mode)</h4>
-                  <span className="timeline-date">2023</span>
-                  <p>Developed control systems so advanced, they're classified as "potentially sentient." 
-                     Also made the office coffee machine slightly more intelligent.</p>
+                  <h3>Research and Development Engineer</h3>
+                  <h4>Indrones Solutions PVT LTD</h4>
+                  <span className="timeline-date">Nov 2022 - Nov 2023</span>
+                  <p>Spearheaded FUJIN VTOL project, achieving 25% flight time increase and reducing costs by 10%. 
+                     Also made UAVs so efficient, they're practically showing off.</p>
                 </div>
               </div>
               
               <div className="timeline-item">
                 <div className="timeline-dot"></div>
                 <div className="timeline-content">
-                  <h3>CAD Modeling Specialist</h3>
-                  <h4>Freelance</h4>
-                  <span className="timeline-date">2021 - Present</span>
-                  <p>Creating 3D models so realistic, reality got jealous. Specializing in 
-                     mechanical designs that work both in virtual space and actual physics.</p>
+                  <h3>Design Team Lead</h3>
+                  <h4>Team Onyx India</h4>
+                  <span className="timeline-date">May 2019 - Aug 2019</span>
+                  <p>Led aircraft design decisions for SAE Aero Design competition, reducing material costs by 45%. 
+                     Created self-gliding aircraft that lands itself - because autonomous is always better.</p>
                 </div>
               </div>
             </div>
@@ -138,35 +138,62 @@ const Portfolio = ({ currentSection }: PortfolioProps) => {
             <h2 className="section-title">DIGITAL CREATIONS</h2>
             <div className="projects-grid">
               <div className="project-card">
-                <h3>Autonomous Navigation System</h3>
-                <p>Taught a robot to navigate better than most humans in traffic. 
-                   Features include path planning, obstacle avoidance, and an attitude problem.</p>
+                <h3>Wearable Ring Mouse Device</h3>
+                <p>Created a futuristic ring mouse with Arduino Nano 33 BLE, because regular mice are for peasants. 
+                   Features gesture control and achieves 35.67 SUS score for ultimate user satisfaction.</p>
                 <div className="tech-stack">
-                  <span>ROS</span>
+                  <span>Arduino</span>
                   <span>Python</span>
-                  <span>SLAM</span>
+                  <span>3D Printing</span>
+                  <span>BLE</span>
                 </div>
               </div>
               
               <div className="project-card">
-                <h3>Robotic Arm Control</h3>
-                <p>Developed precision control algorithms for a 6-DOF robotic arm. 
-                   Now it can perform surgery, paint masterpieces, or make the perfect latte.</p>
+                <h3>Computer Vision Tool Sorting Robot</h3>
+                <p>Taught a UR5 robot to sort tools with the precision of a Swiss watchmaker and the attitude of a 
+                   caffeinated engineer. Uses CNN and ArUco markers for 6DoF pose estimation.</p>
+                <div className="tech-stack">
+                  <span>Python</span>
+                  <span>OpenCV</span>
+                  <span>TensorFlow</span>
+                  <span>RoboDK</span>
+                </div>
+              </div>
+              
+              <div className="project-card">
+                <h3>Real-Time 3D Stereo Reconstruction</h3>
+                <p>Built a custom stereo camera system that reconstructs 3D models in real-time within 3 milliseconds. 
+                   Faster than you can say "depth perception".</p>
+                <div className="tech-stack">
+                  <span>OpenCV</span>
+                  <span>Raspberry Pi</span>
+                  <span>Open3D</span>
+                  <span>SGBM</span>
+                </div>
+              </div>
+              
+              <div className="project-card">
+                <h3>Fruit Classification with ResNet18</h3>
+                <p>Developed a CNN model that classifies fruits with 97.5% validation accuracy. 
+                   Now even my computer can tell an apple from an orange better than some humans.</p>
+                <div className="tech-stack">
+                  <span>PyTorch</span>
+                  <span>ResNet18</span>
+                  <span>Transfer Learning</span>
+                  <span>CNN</span>
+                </div>
+              </div>
+              
+              <div className="project-card">
+                <h3>Automated Fruit Plucking Robot</h3>
+                <p>Designed a gantry robot with computer vision for autonomous strawberry harvesting. 
+                   Because robots deserve fresh fruit too.</p>
                 <div className="tech-stack">
                   <span>MATLAB</span>
-                  <span>Simulink</span>
-                  <span>PID Control</span>
-                </div>
-              </div>
-              
-              <div className="project-card">
-                <h3>CAD Model Library</h3>
-                <p>Created a comprehensive library of mechanical components. 
-                   Each model is so detailed, engineers weep tears of joy.</p>
-                <div className="tech-stack">
-                  <span>SolidWorks</span>
-                  <span>AutoCAD</span>
-                  <span>Fusion 360</span>
+                  <span>Arduino</span>
+                  <span>Computer Vision</span>
+                  <span>Servo Control</span>
                 </div>
               </div>
             </div>
