@@ -5,6 +5,8 @@ interface PortfolioProps {
 }
 
 const Portfolio = ({ currentSection }: PortfolioProps) => {
+  console.log('Portfolio rendering with section:', currentSection) // Debug log
+  
   const renderContent = () => {
     switch (currentSection) {
       case 'home':

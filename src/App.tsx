@@ -1,9 +1,10 @@
-import { Suspense, useState } from 'react'
+import { useState } from 'react'
 import StartupScreen from './components/StartupScreen'
-import { Canvas } from '@react-three/fiber'
-import { Environment, OrbitControls } from '@react-three/drei'
-import { Physics } from '@react-three/cannon'
-import Scene3D from './components/Scene3D'
+// import { Suspense } from 'react'
+// import { Canvas } from '@react-three/fiber'
+// import { Environment, OrbitControls } from '@react-three/drei'
+// import { Physics } from '@react-three/cannon'
+// import Scene3D from './components/Scene3D'
 import Portfolio from './components/Portfolio'
 import Navigation from './components/Navigation'
 import EstablishContact from './components/EstablishContact'
@@ -13,6 +14,9 @@ import './App.css'
 function App() {
   const [currentSection, setCurrentSection] = useState('home')
   const [startupDone, setStartupDone] = useState(false)
+  
+  console.log('Current section:', currentSection) // Debug log
+  
   // Custom cursor hook
   useCursor()
 
@@ -26,6 +30,8 @@ function App() {
     <div className="app">
       <Navigation currentSection={currentSection} setCurrentSection={setCurrentSection} />
       
+      {/* Temporarily disable 3D canvas to fix crashes */}
+      {/*
       <div className="canvas-container">
         <Canvas
           camera={{ position: [0, 0, 10], fov: 50 }}
@@ -45,6 +51,7 @@ function App() {
           </Suspense>
         </Canvas>
       </div>
+      */}
 
       <Portfolio currentSection={currentSection} />
       <EstablishContact currentSection={currentSection} />
