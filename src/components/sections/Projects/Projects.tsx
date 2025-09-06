@@ -4,9 +4,41 @@ import './Projects.css';
 const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all');
 
+  // Function to handle opening project in new window
+  const openProjectDemo = (projectUrl: string, projectTitle: string) => {
+    const newWindow = window.open(
+      projectUrl,
+      '_blank',
+      'width=1200,height=800,scrollbars=yes,resizable=yes,toolbar=no,menubar=no,location=no,status=no'
+    );
+    
+    if (newWindow) {
+      newWindow.document.title = `${projectTitle} - 3D Demo`;
+    }
+  };
+
   const projects = [
     {
       id: 1,
+      title: 'Smart Wearable Ring',
+      category: 'wearables',
+      description: 'IoT-enabled smart ring with biometric sensors for health monitoring, gesture control, and seamless device integration.',
+      image: '/api/placeholder/400/300',
+      technologies: ['IoT', 'Embedded Systems', 'Bluetooth LE', 'Sensor Fusion', 'Mobile App', 'PCB Design'],
+      achievements: [
+        'Integrated multiple biometric sensors in 8mm form factor',
+        'Achieved 7-day battery life with optimized power management',
+        'Implemented gesture recognition with 95% accuracy',
+        'Seamless connectivity with smartphones and smart home devices'
+      ],
+      status: 'completed',
+      timeline: 'Jan 2024 - Aug 2024',
+      github: null,
+      demo: '/projects/wearable-ring.html',
+      featured: true
+    },
+    {
+      id: 2,
       title: 'FUJIN VTOL Aircraft',
       category: 'aerospace',
       description: 'Complete vertical take-off and landing aircraft design from concept to prototype testing with 25% flight time improvement.',
@@ -21,11 +53,11 @@ const Projects: React.FC = () => {
       status: 'completed',
       timeline: 'Nov 2022 - Nov 2023',
       github: null,
-      demo: null,
+      demo: '/projects/fujin-vtol.html',
       featured: true
     },
     {
-      id: 2,
+      id: 3,
       title: 'Autonomous Fruit Plucking Robot',
       category: 'robotics',
       description: 'Computer vision-enabled robot for automated strawberry harvesting using RGB color segmentation and precision gripper mechanism.',
@@ -40,11 +72,11 @@ const Projects: React.FC = () => {
       status: 'completed',
       timeline: 'April 2022',
       github: null,
-      demo: null,
+      demo: '/projects/fruit-plucking-robot.html',
       featured: true
     },
     {
-      id: 3,
+      id: 4,
       title: 'SAE Aero Design Aircraft',
       category: 'aerospace',
       description: 'Competition aircraft design with autonomous landing capabilities and innovative structural solutions for enhanced performance.',
@@ -59,11 +91,11 @@ const Projects: React.FC = () => {
       status: 'completed',
       timeline: 'May 2019 - Aug 2019',
       github: null,
-      demo: null,
+      demo: '/projects/sae-aero-aircraft.html',
       featured: true
     },
     {
-      id: 4,
+      id: 5,
       title: 'EPP Foam Machining Solution',
       category: 'manufacturing',
       description: 'Innovative prototyping solution for EPP foam processing that reduced manufacturing costs and improved durability.',
@@ -102,6 +134,25 @@ const Projects: React.FC = () => {
     },
     {
       id: 6,
+      title: 'S25 & S75 UAV Components',
+      category: 'aerospace',
+      description: 'Development and testing of critical components for commercial UAV systems including hot-swappable payload mechanisms.',
+      image: '/api/placeholder/400/300',
+      technologies: ['Mechanical Design', 'Testing', 'UAV Systems', 'Payload Integration'],
+      achievements: [
+        'Created hot-swappable payload mechanism for S75',
+        'Improved mechanical performance metrics',
+        'Contributed to technical certification',
+        'Enhanced operational flexibility'
+      ],
+      status: 'completed',
+      timeline: '2022 - 2023',
+      github: null,
+      demo: null,
+      featured: false
+    },
+    {
+      id: 7,
       title: 'Advanced Control Systems',
       category: 'robotics',
       description: 'Current research project exploring machine learning applications in robotic control systems and vision processing.',
@@ -125,6 +176,7 @@ const Projects: React.FC = () => {
     { id: 'all', label: 'All Projects', count: projects.length },
     { id: 'aerospace', label: 'Aerospace', count: projects.filter(p => p.category === 'aerospace').length },
     { id: 'robotics', label: 'Robotics', count: projects.filter(p => p.category === 'robotics').length },
+    { id: 'wearables', label: 'Wearables', count: projects.filter(p => p.category === 'wearables').length },
     { id: 'manufacturing', label: 'Manufacturing', count: projects.filter(p => p.category === 'manufacturing').length },
   ];
 
@@ -147,7 +199,7 @@ const Projects: React.FC = () => {
               Featured <span className="gradient-text">Work</span>
             </h2>
             <p className="section-subtitle">
-              Innovative solutions spanning aerospace engineering, robotics, and autonomous systems
+              Innovative solutions spanning aerospace engineering, robotics, wearables technology, and autonomous systems
             </p>
           </div>
 
@@ -156,7 +208,12 @@ const Projects: React.FC = () => {
             <h3 className="featured-title">Flagship Projects</h3>
             <div className="featured-grid">
               {featuredProjects.map((project) => (
-                <div key={project.id} className="featured-project glass-card hover-lift">
+                <div 
+                  key={project.id} 
+                  className="featured-project glass-card hover-lift clickable-project"
+                  onClick={() => project.demo && openProjectDemo(project.demo, project.title)}
+                  style={{ cursor: project.demo ? 'pointer' : 'default' }}
+                >
                   <div className="project-image">
                     <img src={project.image} alt={project.title} />
                     <div className="project-overlay">
@@ -165,6 +222,16 @@ const Projects: React.FC = () => {
                           {project.status === 'completed' ? '✓ Completed' : '⚡ In Progress'}
                         </span>
                       </div>
+                      {project.demo && (
+                        <div className="project-3d-indicator">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                          </svg>
+                          <span>View 3D Demo</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                   

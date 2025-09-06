@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Fruit Plucking Robot - 3D Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0d1117, #161b22);
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .demo-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            padding: 20px;
+            background: rgba(20, 25, 35, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 10;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            color: #00f5ff;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #adbac7;
+            font-size: 0.9rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .control-btn {
+            padding: 8px 16px;
+            background: rgba(0, 245, 255, 0.1);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 6px;
+            color: #00f5ff;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(0, 245, 255, 0.2);
+            border-color: #00f5ff;
+        }
+
+        .viewer {
+            flex: 1;
+            position: relative;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(0, 255, 128, 0.05), transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 32, 128, 0.05), transparent 50%);
+        }
+
+        .robot-display {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .robot-model {
+            width: 300px;
+            height: 400px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .robot-base {
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(45deg, #333, #555);
+            border-radius: 10px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 
+                0 0 20px rgba(0, 245, 255, 0.2),
+                inset 0 -10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .robot-arm {
+            width: 120px;
+            height: 20px;
+            background: linear-gradient(90deg, #00f5ff, #0099ff);
+            border-radius: 10px;
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform-origin: left center;
+            transform: translateX(-50%);
+            animation: armMovement 4s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.4);
+        }
+
+        .gripper {
+            width: 30px;
+            height: 40px;
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .gripper-jaw {
+            width: 15px;
+            height: 30px;
+            background: #ff6600;
+            border-radius: 5px;
+            position: absolute;
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+        }
+
+        .gripper-jaw:nth-child(1) {
+            left: 0;
+            animation: gripperOpen 3s ease-in-out infinite;
+        }
+
+        .gripper-jaw:nth-child(2) {
+            right: 0;
+            animation: gripperClose 3s ease-in-out infinite;
+        }
+
+        .camera-system {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #00ff80, #008040);
+            border-radius: 50%;
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 
+                0 0 20px rgba(0, 255, 128, 0.6),
+                inset 0 0 15px rgba(255, 255, 255, 0.2);
+            animation: cameraScanning 2s ease-in-out infinite;
+        }
+
+        .camera-lens {
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .strawberry {
+            width: 20px;
+            height: 25px;
+            background: linear-gradient(45deg, #ff4757, #ff3838);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: absolute;
+            animation: strawberryFloat 3s ease-in-out infinite;
+        }
+
+        .strawberry::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 8px;
+            background: #2ed573;
+            border-radius: 50%;
+        }
+
+        .strawberry:nth-child(1) { top: 80px; right: 50px; animation-delay: 0s; }
+        .strawberry:nth-child(2) { top: 120px; right: 100px; animation-delay: 1s; }
+        .strawberry:nth-child(3) { top: 160px; right: 80px; animation-delay: 2s; }
+
+        .vision-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .detection-box {
+            position: absolute;
+            border: 2px solid #00ff80;
+            background: rgba(0, 255, 128, 0.1);
+            animation: detectionPulse 2s ease-in-out infinite;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 32, 128, 0.1);
+            border: 1px solid rgba(255, 32, 128, 0.3);
+            border-radius: 6px;
+            color: #ff2080;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 32, 128, 0.2);
+            border-color: #ff2080;
+        }
+
+        .specs-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(20, 25, 35, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            width: 280px;
+        }
+
+        .specs-panel h3 {
+            color: #00ff80;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .spec-item {
+            color: #adbac7;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spec-icon {
+            color: #00ff80;
+            font-weight: bold;
+        }
+
+        .algorithm-panel {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(20, 25, 35, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            width: 300px;
+        }
+
+        .algorithm-panel h3 {
+            color: #ff6600;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .algorithm-step {
+            color: #adbac7;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-number {
+            background: #ff6600;
+            color: #000;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        @keyframes armMovement {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            25% { transform: translateX(-50%) rotate(-15deg); }
+            50% { transform: translateX(-50%) rotate(15deg); }
+            75% { transform: translateX(-50%) rotate(-10deg); }
+        }
+
+        @keyframes gripperOpen {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-20deg); }
+        }
+
+        @keyframes gripperClose {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(20deg); }
+        }
+
+        @keyframes cameraScanning {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); box-shadow: 0 0 30px rgba(0, 255, 128, 0.8); }
+        }
+
+        @keyframes strawberryFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes detectionPulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="header">
+            <h1>Autonomous Fruit Plucking Robot</h1>
+            <p>Computer vision-enabled strawberry harvesting with RGB color segmentation</p>
+            <div class="controls">
+                <button class="control-btn" onclick="toggleRobot()">Start/Stop Robot</button>
+                <button class="control-btn" onclick="toggleVision()">Toggle Vision</button>
+                <button class="control-btn" onclick="simulateHarvest()">Simulate Harvest</button>
+            </div>
+        </div>
+
+        <div class="viewer">
+            <button class="close-btn" onclick="window.close()">✕ Close</button>
+            
+            <div class="specs-panel">
+                <h3>System Specifications</h3>
+                <div class="spec-item">
+                    <span class="spec-icon">●</span>
+                    <span>RGB Color Segmentation</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">●</span>
+                    <span>Real-time Coordinate Calculation</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">●</span>
+                    <span>Precision Gripper Mechanism</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">●</span>
+                    <span>Arduino-based Control</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">●</span>
+                    <span>MATLAB Vision Processing</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">●</span>
+                    <span>Bluetooth Connectivity</span>
+                </div>
+            </div>
+
+            <div class="robot-display">
+                <div class="vision-overlay" id="visionOverlay"></div>
+                
+                <div class="robot-model" id="robotModel">
+                    <div class="camera-system">
+                        <div class="camera-lens"></div>
+                    </div>
+                    <div class="robot-arm">
+                        <div class="gripper">
+                            <div class="gripper-jaw"></div>
+                            <div class="gripper-jaw"></div>
+                        </div>
+                    </div>
+                    <div class="robot-base"></div>
+                </div>
+
+                <div class="strawberry"></div>
+                <div class="strawberry"></div>
+                <div class="strawberry"></div>
+            </div>
+
+            <div class="algorithm-panel">
+                <h3>Processing Algorithm</h3>
+                <div class="algorithm-step">
+                    <span class="step-number">1</span>
+                    <span>RGB Color Detection</span>
+                </div>
+                <div class="algorithm-step">
+                    <span class="step-number">2</span>
+                    <span>Object Segmentation</span>
+                </div>
+                <div class="algorithm-step">
+                    <span class="step-number">3</span>
+                    <span>Coordinate Calculation</span>
+                </div>
+                <div class="algorithm-step">
+                    <span class="step-number">4</span>
+                    <span>Path Planning</span>
+                </div>
+                <div class="algorithm-step">
+                    <span class="step-number">5</span>
+                    <span>Precision Picking</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let robotActive = true;
+        let visionActive = true;
+        let detectionBoxes = [];
+
+        function toggleRobot() {
+            const robotModel = document.getElementById('robotModel');
+            robotActive = !robotActive;
+            
+            if (robotActive) {
+                robotModel.style.animationPlayState = 'running';
+            } else {
+                robotModel.style.animationPlayState = 'paused';
+            }
+        }
+
+        function toggleVision() {
+            const overlay = document.getElementById('visionOverlay');
+            visionActive = !visionActive;
+            
+            if (visionActive) {
+                createDetectionBoxes();
+            } else {
+                overlay.innerHTML = '';
+            }
+        }
+
+        function createDetectionBoxes() {
+            const overlay = document.getElementById('visionOverlay');
+            overlay.innerHTML = '';
+            
+            const strawberries = document.querySelectorAll('.strawberry');
+            strawberries.forEach((strawberry, index) => {
+                const rect = strawberry.getBoundingClientRect();
+                const overlayRect = overlay.getBoundingClientRect();
+                
+                const box = document.createElement('div');
+                box.className = 'detection-box';
+                box.style.left = (rect.left - overlayRect.left - 10) + 'px';
+                box.style.top = (rect.top - overlayRect.top - 10) + 'px';
+                box.style.width = (rect.width + 20) + 'px';
+                box.style.height = (rect.height + 20) + 'px';
+                box.style.animationDelay = (index * 0.5) + 's';
+                
+                overlay.appendChild(box);
+            });
+        }
+
+        function simulateHarvest() {
+            const strawberries = document.querySelectorAll('.strawberry');
+            strawberries.forEach((strawberry, index) => {
+                setTimeout(() => {
+                    strawberry.style.animation = 'none';
+                    strawberry.style.transform = 'scale(0)';
+                    strawberry.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        strawberry.style.animation = 'strawberryFloat 3s ease-in-out infinite';
+                        strawberry.style.transform = 'scale(1)';
+                        strawberry.style.opacity = '1';
+                        strawberry.style.animationDelay = (index) + 's';
+                    }, 2000);
+                }, index * 800);
+            });
+        }
+
+        // Initialize vision overlay
+        if (visionActive) {
+            setTimeout(createDetectionBoxes, 500);
+        }
+
+        // Update detection boxes periodically
+        setInterval(() => {
+            if (visionActive) {
+                createDetectionBoxes();
+            }
+        }, 3000);
+    </script>
+</body>
+</html>

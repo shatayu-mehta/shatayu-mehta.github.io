@@ -48,6 +48,35 @@
   box-shadow: 0 20px 60px rgba(0, 245, 255, 0.2);
 }
 
+/* Clickable project styles */
+.clickable-project {
+  cursor: pointer;
+  position: relative;
+}
+
+.clickable-project::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 245, 255, 0.05);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 16px;
+  z-index: 1;
+}
+
+.clickable-project:hover::before {
+  opacity: 1;
+}
+
+.clickable-project:hover .project-3d-indicator {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .project-image {
   position: relative;
   height: 200px;
@@ -74,8 +103,35 @@
   background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(255, 0, 128, 0.1));
   display: flex;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: var(--spacing-md);
+}
+
+/* 3D Demo Indicator */
+.project-3d-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 8px 16px;
+  background: rgba(0, 245, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  color: var(--background-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.project-3d-indicator svg {
+  width: 18px;
+  height: 18px;
+}
+
+.project-3d-indicator span {
+  text-shadow: none;
 }
 
 .project-status .status-badge {
