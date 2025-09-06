@@ -50,6 +50,7 @@ const Hero: React.FC = () => {
           </Canvas>
         </div>
         <div className="hero-particles"></div>
+        <div className="screen-glitch-overlay"></div>
       </div>
 
       <div className="container">

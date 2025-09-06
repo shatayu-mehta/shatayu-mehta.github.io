@@ -40,12 +40,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 245, 255, 0.02) 0%,
-    rgba(255, 0, 128, 0.02) 50%,
-    rgba(255, 128, 0, 0.02) 100%
-  );
+  background: transparent;
   opacity: 0;
   transition: opacity 0.8s ease-out;
   pointer-events: none;
@@ -56,32 +51,14 @@
 }
 
 /* Section-specific themes */
-.section.hero {
-  background: radial-gradient(ellipse at center, rgba(0, 245, 255, 0.1) 0%, transparent 70%);
-}
-
-.section.about {
-  background: radial-gradient(ellipse at right, rgba(255, 0, 128, 0.08) 0%, transparent 70%);
-}
-
-.section.experience {
-  background: radial-gradient(ellipse at left, rgba(255, 128, 0, 0.08) 0%, transparent 70%);
-}
-
-.section.skills {
-  background: radial-gradient(ellipse at center, rgba(0, 128, 255, 0.08) 0%, transparent 70%);
-}
-
-.section.projects {
-  background: radial-gradient(ellipse at right, rgba(128, 255, 0, 0.08) 0%, transparent 70%);
-}
-
-.section.education {
-  background: radial-gradient(ellipse at left, rgba(255, 0, 255, 0.08) 0%, transparent 70%);
-}
-
+.section.hero,
+.section.about,
+.section.experience,
+.section.skills,
+.section.projects,
+.section.education,
 .section.contact {
-  background: radial-gradient(ellipse at center, rgba(0, 255, 128, 0.08) 0%, transparent 70%);
+  background: transparent;
 }
 
 /* Smooth transitions between sections */

@@ -1,7 +1,5 @@
 .education {
-  background: 
-    radial-gradient(ellipse at 20% 80%, rgba(255, 0, 255, 0.08) 0%, transparent 50%),
-    linear-gradient(45deg, rgba(0, 245, 255, 0.03) 0%, rgba(255, 128, 0, 0.03) 100%);
+  background: transparent;
 }
 
 .education-content {
