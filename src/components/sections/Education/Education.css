@@ -1,0 +1,526 @@
+.education {
+  background: 
+    radial-gradient(ellipse at 20% 80%, rgba(255, 0, 255, 0.08) 0%, transparent 50%),
+    linear-gradient(45deg, rgba(0, 245, 255, 0.03) 0%, rgba(255, 128, 0, 0.03) 100%);
+}
+
+.education-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.education-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.education-main {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: var(--spacing-2xl);
+  align-items: start;
+}
+
+/* Timeline */
+.education-timeline {
+  position: relative;
+}
+
+.education-timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--gradient-primary);
+  border-radius: 1px;
+}
+
+.education-item {
+  position: relative;
+  margin-bottom: var(--spacing-2xl);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-lg);
+}
+
+.education-item:last-child .marker-line {
+  display: none;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -32px;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.marker-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  border: 3px solid var(--background-dark);
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+}
+
+.marker-line {
+  width: 2px;
+  height: 60px;
+  background: var(--gradient-secondary);
+  margin-top: var(--spacing-sm);
+}
+
+.education-card {
+  flex: 1;
+  padding: var(--spacing-xl);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  background: var(--background-glass);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.education-card:hover {
+  border-color: var(--primary-cyan);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 245, 255, 0.15);
+}
+
+.edu-header {
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.edu-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.edu-status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.edu-status.current {
+  color: var(--primary-orange);
+  border: 1px solid rgba(255, 128, 0, 0.4);
+  background: rgba(255, 128, 0, 0.1);
+}
+
+.edu-status.completed {
+  color: #00ff80;
+  border: 1px solid rgba(0, 255, 128, 0.4);
+  background: rgba(0, 255, 128, 0.1);
+}
+
+.edu-period {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-accent);
+  letter-spacing: 0.5px;
+}
+
+.edu-degree {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.3;
+}
+
+.edu-institution {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.edu-location {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.edu-location::before {
+  content: '📍';
+  font-size: 0.9rem;
+}
+
+.edu-gpa {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: rgba(0, 245, 255, 0.1);
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  border-radius: 8px;
+  display: inline-flex;
+}
+
+.gpa-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.gpa-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.edu-content {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.edu-description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.edu-section .section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.edu-section .section-title::before {
+  content: '▶';
+  color: var(--primary-cyan);
+  font-size: 0.8rem;
+}
+
+.coursework-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.coursework-tag {
+  padding: 4px 12px;
+  background: rgba(0, 128, 255, 0.1);
+  border: 1px solid rgba(0, 128, 255, 0.3);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--primary-blue);
+  font-weight: 500;
+}
+
+.highlights-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.highlights-list li {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  padding-left: var(--spacing-md);
+  position: relative;
+  line-height: 1.5;
+}
+
+.highlights-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #00ff80;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Sidebar */
+.education-sidebar {
+  display: grid;
+  gap: var(--spacing-xl);
+  position: sticky;
+  top: 100px;
+}
+
+.sidebar-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+.achievements-section,
+.skills-section,
+.future-section {
+  padding: var(--spacing-lg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  background: var(--background-glass);
+  backdrop-filter: blur(10px);
+}
+
+/* Achievements */
+.achievements-grid {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.achievement-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: rgba(0, 245, 255, 0.05);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.achievement-item:hover {
+  background: rgba(0, 245, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.achievement-icon {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.achievement-content {
+  flex: 1;
+}
+
+.achievement-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.achievement-description {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: var(--spacing-xs);
+}
+
+.achievement-metric {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+/* Skills */
+.academic-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.skill-badge {
+  padding: 6px 12px;
+  background: rgba(255, 0, 128, 0.1);
+  border: 1px solid rgba(255, 0, 128, 0.3);
+  border-radius: 16px;
+  font-size: 0.8rem;
+  color: var(--primary-magenta);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+  background: rgba(255, 0, 128, 0.2);
+  transform: scale(1.05);
+}
+
+/* Future Goals */
+.future-content {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: rgba(128, 255, 0, 0.05);
+  border: 1px solid rgba(128, 255, 0, 0.2);
+  border-radius: 8px;
+}
+
+.goal-icon {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-secondary);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.goal-text h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.goal-text p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .education-main {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .education-sidebar {
+    position: static;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .education-timeline {
+    padding-left: var(--spacing-lg);
+  }
+
+  .education-timeline::before {
+    left: 12px;
+  }
+
+  .timeline-marker {
+    left: -24px;
+  }
+
+  .marker-dot {
+    width: 12px;
+    height: 12px;
+    border-width: 2px;
+  }
+
+  .education-card {
+    padding: var(--spacing-lg);
+  }
+
+  .edu-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+
+  .education-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .achievements-section,
+  .skills-section,
+  .future-section {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .education-timeline {
+    padding-left: var(--spacing-md);
+  }
+
+  .education-timeline::before {
+    left: 8px;
+  }
+
+  .timeline-marker {
+    left: -20px;
+  }
+
+  .education-card {
+    padding: var(--spacing-md);
+  }
+
+  .achievement-item,
+  .goal-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .achievement-icon,
+  .goal-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+  }
+}
+
+/* Animation delays */
+.education-item:nth-child(1) .education-card {
+  animation-delay: 0.1s;
+}
+
+.education-item:nth-child(2) .education-card {
+  animation-delay: 0.3s;
+}
+
+.achievements-section {
+  animation-delay: 0.5s;
+}
+
+.skills-section {
+  animation-delay: 0.7s;
+}
+
+.future-section {
+  animation-delay: 0.9s;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .education-card,
+  .achievement-item,
+  .skill-badge {
+    transition: none;
+  }
+  
+  .education-card:hover,
+  .achievement-item:hover {
+    transform: none;
+  }
+  
+  .skill-badge:hover {
+    transform: none;
+  }
+}
