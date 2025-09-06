@@ -1,79 +1,81 @@
-import { useState } from 'react'
-import StartupScreen from './components/StartupScreen'
-// import { Suspense } from 'react'
-// import { Canvas } from '@react-three/fiber'
-// import { Environment, OrbitControls } from '@react-three/drei'
-// import { Physics } from '@react-three/cannon'
-// import Scene3D from './components/Scene3D'
-import Portfolio from './components/Portfolio'
-import Navigation from './components/Navigation'
-import EstablishContact from './components/EstablishContact'
-import useCursor from './hooks/useCursor'
-import './styles.css'
+import React, { useEffect, useRef } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { Suspense } from 'react';
+import Navigation from './components/Navigation/Navigation';
+import Hero from './components/sections/Hero/Hero';
+import About from './components/sections/About/About';
+import Experience from './components/sections/Experience/Experience';
+import Skills from './components/sections/Skills/Skills';
+import Projects from './components/sections/Projects/Projects';
+import Education from './components/sections/Education/Education';
+import Contact from './components/sections/Contact/Contact';
+import Background3D from './components/3D/Background3D';
+import ScrollProgress from './components/UI/ScrollProgress';
+import LoadingScreen from './components/UI/LoadingScreen';
+import './styles/app.css';
 
-function App() {
-  const [currentSection, setCurrentSection] = useState('home')
-  const [startupDone, setStartupDone] = useState(false)
-  
-  console.log('Current section:', currentSection) // Debug log
-  
-  // Custom cursor hook
-  useCursor()
+const App: React.FC = () => {
+  const appRef = useRef<HTMLDivElement>(null);
 
-  if (!startupDone) {
-    return (
-      <StartupScreen imageUrl="/cyberpunk_city_bg.jpg" duration={3500} onComplete={() => setStartupDone(true)} />
-    )
-  }
+  useEffect(() => {
+    // Smooth scroll behavior
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('.section');
+      const scrollTop = window.pageYOffset;
+      const windowHeight = window.innerHeight;
+
+      sections.forEach((section) => {
+        const sectionTop = (section as HTMLElement).offsetTop;
+        const sectionHeight = (section as HTMLElement).offsetHeight;
+        const sectionCenter = sectionTop + sectionHeight / 2;
+
+        if (scrollTop + windowHeight / 2 > sectionCenter - windowHeight / 4 && 
+            scrollTop + windowHeight / 2 < sectionCenter + windowHeight / 4) {
+          section.classList.add('active');
+        } else {
+          section.classList.remove('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="app">
-      <Navigation currentSection={currentSection} setCurrentSection={setCurrentSection} />
-      
-      {/* Temporarily disable 3D canvas to fix crashes */}
-      {/*
-      <div className="canvas-container">
-        <Canvas
-          camera={{ position: [0, 0, 10], fov: 50 }}
-          gl={{ antialias: true, alpha: true }}
-        >
-          <Suspense fallback={null}>
-            <Environment preset="night" />
-            <Physics>
-              <Scene3D currentSection={currentSection} />
-            </Physics>
-            <OrbitControls
-              enablePan={false}
-              enableZoom={false}
-              maxPolarAngle={Math.PI / 2}
-              minPolarAngle={Math.PI / 3}
-            />
-          </Suspense>
-        </Canvas>
-      </div>
-      */}
-
-      <Portfolio currentSection={currentSection} />
-      <EstablishContact currentSection={currentSection} />
-      
-      {/* About page background image */}
-      {currentSection === 'about' && (
-        <div className="about-background-image">
-          <img 
-            src="/For_about_page.png" 
-            alt="Shatayu Mehta - Robotics Engineer" 
-            className="about-bg-image"
-          />
+    <div className="app" ref={appRef}>
+      <Suspense fallback={<LoadingScreen />}>
+        {/* 3D Background Canvas */}
+        <div className="background-canvas">
+          <Canvas
+            camera={{ position: [0, 0, 5], fov: 75 }}
+            gl={{ antialias: true, alpha: true }}
+          >
+            <Background3D />
+          </Canvas>
         </div>
-      )}
-      
-      {/* Cyberpunk grid overlay */}
-      {currentSection !== 'about' && <div className="grid-overlay" />}
-      
-      {/* Glitch effects */}
-      <div className="glitch-overlay" />
-    </div>
-  )
-}
 
-export default App
+        {/* Navigation */}
+        <Navigation />
+
+        {/* Scroll Progress Indicator */}
+        <ScrollProgress />
+
+        {/* Main Content */}
+        <main className="main-content">
+          <Hero />
+          <About />
+          <Experience />
+          <Skills />
+          <Projects />
+          <Education />
+          <Contact />
+        </main>
+      </Suspense>
+    </div>
+  );
+};
+
+export default App;
