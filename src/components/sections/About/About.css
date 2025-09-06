@@ -22,13 +22,15 @@
 
 .tag-number {
   font-size: 0.9rem;
-  color: var(--primary-cyan);
+  color: var(--neon-green);
   font-weight: 600;
+  text-shadow: var(--glow-green);
 }
 
 .tag-label {
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: var(--text-bright);
+  text-shadow: var(--text-glow-strong);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -38,11 +40,14 @@
   font-weight: 700;
   margin-bottom: var(--spacing-sm);
   line-height: 1.2;
+  color: var(--text-bright);
+  text-shadow: var(--text-glow-strong);
 }
 
 .section-subtitle {
   font-size: 1.2rem;
-  color: var(--text-secondary);
+  color: var(--text-bright);
+  text-shadow: var(--text-glow-strong);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;

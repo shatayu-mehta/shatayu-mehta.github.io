@@ -1,19 +1,22 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, lazy } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import Navigation from './components/Navigation/Navigation';
 import Hero from './components/sections/Hero/Hero';
-import About from './components/sections/About/About';
-import Experience from './components/sections/Experience/Experience';
-import Skills from './components/sections/Skills/Skills';
-import Projects from './components/sections/Projects/Projects';
-import Education from './components/sections/Education/Education';
-import Contact from './components/sections/Contact/Contact';
-import Background3D from './components/3D/Background3D';
 import ScrollProgress from './components/UI/ScrollProgress';
 import LoadingScreen from './components/UI/LoadingScreen';
-import MovingShips from './components/MovingShips';
+import LazySection from './components/LazySection';
 import './styles/app.css';
+
+// Lazy load non-critical components
+const About = lazy(() => import('./components/sections/About/About'));
+const Experience = lazy(() => import('./components/sections/Experience/Experience'));
+const Skills = lazy(() => import('./components/sections/Skills/Skills'));
+const Projects = lazy(() => import('./components/sections/Projects/Projects'));
+const Education = lazy(() => import('./components/sections/Education/Education'));
+const Contact = lazy(() => import('./components/sections/Contact/Contact'));
+const Background3D = lazy(() => import('./components/3D/Background3D'));
+const MovingShips = lazy(() => import('./components/MovingShips'));
 
 const App: React.FC = () => {
   const appRef = useRef<HTMLDivElement>(null);
@@ -49,7 +52,9 @@ const App: React.FC = () => {
     <div className="app" ref={appRef}>
       <Suspense fallback={<LoadingScreen />}>
         {/* JavaScript-powered moving ships */}
-        <MovingShips />
+        <Suspense fallback={<div style={{ minHeight: '10px' }} />}>
+          <MovingShips />
+        </Suspense>
 
         {/* 3D Background Canvas */}
         <div className="background-canvas">
@@ -57,7 +62,9 @@ const App: React.FC = () => {
             camera={{ position: [0, 0, 5], fov: 75 }}
             gl={{ antialias: true, alpha: true }}
           >
-            <Background3D />
+            <Suspense fallback={null}>
+              <Background3D />
+            </Suspense>
           </Canvas>
         </div>
 
@@ -70,12 +77,42 @@ const App: React.FC = () => {
         {/* Main Content */}
         <main className="main-content">
           <Hero />
-          <About />
-          <Experience />
-          <Skills />
-          <Projects />
-          <Education />
-          <Contact />
+          
+          <LazySection>
+            <Suspense fallback={<div className="section-loading">Loading About...</div>}>
+              <About />
+            </Suspense>
+          </LazySection>
+          
+          <LazySection>
+            <Suspense fallback={<div className="section-loading">Loading Experience...</div>}>
+              <Experience />
+            </Suspense>
+          </LazySection>
+          
+          <LazySection>
+            <Suspense fallback={<div className="section-loading">Loading Skills...</div>}>
+              <Skills />
+            </Suspense>
+          </LazySection>
+          
+          <LazySection>
+            <Suspense fallback={<div className="section-loading">Loading Projects...</div>}>
+              <Projects />
+            </Suspense>
+          </LazySection>
+          
+          <LazySection>
+            <Suspense fallback={<div className="section-loading">Loading Education...</div>}>
+              <Education />
+            </Suspense>
+          </LazySection>
+          
+          <LazySection>
+            <Suspense fallback={<div className="section-loading">Loading Contact...</div>}>
+              <Contact />
+            </Suspense>
+          </LazySection>
         </main>
       </Suspense>
     </div>

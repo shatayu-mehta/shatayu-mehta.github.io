@@ -34,55 +34,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    radial-gradient(circle at 15% 25%, rgba(0, 245, 255, 0.8) 1px, transparent 1px),
-    radial-gradient(circle at 85% 35%, rgba(255, 0, 128, 0.6) 1px, transparent 1px),
-    radial-gradient(circle at 45% 60%, rgba(255, 128, 0, 0.7) 1px, transparent 1px),
-    radial-gradient(circle at 75% 80%, rgba(0, 245, 255, 0.5) 1px, transparent 1px);
-  background-size: 100vw 100vh, 120vw 90vh, 80vw 110vh, 90vw 95vh;
-  animation: flyingLights 25s linear infinite, flyingLights2 30s linear infinite;
-}
-
-@keyframes flyingLights {
-  0% {
-    transform: translateX(-10%) translateY(10%);
-    opacity: 0.3;
-  }
-  25% {
-    opacity: 0.8;
-  }
-  50% {
-    transform: translateX(50%) translateY(-5%);
-    opacity: 0.4;
-  }
-  75% {
-    opacity: 0.9;
-  }
-  100% {
-    transform: translateX(110%) translateY(15%);
-    opacity: 0.2;
-  }
-}
-
-@keyframes flyingLights2 {
-  0% {
-    transform: translateX(110%) translateY(-5%);
-    opacity: 0.2;
-  }
-  30% {
-    opacity: 0.7;
-  }
-  60% {
-    transform: translateX(40%) translateY(20%);
-    opacity: 0.5;
-  }
-  80% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateX(-20%) translateY(-10%);
-    opacity: 0.1;
-  }
+  background: transparent;
 }
 
 .hero-content {
