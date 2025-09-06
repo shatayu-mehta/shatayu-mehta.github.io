@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UR5 Robot - 3D Interactive Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0d1117 0%, #1a1f36 50%, #0d1117 100%);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .demo-container {
+            display: flex;
+            height: 100vh;
+            position: relative;
+        }
+
+        .viewer {
+            flex: 1;
+            position: relative;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f36 100%);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #three-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .videos-section {
+            width: 450px;
+            background: rgba(10, 15, 25, 0.95);
+            backdrop-filter: blur(15px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .demo-header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            background: rgba(20, 25, 35, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 350px;
+        }
+
+        .demo-header h1 {
+            color: #ff6600;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .demo-header p {
+            color: #adbac7;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: rgba(255, 102, 0, 0.1);
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            border-radius: 8px;
+            color: #ff6600;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 102, 0, 0.2);
+            border-color: rgba(255, 102, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .control-btn.active {
+            background: rgba(255, 102, 0, 0.3);
+            border-color: rgba(255, 102, 0, 0.7);
+        }
+
+        .video-container {
+            background: rgba(20, 25, 35, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .video-container:hover {
+            border-color: rgba(255, 102, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .video-container h3 {
+            color: #ff6600;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .youtube-embed {
+            width: 100%;
+            height: 200px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .video-description {
+            color: #adbac7;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 32, 128, 0.1);
+            border: 1px solid rgba(255, 32, 128, 0.3);
+            border-radius: 6px;
+            color: #ff2080;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 32, 128, 0.2);
+            border-color: rgba(255, 32, 128, 0.5);
+        }
+
+        #loadingIndicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(20, 25, 35, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 15;
+            color: #adbac7;
+        }
+
+        .loading-spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(255, 102, 0, 0.3);
+            border-top: 3px solid #ff6600;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .demo-container {
+                flex-direction: column;
+            }
+            
+            .videos-section {
+                width: 100%;
+                height: 40vh;
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .viewer {
+                height: 60vh;
+                border-right: none;
+            }
+            
+            .demo-header {
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="viewer">
+            <canvas id="three-canvas"></canvas>
+            
+            <div class="demo-header">
+                <h1>UR5 Robot</h1>
+                <p>Interactive 6-DOF robotic arm demonstration with advanced manipulation capabilities and precision control systems.</p>
+            </div>
+
+            <div class="controls">
+                <button class="control-btn" onclick="toggleRotation()">Toggle Rotation</button>
+                <button class="control-btn" onclick="toggleLighting()">Toggle Lighting</button>
+                <button class="control-btn" onclick="resetView()">Reset View</button>
+            </div>
+
+            <div id="loadingIndicator">
+                <div class="loading-spinner"></div>
+                <div>Loading UR5 Robot Model...</div>
+            </div>
+        </div>
+
+        <div class="videos-section">
+            <div class="video-container">
+                <h3>Pick and Place Demo</h3>
+                <iframe 
+                    class="youtube-embed"
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    title="UR5 Robot Pick and Place Demo"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+                <div class="video-description">
+                    Watch the UR5 robot demonstrate precise pick and place operations with advanced path planning and object recognition capabilities.
+                </div>
+            </div>
+
+            <div class="video-container">
+                <h3>Assembly Line Integration</h3>
+                <iframe 
+                    class="youtube-embed"
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    title="UR5 Robot Assembly Line Demo"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+                <div class="video-description">
+                    See the UR5 robot seamlessly integrated into an automated assembly line with real-time coordination and quality control.
+                </div>
+            </div>
+
+            <div class="video-container">
+                <h3>Advanced Manipulation</h3>
+                <iframe 
+                    class="youtube-embed"
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    title="UR5 Robot Advanced Manipulation Demo"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+                <div class="video-description">
+                    Experience complex manipulation tasks showcasing the UR5's 6-degrees-of-freedom capabilities and precision control systems.
+                </div>
+            </div>
+        </div>
+
+        <button class="close-btn" onclick="window.close()">✕ Close</button>
+    </div>
+
+    <script>
+        // Three.js scene setup
+        let scene, camera, renderer, controls;
+        let robotModel = null;
+        let isRotating = true;
+        let lights = [];
+
+        function init() {
+            // Scene setup
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0d1117);
+
+            // Camera setup
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(15, 10, 15);
+
+            // Renderer setup
+            const canvas = document.getElementById('three-canvas');
+            const viewer = document.querySelector('.viewer');
+            const rect = viewer.getBoundingClientRect();
+            
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: canvas, 
+                antialias: true,
+                alpha: true 
+            });
+            renderer.setSize(rect.width, rect.height);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.2;
+
+            // Controls setup
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.enableZoom = true;
+            controls.enableRotate = true;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 2;
+            controls.minDistance = 8;
+            controls.maxDistance = 30;
+
+            // Lighting setup
+            setupLighting();
+
+            // Load the robot model
+            loadRobotModel();
+
+            // Start render loop
+            animate();
+
+            // Handle window resize
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function setupLighting() {
+            // Enhanced ambient light for better visibility
+            const ambientLight = new THREE.AmbientLight(0x606060, 1.0);
+            scene.add(ambientLight);
+
+            // Main directional light
+            const mainLight = new THREE.DirectionalLight(0xffffff, 1.2);
+            mainLight.position.set(8, 8, 5);
+            mainLight.castShadow = true;
+            mainLight.shadow.mapSize.width = 2048;
+            mainLight.shadow.mapSize.height = 2048;
+            mainLight.shadow.camera.near = 0.1;
+            mainLight.shadow.camera.far = 50;
+            mainLight.shadow.bias = -0.0001;
+            scene.add(mainLight);
+            lights.push(mainLight);
+
+            // Secondary light (blue accent)
+            const secondaryLight = new THREE.DirectionalLight(0x4080ff, 0.6);
+            secondaryLight.position.set(-5, 5, -5);
+            scene.add(secondaryLight);
+            lights.push(secondaryLight);
+
+            // Fill lights from multiple angles
+            const fillLight1 = new THREE.DirectionalLight(0xffffff, 0.5);
+            fillLight1.position.set(0, -5, 3);
+            scene.add(fillLight1);
+            lights.push(fillLight1);
+
+            const fillLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
+            fillLight2.position.set(5, -3, 0);
+            scene.add(fillLight2);
+            lights.push(fillLight2);
+
+            // Orange accent light
+            const accentLight = new THREE.PointLight(0xff6600, 0.8, 20);
+            accentLight.position.set(3, 3, 3);
+            scene.add(accentLight);
+            lights.push(accentLight);
+
+            // Hemisphere light for even illumination
+            const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6);
+            hemiLight.position.set(0, 10, 0);
+            scene.add(hemiLight);
+            lights.push(hemiLight);
+        }
+
+        function loadRobotModel() {
+            // Check if GLTFLoader is available
+            if (typeof THREE.GLTFLoader === 'undefined') {
+                console.error('GLTFLoader is not available. Check if the script loaded correctly.');
+                document.getElementById('loadingIndicator').innerHTML = 
+                    '<div style="color: #ff2080;">GLTFLoader not available<br>Check script loading</div>';
+                createFallbackModel();
+                return;
+            }
+
+            const loader = new THREE.GLTFLoader();
+            
+            console.log('Starting to load UR5.glb model...');
+            
+            // Try multiple paths for the GLB file
+            const paths = ['../UR5.glb', '/UR5.glb', './UR5.glb'];
+            let currentPathIndex = 0;
+            
+            function tryLoadModel() {
+                if (currentPathIndex >= paths.length) {
+                    // All paths failed, create a fallback model
+                    createFallbackModel();
+                    return;
+                }
+                
+                const currentPath = paths[currentPathIndex];
+                console.log(`Trying to load UR5 model from: ${currentPath}`);
+                
+                loader.load(
+                    currentPath,
+                    function (gltf) {
+                        // Model loaded successfully
+                        console.log('UR5 GLB loaded successfully:', gltf);
+                        
+                        robotModel = gltf.scene;
+                        
+                        // Scale down the model significantly for better viewing
+                        robotModel.scale.set(0.3, 0.3, 0.3);
+                        robotModel.position.set(0, 0, 0);
+                        
+                        // Enable shadows for all meshes
+                        robotModel.traverse(function (child) {
+                            if (child instanceof THREE.Mesh) {
+                                child.castShadow = true;
+                                child.receiveShadow = true;
+                                
+                                // Enhance materials for better visibility
+                                if (child.material) {
+                                    if (child.material.isMeshStandardMaterial) {
+                                        child.material.roughness = 0.7;
+                                        child.material.metalness = 0.3;
+                                    }
+                                }
+                            }
+                        });
+                        
+                        // Center the model
+                        const box = new THREE.Box3().setFromObject(robotModel);
+                        const center = box.getCenter(new THREE.Vector3());
+                        robotModel.position.sub(center);
+                        
+                        // Add to scene
+                        scene.add(robotModel);
+                        
+                        // Hide loading indicator
+                        document.getElementById('loadingIndicator').style.display = 'none';
+                        
+                        console.log('UR5 GLB model added to scene successfully');
+                    },
+                    function (progress) {
+                        // Loading progress
+                        if (progress.total > 0) {
+                            const percent = (progress.loaded / progress.total * 100);
+                            console.log('Loading progress: ', percent + '%');
+                        }
+                    },
+                    function (error) {
+                        // Loading error, try next path
+                        console.error(`Error loading GLB from ${currentPath}:`, error);
+                        currentPathIndex++;
+                        tryLoadModel();
+                    }
+                );
+            }
+            
+            tryLoadModel();
+        }
+
+        function createFallbackModel() {
+            console.log('Creating fallback UR5 robot model...');
+            
+            // Create a simple robot arm-like shape as fallback
+            const group = new THREE.Group();
+            
+            // Base
+            const baseGeometry = new THREE.CylinderGeometry(0.8, 0.8, 0.3, 16);
+            const baseMaterial = new THREE.MeshLambertMaterial({ 
+                color: 0x2c3e50,
+                emissive: 0x0f0f0f,
+                emissiveIntensity: 0.1
+            });
+            const base = new THREE.Mesh(baseGeometry, baseMaterial);
+            base.position.y = 0.15;
+            group.add(base);
+            
+            // First joint
+            const joint1Geometry = new THREE.CylinderGeometry(0.3, 0.3, 1.5, 8);
+            const jointMaterial = new THREE.MeshLambertMaterial({ 
+                color: 0x3498db,
+                emissive: 0x0a0a0a,
+                emissiveIntensity: 0.1
+            });
+            const joint1 = new THREE.Mesh(joint1Geometry, jointMaterial);
+            joint1.position.y = 1.05;
+            group.add(joint1);
+            
+            // Second arm segment
+            const arm1Geometry = new THREE.BoxGeometry(0.4, 1.2, 0.4);
+            const armMaterial = new THREE.MeshLambertMaterial({ 
+                color: 0xe74c3c,
+                emissive: 0x0a0a0a,
+                emissiveIntensity: 0.1
+            });
+            const arm1 = new THREE.Mesh(arm1Geometry, armMaterial);
+            arm1.position.set(0.8, 1.8, 0);
+            arm1.rotation.z = Math.PI / 6;
+            group.add(arm1);
+            
+            // End effector
+            const endEffectorGeometry = new THREE.BoxGeometry(0.2, 0.2, 0.4);
+            const endEffectorMaterial = new THREE.MeshLambertMaterial({ 
+                color: 0xf39c12,
+                emissive: 0x0a0a0a,
+                emissiveIntensity: 0.1
+            });
+            const endEffector = new THREE.Mesh(endEffectorGeometry, endEffectorMaterial);
+            endEffector.position.set(1.4, 2.3, 0);
+            group.add(endEffector);
+            
+            // Enable shadows
+            group.traverse(function (child) {
+                if (child instanceof THREE.Mesh) {
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                }
+            });
+            
+            robotModel = group;
+            scene.add(robotModel);
+            
+            // Hide loading indicator
+            document.getElementById('loadingIndicator').style.display = 'none';
+            
+            console.log('Fallback UR5 robot model created');
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            if (controls) {
+                controls.update();
+            }
+            
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            const viewer = document.querySelector('.viewer');
+            const rect = viewer.getBoundingClientRect();
+            
+            camera.aspect = rect.width / rect.height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(rect.width, rect.height);
+        }
+
+        function toggleRotation() {
+            isRotating = !isRotating;
+            controls.autoRotate = isRotating;
+        }
+
+        function toggleLighting() {
+            lights.forEach(light => {
+                light.visible = !light.visible;
+            });
+        }
+
+        function resetView() {
+            camera.position.set(15, 10, 15);
+            controls.target.set(0, 0, 0);
+            controls.update();
+        }
+
+        // Initialize the demo
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
