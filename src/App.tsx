@@ -9,7 +9,7 @@ import Portfolio from './components/Portfolio'
 import Navigation from './components/Navigation'
 import EstablishContact from './components/EstablishContact'
 import useCursor from './hooks/useCursor'
-import './App.css'
+import './styles.css'
 
 function App() {
   const [currentSection, setCurrentSection] = useState('home')

@@ -11,11 +11,25 @@ const useCursor = () => {
       cursor.style.top = e.clientY + 'px'
     }
 
+    const hideCursor = () => {
+      cursor.style.opacity = '0'
+    }
+
+    const showCursor = () => {
+      cursor.style.opacity = '1'
+    }
+
     document.addEventListener('mousemove', moveCursor)
+    document.addEventListener('mouseenter', showCursor)
+    document.addEventListener('mouseleave', hideCursor)
 
     return () => {
       document.removeEventListener('mousemove', moveCursor)
-      document.body.removeChild(cursor)
+      document.removeEventListener('mouseenter', showCursor)
+      document.removeEventListener('mouseleave', hideCursor)
+      if (cursor.parentNode) {
+        cursor.parentNode.removeChild(cursor)
+      }
     }
   }, [])
 }
