@@ -12,6 +12,7 @@ import Contact from './components/sections/Contact/Contact';
 import Background3D from './components/3D/Background3D';
 import ScrollProgress from './components/UI/ScrollProgress';
 import LoadingScreen from './components/UI/LoadingScreen';
+import MovingShips from './components/MovingShips';
 import './styles/app.css';
 
 const App: React.FC = () => {
@@ -47,6 +48,9 @@ const App: React.FC = () => {
   return (
     <div className="app" ref={appRef}>
       <Suspense fallback={<LoadingScreen />}>
+        {/* JavaScript-powered moving ships */}
+        <MovingShips />
+
         {/* 3D Background Canvas */}
         <div className="background-canvas">
           <Canvas
