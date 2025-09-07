@@ -1,0 +1,110 @@
+{
+  "education": [
+    {
+      "id": 1,
+      "degree": "Masters of Science, Robotics",
+      "institution": "University of Minnesota Twin Cities",
+      "period": "Sept. 2024 – May 2026",
+      "location": "Minneapolis, MN, USA",
+      "status": "current",
+      "gpa": "3.5/4.0",
+      "description": "Advanced study in robotics with focus on machine learning, computer vision, and autonomous systems.",
+      "coursework": [
+        "Machine Learning",
+        "Robot Vision",
+        "Feedback Control Systems",
+        "Robotics and Principles",
+        "Design of Wearable Technology"
+      ],
+      "highlights": [
+        "GPA: 3.5/4.0",
+        "Research in autonomous systems and AI integration",
+        "Focus on next-generation robotics technologies",
+        "Advanced laboratory research projects"
+      ]
+    },
+    {
+      "id": 2,
+      "degree": "Bachelors of Technology, Mechanical Engineering",
+      "institution": "KJ Somaiya College of Engineering, Mumbai",
+      "period": "July 2018 – June 2022",
+      "location": "Mumbai, India",
+      "status": "completed",
+      "gpa": "3.4/4.0",
+      "description": "Comprehensive mechanical engineering foundation with specialization in design, manufacturing, and aerospace applications.",
+      "coursework": [
+        "Engineering Design",
+        "Manufacturing Processes",
+        "Thermodynamics",
+        "Fluid Mechanics",
+        "Machine Design",
+        "Control Systems"
+      ],
+      "highlights": [
+        "GPA: 3.4/4.0",
+        "Led multiple engineering design projects",
+        "Active in SAE Aero Design competitions",
+        "Strong foundation in mechanical systems"
+      ]
+    }
+  ],
+  "achievements": [
+    {
+      "icon": "🏆",
+      "title": "Academic Excellence",
+      "description": "Maintained strong academic performance throughout studies",
+      "metric": "3.5/4.0 GPA (MS)"
+    },
+    {
+      "icon": "🔬",
+      "title": "Research Focus",
+      "description": "Current graduate research in advanced robotics and AI systems",
+      "metric": "MS Robotics"
+    },
+    {
+      "icon": "🎯",
+      "title": "Leadership Experience",
+      "description": "Led design teams in competitive engineering challenges",
+      "metric": "Team Lead"
+    },
+    {
+      "icon": "🌟",
+      "title": "Innovation",
+      "description": "Applied theoretical knowledge to real-world engineering solutions",
+      "metric": "7+ Projects"
+    }
+  ],
+  "academicSkills": [
+    "Advanced Mathematics",
+    "Engineering Mechanics",
+    "Control Theory",
+    "Machine Learning",
+    "Computer Vision",
+    "Systems Integration",
+    "Project Management",
+    "Research Methodology"
+  ],
+  "futureGoals": [
+    {
+      "icon": "💼",
+      "title": "Industry Leadership",
+      "description": "Leading innovative robotics and aerospace engineering teams"
+    },
+    {
+      "icon": "🚀",
+      "title": "Technical Innovation",
+      "description": "Developing breakthrough robotics and autonomous systems"
+    },
+    {
+      "icon": "🌍",
+      "title": "Global Impact",
+      "description": "Solving real-world challenges through technology"
+    }
+  ],
+  "sectionInfo": {
+    "tagNumber": "05",
+    "tagLabel": "Education",
+    "title": "Academic Foundation",
+    "subtitle": "Building expertise through advanced education and continuous learning"
+  }
+}

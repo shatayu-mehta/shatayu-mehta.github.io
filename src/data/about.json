@@ -1,0 +1,63 @@
+{
+  "personal": {
+    "name": "Shatayu Mehta",
+    "title": "Robotics Engineer",
+    "focus": "VTOL & Autonomous Navigation",
+    "experience": "R&D Engineer",
+    "impact": "Global Innovation",
+    "location": "Minnesota, USA"
+  },
+  "skills": [
+    {
+      "name": "CAD Design",
+      "tools": ["SOLIDWORKS", "Fusion 360", "CREO"],
+      "level": 95
+    },
+    {
+      "name": "Programming",
+      "tools": ["Python", "C++", "MATLAB"],
+      "level": 88
+    },
+    {
+      "name": "Manufacturing",
+      "tools": ["3D Printing", "CNC Milling", "Laser Cutting"],
+      "level": 92
+    },
+    {
+      "name": "Analysis",
+      "tools": ["ANSYS", "XFLR5", "FEA"],
+      "level": 85
+    }
+  ],
+  "achievements": [
+    {
+      "icon": "🚁",
+      "title": "FUJIN VTOL Project",
+      "description": "Led complete design cycle from inception to prototype testing",
+      "metric": "25% flight time improvement"
+    },
+    {
+      "icon": "⚡",
+      "title": "Manufacturing Optimization",
+      "description": "Streamlined prototyping process reducing development time",
+      "metric": "1.5 weeks faster"
+    },
+    {
+      "icon": "💰",
+      "title": "Cost Reduction",
+      "description": "Engineered EPP foam machining solution",
+      "metric": "10% cost savings"
+    },
+    {
+      "icon": "🎯",
+      "title": "Team Leadership",
+      "description": "Led design teams through multiple successful projects",
+      "metric": "15+ team members"
+    }
+  ],
+  "bio": {
+    "intro": "I'm a passionate Robotics Engineer specializing in VTOL aircraft design and autonomous systems. Currently pursuing my MS in Robotics at the University of Minnesota Twin Cities, I bring a unique blend of mechanical engineering expertise and cutting-edge robotics knowledge to every project.",
+    "experience": "With hands-on experience in CAD modeling, manufacturing, and system integration, I've led multiple successful projects from concept to prototype. My work focuses on bridging the gap between theoretical robotics and practical engineering solutions.",
+    "passion": "I'm driven by the challenge of creating innovative solutions that push the boundaries of what's possible in autonomous flight systems and robotics applications."
+  }
+}

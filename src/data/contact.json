@@ -1,0 +1,67 @@
+{
+  "contactMethods": [
+    {
+      "icon": "📧",
+      "title": "Email",
+      "value": "mehta405@umn.edu",
+      "link": "mailto:mehta405@umn.edu",
+      "description": "Best for detailed discussions and project inquiries"
+    },
+    {
+      "icon": "📱",
+      "title": "Phone",
+      "value": "+1 (763) 245-3257",
+      "link": "tel:+17632453257",
+      "description": "For urgent matters and direct conversations"
+    },
+    {
+      "icon": "💼",
+      "title": "LinkedIn",
+      "value": "linkedin.com/in/shatayumehta",
+      "link": "https://www.linkedin.com/in/shatayumehta",
+      "description": "Professional networking and career opportunities"
+    },
+    {
+      "icon": "📍",
+      "title": "Location",
+      "value": "Minneapolis, MN, USA",
+      "link": null,
+      "description": "Available for local collaborations and meetings"
+    }
+  ],
+  "interests": [
+    "VTOL Aircraft Design",
+    "Autonomous Systems",
+    "Robotics Research",
+    "Machine Learning Applications",
+    "Aerospace Engineering",
+    "Rapid Prototyping",
+    "Startup Opportunities",
+    "Academic Collaboration"
+  ],
+  "formSubjects": [
+    "Collaboration Opportunity",
+    "Internship/Job Opportunity",
+    "Research Discussion",
+    "Project Consultation",
+    "General Inquiry",
+    "Other"
+  ],
+  "availability": {
+    "status": "Open to Opportunities",
+    "types": [
+      "Full-time positions",
+      "Internship opportunities",
+      "Research collaborations",
+      "Consulting projects"
+    ],
+    "timeline": "Available starting May 2026"
+  },
+  "sectionInfo": {
+    "tagNumber": "06",
+    "tagLabel": "Contact",
+    "title": "Let's Connect",
+    "subtitle": "Ready to collaborate on innovative robotics projects or discuss exciting opportunities",
+    "description": "I'm always excited to connect with fellow engineers, researchers, and innovators. Whether you have a project idea, collaboration opportunity, or just want to chat about robotics and technology, I'd love to hear from you."
+  }
+}

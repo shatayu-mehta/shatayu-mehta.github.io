@@ -1,0 +1,45 @@
+{
+  "personal": {
+    "firstName": "Shatayu",
+    "lastName": "Mehta",
+    "title": "Robotics Engineer",
+    "email": "mehta405@umn.edu",
+    "linkedin": "https://www.linkedin.com/in/shatayumehta",
+    "location": "Minneapolis, MN, USA"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "description": "Passionate about designing autonomous systems, drones, and cutting-edge robotics solutions. Currently pursuing Masters in Robotics at the University of Minnesota, with hands-on experience in aerospace engineering and UAV development.",
+    "specialties": [
+      {
+        "icon": "🚁",
+        "name": "Drones & UAVs"
+      },
+      {
+        "icon": "🤖",
+        "name": "Autonomous Systems"
+      },
+      {
+        "icon": "🔧",
+        "name": "CAD & Prototyping"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "Explore My Work",
+        "type": "primary",
+        "action": "scrollToAbout"
+      },
+      {
+        "text": "Get In Touch",
+        "type": "secondary",
+        "action": "scrollToContact"
+      }
+    ]
+  },
+  "currentStatus": {
+    "education": "Masters in Robotics at University of Minnesota",
+    "availability": "Available starting May 2026",
+    "focus": "VTOL & Autonomous Navigation"
+  }
+}

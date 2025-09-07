@@ -1,0 +1,146 @@
+{
+  "skillCategories": [
+    {
+      "title": "CAD Design & Analysis",
+      "icon": "🎨",
+      "skills": [
+        { "name": "SOLIDWORKS", "level": 95 },
+        { "name": "Fusion 360", "level": 92 },
+        { "name": "CREO", "level": 85 },
+        { "name": "AutoCAD", "level": 88 },
+        { "name": "ANSYS Fluent & Workbench", "level": 85 },
+        { "name": "FEA Analysis", "level": 85 },
+        { "name": "GD&T", "level": 88 }
+      ]
+    },
+    {
+      "title": "Machine Learning & Vision",
+      "icon": "🤖",
+      "skills": [
+        { "name": "Computer Vision (OpenCV)", "level": 90 },
+        { "name": "TensorFlow", "level": 90 },
+        { "name": "PyTorch", "level": 88 },
+        { "name": "Stereo Vision & 3D Pose Estimation", "level": 88 },
+        { "name": "Visual Servoing", "level": 85 },
+        { "name": "CNN/DNN", "level": 90 }
+      ]
+    },
+    {
+      "title": "Manufacturing & Prototyping",
+      "icon": "⚙️",
+      "skills": [
+        { "name": "CNC Milling", "level": 92 },
+        { "name": "Laser Cutting", "level": 89 },
+        { "name": "3D Printing", "level": 95 },
+        { "name": "Rapid Prototyping", "level": 93 },
+        { "name": "Material Selection", "level": 88 },
+        { "name": "Quality Control & Testing", "level": 87 }
+      ]
+    },
+    {
+      "title": "Control Systems & Robotics",
+      "icon": "🎛️",
+      "skills": [
+        { "name": "PID & Digital Control", "level": 87 },
+        { "name": "Forward & Inverse Kinematics", "level": 87 },
+        { "name": "ROS & RoboDK", "level": 87 },
+        { "name": "Path Planning & Manipulation", "level": 85 },
+        { "name": "UR5e Cobot Programming", "level": 90 },
+        { "name": "MuJoCo & Isaac Sim/Lab", "level": 85 },
+        { "name": "Gazebo Simulation", "level": 83 }
+      ]
+    },
+    {
+      "title": "Drone & UAV Systems",
+      "icon": "🚁",
+      "skills": [
+        { "name": "PX4 Flight Stack", "level": 85 },
+        { "name": "MAVSDK Python", "level": 82 },
+        { "name": "MAVLink Protocol", "level": 80 },
+        { "name": "Ardupilot", "level": 85 },
+        { "name": "Flight Control Systems", "level": 87 },
+        { "name": "UAV Design & Testing", "level": 90 }
+      ]
+    },
+    {
+      "title": "Programming & Development",
+      "icon": "💻",
+      "skills": [
+        { "name": "Python", "level": 90 },
+        { "name": "C++", "level": 85 },
+        { "name": "MATLAB", "level": 88 },
+        { "name": "Arduino IDE", "level": 92 }
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "title": "SOLIDWORKS Professional",
+      "provider": "Dassault Systèmes",
+      "status": "Certified",
+      "icon": "📐",
+      "certificate": "/Solidworks Professional shatayu mehta.pdf"
+    },
+    {
+      "title": "Machine Learning",
+      "provider": "University of Minnesota",
+      "status": "Current",
+      "icon": "🤖"
+    },
+    {
+      "title": "Robot Vision",
+      "provider": "University of Minnesota",
+      "status": "Current",
+      "icon": "👁️"
+    },
+    {
+      "title": "Feedback Control Systems",
+      "provider": "University of Minnesota",
+      "status": "Current",
+      "icon": "🎛️"
+    },
+    {
+      "title": "Robotics and Principles",
+      "provider": "University of Minnesota",
+      "status": "Current",
+      "icon": "🤖"
+    },
+    {
+      "title": "Design of Wearable Technology",
+      "provider": "University of Minnesota",
+      "status": "Current",
+      "icon": "⌚"
+    },
+    {
+      "title": "Physics Simulation for Robotics",
+      "provider": "University of Minnesota",
+      "status": "Current",
+      "icon": "⚛️"
+    },
+    {
+      "title": "Computer Vision",
+      "provider": "University of Minnesota",
+      "status": "Current",
+      "icon": "📷"
+    },
+    {
+      "title": "Kalman Filtering",
+      "provider": "University of Minnesota",
+      "status": "Current",
+      "icon": "📊"
+    },
+    {
+      "title": "Advanced Control Systems",
+      "provider": "University of Minnesota",
+      "status": "Current",
+      "icon": "⚙️"
+    }
+  ],
+  "sectionInfo": {
+    "tagNumber": "03",
+    "tagLabel": "Skills",
+    "title": "Technical Expertise",
+    "subtitle": "Comprehensive skill set spanning mechanical design, robotics programming, and advanced manufacturing technologies",
+    "showcaseTitle": "Courses and Certifications"
+  }
+}
