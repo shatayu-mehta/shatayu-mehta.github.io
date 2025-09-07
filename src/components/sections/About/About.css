@@ -212,8 +212,9 @@
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-lg);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  max-width: 100%;
 }
 
 .skill-card {
@@ -428,7 +429,8 @@
   }
 
   .skills-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
   }
 
   .achievements-grid {
@@ -494,5 +496,17 @@
   
   .visual-item:hover {
     transform: none;
+  }
+}
+
+/* Very small screens - force single column for skills only when absolutely necessary */
+@media (max-width: 480px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  .skill-card {
+    padding: var(--spacing-md);
   }
 }

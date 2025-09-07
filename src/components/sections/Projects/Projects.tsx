@@ -394,11 +394,6 @@ const Projects: React.FC = () => {
                     </div>
                     
                     <div className="project-overlay">
-                      <div className="project-status">
-                        <span className={`status-badge ${project.status}`}>
-                          {project.status === 'completed' ? '✓ Completed' : '⚡ In Progress'}
-                        </span>
-                      </div>
                       {project.demo && (
                         <div className="project-3d-indicator">
                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
