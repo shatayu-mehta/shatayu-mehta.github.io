@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
 
             <div className="hero-description animate-fade-in-up">
               <p>
-                Passionate about designing autonomous systems, VTOL aircraft, and cutting-edge 
+                Passionate about designing autonomous systems, drones, and cutting-edge 
                 robotics solutions. Currently pursuing Masters in Robotics at the 
                 <span className="text-accent"> University of Minnesota</span>, with hands-on 
                 experience in aerospace engineering and UAV development.
@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
               <div className="specialty-list">
                 <span className="specialty-item">
                   <span className="specialty-icon">🚁</span>
-                  VTOL Aircraft Design
+                  Drones & UAVs
                 </span>
                 <span className="specialty-item">
                   <span className="specialty-icon">🤖</span>
@@ -152,6 +152,19 @@ const Hero: React.FC = () => {
                 </svg>
                 <span>Email</span>
               </a>
+
+              <a 
+                href="https://github.com/shatayu-mehta"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="social-link"
+                aria-label="GitHub Profile"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                </svg>
+                <span>GitHub</span>
+              </a>
               
               <a 
                 href="tel:+17632453257"
@@ -173,12 +186,8 @@ const Hero: React.FC = () => {
                 <span className="stat-label">Years Experience</span>
               </div>
               <div className="stat-item">
-                <span className="stat-number gradient-text">15+</span>
+                <span className="stat-number gradient-text">8+</span>
                 <span className="stat-label">Projects Completed</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number gradient-text">3</span>
-                <span className="stat-label">Aircraft Prototyped</span>
               </div>
             </div>
           </div>

@@ -45,9 +45,9 @@
 
 .logo-subtitle {
   font-size: 0.75rem;
-  color: var(--text-secondary);
+  color: #c0c6d3; /* Brighter muted text */
   font-family: var(--font-mono);
-  opacity: 0.8;
+  opacity: 0.9; /* Slightly more opaque */
 }
 
 .nav-logo a:hover {

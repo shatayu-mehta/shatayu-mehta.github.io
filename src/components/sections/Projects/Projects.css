@@ -21,7 +21,8 @@
   font-size: 2rem;
   font-weight: 600;
   text-align: center;
-  color: var(--text-primary);
+  color: var(--text-bright);
+  text-shadow: var(--text-glow-strong);
   margin-bottom: var(--spacing-xl);
 }
 
@@ -36,7 +37,7 @@
   padding: 0;
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
-  background: var(--background-glass);
+  background: rgba(15, 20, 30, 0.95); /* Darker, more opaque background */
   backdrop-filter: blur(10px);
   overflow: hidden;
   transition: all 0.3s ease;
@@ -46,6 +47,7 @@
   border-color: var(--primary-cyan);
   transform: translateY(-8px);
   box-shadow: 0 20px 60px rgba(0, 245, 255, 0.2);
+  background: rgba(20, 25, 35, 0.98); /* Even darker on hover */
 }
 
 /* Clickable project styles */
@@ -92,6 +94,47 @@
   height: 100%;
   object-fit: cover;
   opacity: 0.8;
+}
+
+.project-illustration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 70%, transparent 100%);
+}
+
+.illustration-svg {
+  width: 160px;
+  height: 160px;
+  opacity: 0.95;
+  animation: floatIllustration 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(0, 245, 255, 0.3)) drop-shadow(0 0 40px rgba(255, 0, 128, 0.2));
+}
+
+.featured-project:hover .illustration-svg {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 30px rgba(0, 245, 255, 0.5)) drop-shadow(0 0 60px rgba(255, 0, 128, 0.3));
+}
+
+@keyframes floatIllustration {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateY(-8px) rotate(1deg) scale(1.02);
+  }
+  50% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  75% {
+    transform: translateY(8px) rotate(-1deg) scale(0.98);
+  }
 }
 
 .project-overlay {
@@ -155,6 +198,8 @@
 
 .project-content {
   padding: var(--spacing-xl);
+  background: rgba(10, 15, 25, 0.8); /* Dark semi-transparent overlay */
+  backdrop-filter: blur(5px);
 }
 
 .project-meta {
@@ -165,35 +210,33 @@
   font-size: 0.85rem;
 }
 
-.project-category {
-  padding: 4px 12px;
-  background: rgba(0, 245, 255, 0.1);
-  border: 1px solid rgba(0, 245, 255, 0.3);
-  border-radius: 12px;
-  color: var(--primary-cyan);
-  font-weight: 600;
-  text-transform: capitalize;
+.project-category,
+.card-category {
+  display: none !important;
 }
 
 .project-timeline {
-  color: var(--text-secondary);
+  color: #c0c0c0; /* Brighter than secondary text */
   font-family: var(--font-mono);
   font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .project-title {
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #ffffff; /* High contrast white text */
   margin-bottom: var(--spacing-sm);
   line-height: 1.3;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Add shadow for better readability */
 }
 
 .project-description {
   font-size: 1rem;
-  color: var(--text-secondary);
+  color: #e0e0e0; /* Brighter secondary text */
   line-height: 1.6;
   margin-bottom: var(--spacing-lg);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Subtle shadow */
 }
 
 .project-achievements {
@@ -203,10 +246,11 @@
 .project-achievements h5 {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #ffffff; /* High contrast white */
   margin-bottom: var(--spacing-sm);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .project-achievements ul {
@@ -219,10 +263,11 @@
 
 .project-achievements li {
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: #d0d0d0; /* Brighter text */
   padding-left: var(--spacing-md);
   position: relative;
   line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .project-achievements li::before {
@@ -270,7 +315,8 @@
   font-size: 1.8rem;
   font-weight: 600;
   text-align: center;
-  color: var(--text-primary);
+  color: var(--text-bright);
+  text-shadow: var(--text-glow-strong);
   margin-bottom: var(--spacing-lg);
 }
 
@@ -288,8 +334,9 @@
   padding: var(--spacing-sm) var(--spacing-md);
   border: 1px solid var(--border-subtle);
   border-radius: 25px;
-  background: var(--background-glass);
-  color: var(--text-secondary);
+  background: rgba(15, 20, 30, 0.95);
+  color: #d0d6e3;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
@@ -299,7 +346,8 @@
 
 .filter-btn:hover {
   border-color: var(--primary-cyan);
-  color: var(--text-primary);
+  color: var(--text-bright);
+  text-shadow: var(--text-glow-strong);
   background: rgba(0, 245, 255, 0.1);
 }
 
@@ -333,7 +381,7 @@
   padding: var(--spacing-lg);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
-  background: var(--background-glass);
+  background: rgba(15, 20, 30, 0.95); /* Darker, more opaque background */
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   display: flex;
@@ -345,6 +393,7 @@
   border-color: var(--primary-cyan);
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(0, 245, 255, 0.15);
+  background: rgba(20, 25, 35, 0.98); /* Even darker on hover */
 }
 
 .card-header {
@@ -392,15 +441,17 @@
 .card-title {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #ffffff; /* High contrast white */
   margin-bottom: 4px;
   line-height: 1.3;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .card-timeline {
   font-size: 0.8rem;
-  color: var(--text-secondary);
+  color: #c0c0c0; /* Brighter secondary text */
   font-family: var(--font-mono);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .card-content {
@@ -410,9 +461,10 @@
 
 .card-description {
   font-size: 0.95rem;
-  color: var(--text-secondary);
+  color: #d0d0d0; /* Brighter secondary text */
   line-height: 1.5;
   margin-bottom: var(--spacing-md);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .card-achievements {
@@ -435,8 +487,9 @@
 }
 
 .achievement-text {
-  color: var(--text-secondary);
+  color: #d0d0d0; /* Brighter secondary text */
   line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .card-footer {
@@ -462,12 +515,19 @@
 /* CTA Section */
 .projects-cta {
   padding: var(--spacing-2xl);
-  background: var(--background-glass);
+  background: rgba(15, 20, 30, 0.95); /* Better contrast background */
   border: 1px solid var(--border-subtle);
   border-radius: 20px;
   text-align: center;
   backdrop-filter: blur(10px);
   margin-top: var(--spacing-2xl);
+  transition: all 0.3s ease;
+}
+
+.projects-cta:hover {
+  background: rgba(20, 25, 35, 0.98);
+  border-color: var(--primary-cyan);
+  box-shadow: 0 8px 25px rgba(0, 245, 255, 0.1);
 }
 
 .cta-content h3 {

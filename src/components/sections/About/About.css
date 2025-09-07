@@ -10,6 +10,11 @@
 .about-header {
   text-align: center;
   margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-xl);
+  background: rgba(8, 12, 18, 0.75); /* Subtle overlay for better text readability */
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .section-tag {
@@ -41,13 +46,19 @@
   margin-bottom: var(--spacing-sm);
   line-height: 1.2;
   color: var(--text-bright);
-  text-shadow: var(--text-glow-strong);
+  text-shadow: 
+    var(--text-glow-strong),
+    0 0 20px rgba(0, 0, 0, 1),
+    0 0 40px rgba(0, 0, 0, 0.8); /* Enhanced shadow for better visibility against ships */
 }
 
 .section-subtitle {
   font-size: 1.2rem;
   color: var(--text-bright);
-  text-shadow: var(--text-glow-strong);
+  text-shadow: 
+    var(--text-glow-strong),
+    0 0 15px rgba(0, 0, 0, 1),
+    0 0 30px rgba(0, 0, 0, 0.7); /* Better shadow for subtitle */
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -69,12 +80,21 @@
 .story-content {
   display: grid;
   gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  background: rgba(8, 12, 18, 0.85); /* Dark overlay for better text readability */
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .story-title {
   font-size: 1.8rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--text-bright);
+  text-shadow: 
+    var(--text-glow-strong),
+    0 0 15px rgba(0, 0, 0, 1),
+    0 0 30px rgba(0, 0, 0, 0.7); /* Enhanced shadow for better visibility */
   margin-bottom: var(--spacing-sm);
 }
 
@@ -86,21 +106,36 @@
 .story-text p {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: var(--text-secondary);
+  color: #f0f6fd; /* Even brighter white for maximum contrast */
+  text-shadow: 
+    0 0 10px rgba(0, 0, 0, 1),
+    0 3px 6px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(0, 0, 0, 0.5); /* Multiple shadows for better definition */
+  font-weight: 400;
 }
 
 .story-quote {
   padding: var(--spacing-lg);
-  background: var(--background-glass);
+  background: rgba(15, 20, 30, 0.95); /* Better contrast background */
   border-left: 4px solid var(--primary-cyan);
   border-radius: 8px;
   backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.story-quote:hover {
+  background: rgba(20, 25, 35, 0.98);
+  box-shadow: 0 8px 25px rgba(0, 245, 255, 0.1);
 }
 
 .story-quote blockquote {
   font-size: 1.1rem;
   font-style: italic;
-  color: var(--text-primary);
+  color: var(--text-bright);
+  text-shadow: 
+    var(--text-glow-strong),
+    0 0 10px rgba(0, 0, 0, 1),
+    0 3px 6px rgba(0, 0, 0, 0.9); /* Enhanced shadow for better definition */
   line-height: 1.6;
   margin: 0;
 }
@@ -120,7 +155,7 @@
   align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-md);
-  background: var(--background-glass);
+  background: rgba(15, 20, 30, 0.95); /* Better contrast background */
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   backdrop-filter: blur(10px);
@@ -130,7 +165,8 @@
 .visual-item:hover {
   transform: translateX(10px);
   border-color: var(--primary-cyan);
-  background: rgba(0, 245, 255, 0.1);
+  background: rgba(20, 25, 35, 0.98);
+  box-shadow: 0 8px 25px rgba(0, 245, 255, 0.15);
 }
 
 .visual-icon {
@@ -148,13 +184,15 @@
 .visual-text h4 {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--text-bright);
+  text-shadow: var(--text-glow-strong);
   margin-bottom: 4px;
 }
 
 .visual-text p {
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: #e0e6ed; /* Brighter text for better contrast */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   margin: 0;
 }
 
@@ -168,7 +206,8 @@
   font-weight: 600;
   text-align: center;
   margin-bottom: var(--spacing-xl);
-  color: var(--text-primary);
+  color: var(--text-bright);
+  text-shadow: var(--text-glow-strong);
 }
 
 .skills-grid {
@@ -179,7 +218,18 @@
 
 .skill-card {
   padding: var(--spacing-lg);
+  background: rgba(15, 20, 30, 0.95); /* Match other cards */
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+  background: rgba(20, 25, 35, 0.98);
+  border-color: var(--primary-cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 245, 255, 0.15);
 }
 
 .skill-header {
@@ -192,7 +242,8 @@
 .skill-name {
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--text-bright);
+  text-shadow: var(--text-glow-strong);
 }
 
 .skill-percentage {
@@ -264,7 +315,8 @@
   font-weight: 600;
   text-align: center;
   margin-bottom: var(--spacing-xl);
-  color: var(--text-primary);
+  color: var(--text-bright);
+  text-shadow: var(--text-glow-strong);
 }
 
 .achievements-grid {
@@ -277,6 +329,9 @@
   padding: var(--spacing-lg);
   text-align: center;
   transition: all 0.3s ease;
+  background: rgba(15, 20, 30, 0.95);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
 }
 
 .achievement-icon {
@@ -288,13 +343,15 @@
 .achievement-title {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--text-bright);
+  text-shadow: var(--text-glow-strong);
   margin-bottom: var(--spacing-sm);
 }
 
 .achievement-description {
   font-size: 0.95rem;
-  color: var(--text-secondary);
+  color: #e8f2ff; /* Brighter text for better contrast */
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.9);
   line-height: 1.5;
   margin-bottom: var(--spacing-md);
 }
@@ -308,23 +365,32 @@
 /* CTA Section */
 .about-cta {
   padding: var(--spacing-xl);
-  background: var(--background-glass);
+  background: rgba(15, 20, 30, 0.95); /* Better contrast background */
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
   text-align: center;
   backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.about-cta:hover {
+  background: rgba(20, 25, 35, 0.98);
+  border-color: var(--primary-cyan);
+  box-shadow: 0 8px 25px rgba(0, 245, 255, 0.1);
 }
 
 .cta-content h3 {
   font-size: 1.8rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--text-bright);
+  text-shadow: var(--text-glow-strong);
   margin-bottom: var(--spacing-md);
 }
 
 .cta-content p {
   font-size: 1.1rem;
-  color: var(--text-secondary);
+  color: #e8f2ff; /* Brighter text for better contrast */
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.9);
   line-height: 1.6;
   margin-bottom: var(--spacing-lg);
   max-width: 500px;

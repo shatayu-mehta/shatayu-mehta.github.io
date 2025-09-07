@@ -58,44 +58,25 @@ const Projects: React.FC = () => {
     },
     {
       id: 3,
-      title: 'Autonomous Fruit Plucking Robot',
+      title: 'UR5 Robot',
       category: 'robotics',
-      description: 'Computer vision-enabled robot for automated strawberry harvesting using RGB color segmentation and precision gripper mechanism.',
+      description: 'Advanced 6-DOF robotic arm with precision manipulation capabilities, path planning algorithms, and integrated vision systems for industrial automation.',
       image: '/api/placeholder/400/300',
-      technologies: ['MATLAB', 'Arduino', 'Computer Vision', 'Servo Motors', 'Bluetooth'],
+      technologies: ['ROS', 'Python', 'Computer Vision', 'Path Planning', 'Industrial Automation', 'Robotics'],
       achievements: [
-        'Implemented RGB color segmentation algorithms',
-        'Designed 3D printer-inspired movement mechanism',
-        'Created scissor-inspired gripper for stem cutting',
-        'Achieved real-time coordinate calculation'
+        'Implemented advanced path planning algorithms',
+        'Integrated computer vision for object recognition',
+        'Developed precision pick-and-place operations',
+        'Created seamless assembly line integration'
       ],
       status: 'completed',
-      timeline: 'April 2022',
+      timeline: 'Jan 2023 - Dec 2023',
       github: null,
-      demo: '/projects/fruit-plucking-robot.html',
+      demo: '/projects/ur5-robot.html',
       featured: true
     },
     {
       id: 4,
-      title: 'SAE Aero Design Aircraft',
-      category: 'aerospace',
-      description: 'Competition aircraft design with autonomous landing capabilities and innovative structural solutions for enhanced performance.',
-      image: '/api/placeholder/400/300',
-      technologies: ['CAD Design', 'Carbon Fiber', '3D Printing', 'Flight Controller', 'Aerodynamics'],
-      achievements: [
-        'Designed self-gliding aircraft with 30cm wingspan',
-        'Implemented autonomous landing system',
-        'Reduced material costs by 45%',
-        'Developed innovative torsion box solution'
-      ],
-      status: 'completed',
-      timeline: 'May 2019 - Aug 2019',
-      github: null,
-      demo: '/projects/sae-aero-aircraft.html',
-      featured: true
-    },
-    {
-      id: 5,
       title: 'EPP Foam Machining Solution',
       category: 'manufacturing',
       description: 'Innovative prototyping solution for EPP foam processing that reduced manufacturing costs and improved durability.',
@@ -134,25 +115,6 @@ const Projects: React.FC = () => {
     },
     {
       id: 6,
-      title: 'S25 & S75 UAV Components',
-      category: 'aerospace',
-      description: 'Development and testing of critical components for commercial UAV systems including hot-swappable payload mechanisms.',
-      image: '/api/placeholder/400/300',
-      technologies: ['Mechanical Design', 'Testing', 'UAV Systems', 'Payload Integration'],
-      achievements: [
-        'Created hot-swappable payload mechanism for S75',
-        'Improved mechanical performance metrics',
-        'Contributed to technical certification',
-        'Enhanced operational flexibility'
-      ],
-      status: 'completed',
-      timeline: '2022 - 2023',
-      github: null,
-      demo: null,
-      featured: false
-    },
-    {
-      id: 7,
       title: 'Advanced Control Systems',
       category: 'robotics',
       description: 'Current research project exploring machine learning applications in robotic control systems and vision processing.',
@@ -216,6 +178,221 @@ const Projects: React.FC = () => {
                 >
                   <div className="project-image">
                     <img src={project.image} alt={project.title} />
+                    
+                    {/* Add decorative illustrations based on project category */}
+                    <div className="project-illustration">
+                      {project.category === 'wearables' && (
+                        <svg className="illustration-svg" viewBox="0 0 200 200" fill="none">
+                          {/* Smart Ring - Realistic Design */}
+                          <defs>
+                            <linearGradient id="ringMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#C0C0C0"/>
+                              <stop offset="50%" stopColor="#F5F5F5"/>
+                              <stop offset="100%" stopColor="#A0A0A0"/>
+                            </linearGradient>
+                            <linearGradient id="screen" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="rgba(0,245,255,0.9)"/>
+                              <stop offset="100%" stopColor="rgba(0,150,255,0.9)"/>
+                            </linearGradient>
+                          </defs>
+                          
+                          {/* Ring band outer */}
+                          <ellipse cx="100" cy="100" rx="50" ry="28" fill="url(#ringMetal)" stroke="#888" strokeWidth="2"/>
+                          {/* Ring band inner */}
+                          <ellipse cx="100" cy="100" rx="38" ry="20" fill="rgba(40,40,40,0.9)"/>
+                          
+                          {/* Main display/sensor area */}
+                          <rect x="75" y="90" width="50" height="20" rx="10" fill="url(#screen)" stroke="rgba(255,255,255,0.5)" strokeWidth="1"/>
+                          
+                          {/* Biometric sensors */}
+                          <circle cx="85" cy="100" r="4" fill="#00FF00"/>
+                          <circle cx="100" cy="100" r="4" fill="#FF0080"/>
+                          <circle cx="115" cy="100" r="4" fill="#00FFFF"/>
+                          
+                          {/* Side buttons */}
+                          <rect x="70" y="95" width="4" height="10" rx="2" fill="#666"/>
+                          <rect x="126" y="95" width="4" height="10" rx="2" fill="#666"/>
+                          
+                          {/* Health monitoring pulse */}
+                          <g opacity="0.7">
+                            <path d="M80 100 L85 95 L90 105 L95 85 L100 110 L105 90 L110 100 L115 95 L120 100" 
+                                  stroke="#00FF00" strokeWidth="2" fill="none">
+                              <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                            </path>
+                          </g>
+                        </svg>
+                      )}
+                      
+                      {project.category === 'aerospace' && (
+                        <svg className="illustration-svg" viewBox="0 0 200 200" fill="none">
+                          {/* Top-view Aircraft with Rectangular Wings */}
+                          <defs>
+                            <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#F5F5F5"/>
+                              <stop offset="100%" stopColor="#E0E0E0"/>
+                            </linearGradient>
+                          </defs>
+                          
+                          {/* Main Fuselage */}
+                          <rect x="90" y="60" width="20" height="80" rx="8" fill="url(#bodyGrad)" stroke="#B0B0B0" strokeWidth="2"/>
+                          
+                          {/* Nose */}
+                          <path d="M90 60 Q100 45 110 60" fill="url(#bodyGrad)" stroke="#B0B0B0" strokeWidth="2"/>
+                          
+                          {/* Main Rectangular Wings */}
+                          <rect x="40" y="95" width="120" height="12" rx="3" fill="url(#bodyGrad)" stroke="#B0B0B0" strokeWidth="2"/>
+                          
+                          {/* Tail Section */}
+                          <rect x="95" y="140" width="10" height="15" rx="2" fill="url(#bodyGrad)" stroke="#B0B0B0" strokeWidth="1"/>
+                          
+                          {/* Horizontal Stabilizer (tail wings) */}
+                          <rect x="85" y="145" width="30" height="6" rx="2" fill="url(#bodyGrad)" stroke="#B0B0B0" strokeWidth="1"/>
+                          
+                          {/* Vertical Stabilizer */}
+                          <rect x="97" y="140" width="6" height="20" rx="2" fill="url(#bodyGrad)" stroke="#B0B0B0" strokeWidth="1"/>
+                          
+                          {/* Motor Nacelles on Wings */}
+                          <ellipse cx="55" cy="101" rx="8" ry="5" fill="#D0D0D0" stroke="#A0A0A0" strokeWidth="1"/>
+                          <ellipse cx="145" cy="101" rx="8" ry="5" fill="#D0D0D0" stroke="#A0A0A0" strokeWidth="1"/>
+                          <ellipse cx="75" cy="101" rx="8" ry="5" fill="#D0D0D0" stroke="#A0A0A0" strokeWidth="1"/>
+                          <ellipse cx="125" cy="101" rx="8" ry="5" fill="#D0D0D0" stroke="#A0A0A0" strokeWidth="1"/>
+                          
+                          {/* Propellers - Wing Tip Left */}
+                          <g>
+                            <circle cx="55" cy="101" r="15" fill="rgba(0,0,0,0.05)" stroke="rgba(0,245,255,0.3)" strokeWidth="1"/>
+                            <g>
+                              <ellipse cx="55" cy="101" rx="13" ry="3" fill="rgba(0,245,255,0.6)">
+                                <animateTransform attributeName="transform" type="rotate" values="0 55 101;360 55 101" dur="0.08s" repeatCount="indefinite"/>
+                              </ellipse>
+                              <ellipse cx="55" cy="101" rx="3" ry="13" fill="rgba(0,245,255,0.6)">
+                                <animateTransform attributeName="transform" type="rotate" values="0 55 101;360 55 101" dur="0.08s" repeatCount="indefinite"/>
+                              </ellipse>
+                            </g>
+                          </g>
+                          
+                          {/* Propellers - Wing Tip Right */}
+                          <g>
+                            <circle cx="145" cy="101" r="15" fill="rgba(0,0,0,0.05)" stroke="rgba(255,0,128,0.3)" strokeWidth="1"/>
+                            <g>
+                              <ellipse cx="145" cy="101" rx="13" ry="3" fill="rgba(255,0,128,0.6)">
+                                <animateTransform attributeName="transform" type="rotate" values="0 145 101;-360 145 101" dur="0.08s" repeatCount="indefinite"/>
+                              </ellipse>
+                              <ellipse cx="145" cy="101" rx="3" ry="13" fill="rgba(255,0,128,0.6)">
+                                <animateTransform attributeName="transform" type="rotate" values="0 145 101;-360 145 101" dur="0.08s" repeatCount="indefinite"/>
+                              </ellipse>
+                            </g>
+                          </g>
+                          
+                          {/* Propellers - Inner Left */}
+                          <g>
+                            <circle cx="75" cy="101" r="15" fill="rgba(0,0,0,0.05)" stroke="rgba(255,0,128,0.3)" strokeWidth="1"/>
+                            <g>
+                              <ellipse cx="75" cy="101" rx="13" ry="3" fill="rgba(255,0,128,0.6)">
+                                <animateTransform attributeName="transform" type="rotate" values="0 75 101;-360 75 101" dur="0.08s" repeatCount="indefinite"/>
+                              </ellipse>
+                              <ellipse cx="75" cy="101" rx="3" ry="13" fill="rgba(255,0,128,0.6)">
+                                <animateTransform attributeName="transform" type="rotate" values="0 75 101;-360 75 101" dur="0.08s" repeatCount="indefinite"/>
+                              </ellipse>
+                            </g>
+                          </g>
+                          
+                          {/* Propellers - Inner Right */}
+                          <g>
+                            <circle cx="125" cy="101" r="15" fill="rgba(0,0,0,0.05)" stroke="rgba(0,245,255,0.3)" strokeWidth="1"/>
+                            <g>
+                              <ellipse cx="125" cy="101" rx="13" ry="3" fill="rgba(0,245,255,0.6)">
+                                <animateTransform attributeName="transform" type="rotate" values="0 125 101;360 125 101" dur="0.08s" repeatCount="indefinite"/>
+                              </ellipse>
+                              <ellipse cx="125" cy="101" rx="3" ry="13" fill="rgba(0,245,255,0.6)">
+                                <animateTransform attributeName="transform" type="rotate" values="0 125 101;360 125 101" dur="0.08s" repeatCount="indefinite"/>
+                              </ellipse>
+                            </g>
+                          </g>
+                          
+                          {/* Cockpit */}
+                          <ellipse cx="100" cy="75" rx="8" ry="6" fill="rgba(100,150,255,0.7)" stroke="rgba(100,150,255,0.9)" strokeWidth="1"/>
+                          
+                          {/* Landing Gear */}
+                          <circle cx="85" cy="110" r="2" fill="#666"/>
+                          <circle cx="115" cy="110" r="2" fill="#666"/>
+                          <circle cx="100" cy="155" r="2" fill="#666"/>
+                          
+                          {/* Navigation Lights */}
+                          <circle cx="40" cy="101" r="2" fill="#FF0000"/>
+                          <circle cx="160" cy="101" r="2" fill="#00FF00"/>
+                          
+                          {/* Status LED */}
+                          <circle cx="100" cy="100" r="2" fill="#00FF00">
+                            <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+                          </circle>
+                        </svg>
+                      )}
+                      
+                      {project.category === 'robotics' && (
+                        <svg className="illustration-svg" viewBox="0 0 200 200" fill="none">
+                          {/* UR5 Robot Arm - Realistic Design */}
+                          <defs>
+                            <linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#E0E0E0"/>
+                              <stop offset="50%" stopColor="#F8F8F8"/>
+                              <stop offset="100%" stopColor="#C8C8C8"/>
+                            </linearGradient>
+                          </defs>
+                          
+                          {/* Base */}
+                          <g>
+                            <ellipse cx="50" cy="155" rx="18" ry="8" fill="url(#metalGrad)" stroke="#999" strokeWidth="2"/>
+                            <rect x="32" y="147" width="36" height="16" fill="url(#metalGrad)" stroke="#999" strokeWidth="2"/>
+                            <ellipse cx="50" cy="147" rx="18" ry="8" fill="#F0F0F0" stroke="#AAA" strokeWidth="1"/>
+                          </g>
+                          
+                          {/* Joint 1 */}
+                          <circle cx="50" cy="147" r="8" fill="url(#metalGrad)" stroke="#777" strokeWidth="2"/>
+                          
+                          {/* Link 1 */}
+                          <rect x="46" y="120" width="8" height="30" rx="4" fill="url(#metalGrad)" stroke="#999" strokeWidth="1"/>
+                          
+                          {/* Joint 2 */}
+                          <circle cx="50" cy="120" r="6" fill="url(#metalGrad)" stroke="#777" strokeWidth="2"/>
+                          
+                          {/* Link 2 */}
+                          <rect x="50" y="116" width="35" height="8" rx="4" fill="url(#metalGrad)" stroke="#999" strokeWidth="1"/>
+                          
+                          {/* Joint 3 */}
+                          <circle cx="85" cy="120" r="6" fill="url(#metalGrad)" stroke="#777" strokeWidth="2"/>
+                          
+                          {/* Link 3 */}
+                          <rect x="81" y="95" width="8" height="25" rx="4" fill="url(#metalGrad)" stroke="#999" strokeWidth="1"/>
+                          
+                          {/* Joint 4 */}
+                          <circle cx="85" cy="95" r="5" fill="url(#metalGrad)" stroke="#777" strokeWidth="2"/>
+                          
+                          {/* Link 4 */}
+                          <rect x="85" y="91" width="25" height="8" rx="4" fill="url(#metalGrad)" stroke="#999" strokeWidth="1"/>
+                          
+                          {/* Joint 5 */}
+                          <circle cx="110" cy="95" r="5" fill="url(#metalGrad)" stroke="#777" strokeWidth="2"/>
+                          
+                          {/* Link 5 */}
+                          <rect x="106" y="80" width="8" height="15" rx="4" fill="url(#metalGrad)" stroke="#999" strokeWidth="1"/>
+                          
+                          {/* Joint 6 / End Effector */}
+                          <circle cx="110" cy="80" r="6" fill="url(#metalGrad)" stroke="#777" strokeWidth="2"/>
+                          
+                          {/* Gripper */}
+                          <rect x="105" y="70" width="4" height="12" rx="2" fill="#666" stroke="#444" strokeWidth="1"/>
+                          <rect x="111" y="70" width="4" height="12" rx="2" fill="#666" stroke="#444" strokeWidth="1"/>
+                          
+                          {/* Status LEDs */}
+                          <circle cx="46" cy="125" r="2" fill="#00FF00"/>
+                          <circle cx="54" cy="125" r="2" fill="#0080FF"/>
+                          
+                          {/* Cable management */}
+                          <path d="M50 147 Q60 130 Q80 110 Q100 90 Q110 80" stroke="#333" strokeWidth="2" fill="none" strokeDasharray="2,2"/>
+                        </svg>
+                      )}
+                    </div>
+                    
                     <div className="project-overlay">
                       <div className="project-status">
                         <span className={`status-badge ${project.status}`}>
@@ -237,7 +414,6 @@ const Projects: React.FC = () => {
                   
                   <div className="project-content">
                     <div className="project-meta">
-                      <span className="project-category">{project.category}</span>
                       <span className="project-timeline">{project.timeline}</span>
                     </div>
                     
@@ -290,7 +466,6 @@ const Projects: React.FC = () => {
                 <div key={project.id} className="project-card glass-card hover-lift">
                   <div className="card-header">
                     <div className="card-meta">
-                      <span className="card-category">{project.category}</span>
                       <span className={`card-status ${project.status}`}>
                         {project.status === 'completed' ? '✓' : '⚡'}
                       </span>
