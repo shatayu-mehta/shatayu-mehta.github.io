@@ -79,17 +79,6 @@ const Education: React.FC = () => {
     }
   ];
 
-  const skills = [
-    'Advanced Mathematics',
-    'Engineering Mechanics',
-    'Control Theory',
-    'Machine Learning',
-    'Computer Vision',
-    'Systems Integration',
-    'Project Management',
-    'Research Methodology'
-  ];
-
   return (
     <section id="education" className="section education">
       <div className="container">
@@ -178,17 +167,6 @@ const Education: React.FC = () => {
                         <span className="achievement-metric gradient-text">{achievement.metric}</span>
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="skills-section glass-card">
-                <h3 className="sidebar-title">Academic Skills</h3>
-                <div className="academic-skills">
-                  {skills.map((skill, index) => (
-                    <span key={index} className="skill-badge">
-                      {skill}
-                    </span>
                   ))}
                 </div>
               </div>

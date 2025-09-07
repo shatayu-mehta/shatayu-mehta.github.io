@@ -165,7 +165,6 @@ const Projects: React.FC = () => {
     { id: 'aerospace', label: 'Aerospace', count: projects.filter(p => p.category === 'aerospace').length },
     { id: 'robotics', label: 'Robotics', count: projects.filter(p => p.category === 'robotics').length },
     { id: 'wearables', label: 'Wearables', count: projects.filter(p => p.category === 'wearables').length },
-    { id: 'manufacturing', label: 'Manufacturing', count: projects.filter(p => p.category === 'manufacturing').length },
   ];
 
   const filteredProjects = activeFilter === 'all' 

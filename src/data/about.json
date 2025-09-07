@@ -7,28 +7,6 @@
     "impact": "Global Innovation",
     "location": "Minnesota, USA"
   },
-  "skills": [
-    {
-      "name": "CAD Design",
-      "tools": ["SOLIDWORKS", "Fusion 360", "CREO"],
-      "level": 95
-    },
-    {
-      "name": "Programming",
-      "tools": ["Python", "C++", "MATLAB"],
-      "level": 88
-    },
-    {
-      "name": "Manufacturing",
-      "tools": ["3D Printing", "CNC Milling", "Laser Cutting"],
-      "level": 92
-    },
-    {
-      "name": "Analysis",
-      "tools": ["ANSYS", "XFLR5", "FEA"],
-      "level": 85
-    }
-  ],
   "achievements": [
     {
       "icon": "🚁",

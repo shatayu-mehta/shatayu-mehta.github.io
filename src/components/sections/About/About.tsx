@@ -2,13 +2,6 @@ import React from 'react';
 import './About.css';
 
 const About: React.FC = () => {
-  const skills = [
-    { name: 'CAD Design', tools: ['SOLIDWORKS', 'Fusion 360', 'CREO'], level: 95 },
-    { name: 'Programming', tools: ['Python', 'C++', 'MATLAB'], level: 88 },
-    { name: 'Manufacturing', tools: ['3D Printing', 'CNC Milling', 'Laser Cutting'], level: 92 },
-    { name: 'Analysis', tools: ['ANSYS', 'XFLR5', 'FEA'], level: 85 },
-  ];
-
   const achievements = [
     {
       icon: '🚁',
@@ -116,33 +109,6 @@ const About: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="about-skills">
-              <h3 className="skills-title">Technical Expertise</h3>
-              <div className="skills-grid">
-                {skills.map((skill, index) => (
-                  <div key={index} className="skill-card glass-card hover-lift">
-                    <div className="skill-header">
-                      <h4 className="skill-name">{skill.name}</h4>
-                      <span className="skill-percentage text-accent">{skill.level}%</span>
-                    </div>
-                    <div className="skill-progress">
-                      <div 
-                        className="skill-bar"
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </div>
-                    <div className="skill-tools">
-                      {skill.tools.map((tool, toolIndex) => (
-                        <span key={toolIndex} className="skill-tool">
-                          {tool}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
 
