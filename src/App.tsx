@@ -17,6 +17,7 @@ const Education = lazy(() => import('./components/sections/Education/Education')
 const Contact = lazy(() => import('./components/sections/Contact/Contact'));
 const Background3D = lazy(() => import('./components/3D/Background3D'));
 const MovingShips = lazy(() => import('./components/MovingShips'));
+const Credits = lazy(() => import('./components/Credits'));
 
 const App: React.FC = () => {
   const appRef = useRef<HTMLDivElement>(null);
@@ -111,6 +112,12 @@ const App: React.FC = () => {
           <LazySection>
             <Suspense fallback={<div className="section-loading">Loading Contact...</div>}>
               <Contact />
+            </Suspense>
+          </LazySection>
+          
+          <LazySection>
+            <Suspense fallback={<div className="section-loading">Loading...</div>}>
+              <Credits />
             </Suspense>
           </LazySection>
         </main>

@@ -105,7 +105,7 @@ const About: React.FC = () => {
                     <div className="visual-icon">🏆</div>
                     <div className="visual-text">
                       <h4>Focus</h4>
-                      <p>VTOL & Autonomy</p>
+                      <p>VTOL & Autonomous Navigation</p>
                     </div>
                   </div>
                   <div className="visual-item">

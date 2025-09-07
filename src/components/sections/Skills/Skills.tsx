@@ -189,7 +189,7 @@ const Skills: React.FC = () => {
 
             <div className="skills-showcase">
               <div className="showcase-section">
-                <h3 className="showcase-title">Current Learning Path</h3>
+                <h3 className="showcase-title">Courses and Certifications</h3>
                 <div className="certifications-grid">
                   {certifications.map((cert, index) => (
                     <div key={index} className="certification-card glass-card">
