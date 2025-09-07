@@ -62,7 +62,7 @@ const Projects: React.FC = () => {
       id: 3,
       title: 'UR5 Robot Vision & Assembly',
       category: 'robotics',
-      description: 'Computer vision-based tool sorting and automated flashlight assembly using UR5 cobot with CNN-based object recognition and precise manipulation.',
+      description: 'Multi-functional robotic system demonstrating computer vision-based tool sorting, ping pong ball pick & place, and automated flashlight assembly using UR5 cobot with CNN-based object recognition.',
       image: '/api/placeholder/400/300',
       technologies: ['UR5 Cobot', 'OpenCV', 'TensorFlow', 'Python', 'RoboDK', 'ArUco', 'Robotiq Gripper'],
       achievements: [
@@ -95,8 +95,8 @@ const Projects: React.FC = () => {
       status: 'completed',
       timeline: 'Dec 2024',
       github: null,
-      demo: null,
-      featured: false
+      demo: '/projects/3d-reconstruction.html',
+      featured: true
     },
     {
       id: 5,
@@ -353,82 +353,135 @@ const Projects: React.FC = () => {
                         </svg>
                       )}
                       
-                      {project.category === 'robotics' && (
+                      {project.title === 'Real-Time 3D Reconstruction System' && (
                         <svg className="illustration-svg" viewBox="0 0 200 200" fill="none">
-                          {/* UR5 Robot Arm - Realistic Design */}
+                          {/* 3D Reconstruction Stereo Camera System */}
                           <defs>
-                            <linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                              <stop offset="0%" stopColor="#E0E0E0"/>
-                              <stop offset="50%" stopColor="#F8F8F8"/>
-                              <stop offset="100%" stopColor="#C8C8C8"/>
+                            <linearGradient id="cameraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#2A2A2A"/>
+                              <stop offset="50%" stopColor="#1A1A1A"/>
+                              <stop offset="100%" stopColor="#0A0A0A"/>
                             </linearGradient>
+                            <linearGradient id="lensGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#4A4A4A"/>
+                              <stop offset="50%" stopColor="#2A2A2A"/>
+                              <stop offset="100%" stopColor="#1A1A1A"/>
+                            </linearGradient>
+                            <radialGradient id="pointCloudGrad" cx="50%" cy="50%" r="50%">
+                              <stop offset="0%" stopColor="rgba(0,245,255,0.8)"/>
+                              <stop offset="50%" stopColor="rgba(0,150,255,0.6)"/>
+                              <stop offset="100%" stopColor="rgba(0,100,255,0.3)"/>
+                            </radialGradient>
                           </defs>
                           
-                          {/* Base */}
-                          <g>
-                            <ellipse cx="50" cy="155" rx="18" ry="8" fill="url(#metalGrad)" stroke="#999" strokeWidth="2"/>
-                            <rect x="32" y="147" width="36" height="16" fill="url(#metalGrad)" stroke="#999" strokeWidth="2"/>
-                            <ellipse cx="50" cy="147" rx="18" ry="8" fill="#F0F0F0" stroke="#AAA" strokeWidth="1"/>
+                          {/* Stereo Camera Mount/Base */}
+                          <rect x="60" y="85" width="80" height="30" rx="5" fill="url(#cameraGrad)" stroke="#555" strokeWidth="2"/>
+                          
+                          {/* Left Camera */}
+                          <rect x="70" y="90" width="25" height="20" rx="3" fill="url(#cameraGrad)" stroke="#666" strokeWidth="1"/>
+                          <circle cx="82.5" cy="100" r="8" fill="url(#lensGrad)" stroke="#888" strokeWidth="1"/>
+                          <circle cx="82.5" cy="100" r="5" fill="#333"/>
+                          <circle cx="82.5" cy="100" r="2" fill="rgba(0,245,255,0.7)"/>
+                          
+                          {/* Right Camera */}
+                          <rect x="105" y="90" width="25" height="20" rx="3" fill="url(#cameraGrad)" stroke="#666" strokeWidth="1"/>
+                          <circle cx="117.5" cy="100" r="8" fill="url(#lensGrad)" stroke="#888" strokeWidth="1"/>
+                          <circle cx="117.5" cy="100" r="5" fill="#333"/>
+                          <circle cx="117.5" cy="100" r="2" fill="rgba(255,0,128,0.7)"/>
+                          
+                          {/* Raspberry Pi Board */}
+                          <rect x="75" y="120" width="50" height="35" rx="3" fill="#228B22" stroke="#32CD32" strokeWidth="1"/>
+                          <text x="100" y="140" textAnchor="middle" fontSize="8" fill="#FFF">Pi Zero 2W</text>
+                          
+                          {/* GPIO Pins */}
+                          <rect x="80" y="125" width="2" height="8" fill="#FFD700"/>
+                          <rect x="83" y="125" width="2" height="8" fill="#FFD700"/>
+                          <rect x="86" y="125" width="2" height="8" fill="#FFD700"/>
+                          <rect x="115" y="125" width="2" height="8" fill="#FFD700"/>
+                          <rect x="118" y="125" width="2" height="8" fill="#FFD700"/>
+                          
+                          {/* USB/Power connector */}
+                          <rect x="78" y="155" width="8" height="4" rx="2" fill="#C0C0C0"/>
+                          <rect x="115" y="155" width="8" height="4" rx="2" fill="#C0C0C0"/>
+                          
+                          {/* 3D Point Cloud Visualization */}
+                          <g opacity="0.8">
+                            {/* Target Object (being reconstructed) */}
+                            <rect x="140" y="70" width="40" height="30" rx="5" fill="rgba(100,100,100,0.3)" stroke="rgba(200,200,200,0.5)" strokeWidth="1"/>
+                            
+                            {/* Point Cloud Points */}
+                            <circle cx="145" cy="75" r="1.5" fill="#00FFFF">
+                              <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="150" cy="78" r="1.5" fill="#00CCFF">
+                              <animate attributeName="opacity" values="0.3;1;0.3" dur="2.2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="155" cy="82" r="1.5" fill="#0099FF">
+                              <animate attributeName="opacity" values="0.3;1;0.3" dur="1.8s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="160" cy="85" r="1.5" fill="#0066FF">
+                              <animate attributeName="opacity" values="0.3;1;0.3" dur="2.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="165" cy="88" r="1.5" fill="#3366FF">
+                              <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="170" cy="92" r="1.5" fill="#6699FF">
+                              <animate attributeName="opacity" values="0.3;1;0.3" dur="2.8s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="175" cy="95" r="1.5" fill="#99CCFF">
+                              <animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite"/>
+                            </circle>
                           </g>
                           
-                          {/* Joint 1 */}
-                          <circle cx="50" cy="147" r="8" fill="url(#metalGrad)" stroke="#777" strokeWidth="2"/>
+                          {/* Camera Vision Rays */}
+                          <g opacity="0.4">
+                            <path d="M82.5 100 L140 70" stroke="rgba(0,245,255,0.5)" strokeWidth="1" strokeDasharray="2,2"/>
+                            <path d="M82.5 100 L140 100" stroke="rgba(0,245,255,0.5)" strokeWidth="1" strokeDasharray="2,2"/>
+                            <path d="M82.5 100 L140 130" stroke="rgba(0,245,255,0.5)" strokeWidth="1" strokeDasharray="2,2"/>
+                            
+                            <path d="M117.5 100 L140 70" stroke="rgba(255,0,128,0.5)" strokeWidth="1" strokeDasharray="2,2"/>
+                            <path d="M117.5 100 L140 100" stroke="rgba(255,0,128,0.5)" strokeWidth="1" strokeDasharray="2,2"/>
+                            <path d="M117.5 100 L140 130" stroke="rgba(255,0,128,0.5)" strokeWidth="1" strokeDasharray="2,2"/>
+                          </g>
                           
-                          {/* Link 1 */}
-                          <rect x="46" y="120" width="8" height="30" rx="4" fill="url(#metalGrad)" stroke="#999" strokeWidth="1"/>
+                          {/* Processing Indicator */}
+                          <g opacity="0.9">
+                            <circle cx="100" cy="170" r="8" fill="rgba(0,255,0,0.2)" stroke="rgba(0,255,0,0.8)" strokeWidth="2">
+                              <animate attributeName="r" values="6;10;6" dur="1.5s" repeatCount="indefinite"/>
+                              <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <text x="100" y="175" textAnchor="middle" fontSize="6" fill="#00FF00">3ms</text>
+                          </g>
                           
-                          {/* Joint 2 */}
-                          <circle cx="50" cy="120" r="6" fill="url(#metalGrad)" stroke="#777" strokeWidth="2"/>
+                          {/* Data Flow Arrows */}
+                          <g opacity="0.6">
+                            <path d="M82.5 110 L95 135" stroke="#00FFFF" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)"/>
+                            <path d="M117.5 110 L105 135" stroke="#FF0080" strokeWidth="2" fill="none" markerEnd="url(#arrowhead)"/>
+                          </g>
                           
-                          {/* Link 2 */}
-                          <rect x="50" y="116" width="35" height="8" rx="4" fill="url(#metalGrad)" stroke="#999" strokeWidth="1"/>
-                          
-                          {/* Joint 3 */}
-                          <circle cx="85" cy="120" r="6" fill="url(#metalGrad)" stroke="#777" strokeWidth="2"/>
-                          
-                          {/* Link 3 */}
-                          <rect x="81" y="95" width="8" height="25" rx="4" fill="url(#metalGrad)" stroke="#999" strokeWidth="1"/>
-                          
-                          {/* Joint 4 */}
-                          <circle cx="85" cy="95" r="5" fill="url(#metalGrad)" stroke="#777" strokeWidth="2"/>
-                          
-                          {/* Link 4 */}
-                          <rect x="85" y="91" width="25" height="8" rx="4" fill="url(#metalGrad)" stroke="#999" strokeWidth="1"/>
-                          
-                          {/* Joint 5 */}
-                          <circle cx="110" cy="95" r="5" fill="url(#metalGrad)" stroke="#777" strokeWidth="2"/>
-                          
-                          {/* Link 5 */}
-                          <rect x="106" y="80" width="8" height="15" rx="4" fill="url(#metalGrad)" stroke="#999" strokeWidth="1"/>
-                          
-                          {/* Joint 6 / End Effector */}
-                          <circle cx="110" cy="80" r="6" fill="url(#metalGrad)" stroke="#777" strokeWidth="2"/>
-                          
-                          {/* Gripper */}
-                          <rect x="105" y="70" width="4" height="12" rx="2" fill="#666" stroke="#444" strokeWidth="1"/>
-                          <rect x="111" y="70" width="4" height="12" rx="2" fill="#666" stroke="#444" strokeWidth="1"/>
-                          
-                          {/* Status LEDs */}
-                          <circle cx="46" cy="125" r="2" fill="#00FF00"/>
-                          <circle cx="54" cy="125" r="2" fill="#0080FF"/>
-                          
-                          {/* Cable management */}
-                          <path d="M50 147 Q60 130 Q80 110 Q100 90 Q110 80" stroke="#333" strokeWidth="2" fill="none" strokeDasharray="2,2"/>
+                          {/* Arrow marker definition */}
+                          <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                              <polygon points="0 0, 10 3.5, 0 7" fill="#00FFFF"/>
+                            </marker>
+                          </defs>
                         </svg>
                       )}
                     </div>
                     
                     <div className="project-overlay">
-                      {project.demo && (
-                        <div className="project-3d-indicator">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5"/>
-                            <path d="M2 12l10 5 10-5"/>
-                          </svg>
-                          <span>View 3D Demo</span>
-                        </div>
-                      )}
+                      <div className="overlay-top">
+                        {project.demo && (
+                          <div className="project-3d-indicator">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                              <path d="M2 17l10 5 10-5"/>
+                              <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                            <span>View 3D Demo</span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                   

@@ -77,8 +77,8 @@
       "status": "completed",
       "timeline": "Dec 2024",
       "github": null,
-      "demo": null,
-      "featured": false
+      "demo": "/projects/3d-reconstruction.html",
+      "featured": true
     },
     {
       "id": 5,
