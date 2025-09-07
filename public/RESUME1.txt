@@ -1,0 +1,125 @@
+Shatayu Avinash Mehta
++1 (763)245-3257 #mehta405@umn.edu ïwww.linkedin.com/in/shatayumehta
+Education
+University of Minnesota Twin Cities Sept. 2024 –present
+Masters of Science, Robotics
+
+Coursework : Machine Learning, Robot Vision, Feedback Control Systems, Robotics and Principles and Design of Wearable
+Technology
+KJ Somaiya College of Engineering,Mumbai July. 2018 –June. 2022
+Bachelors of Technology, Mechanical Engineering
+
+Skills
+Domain Expertise :CNC milling, Laser Cutting, 3D Printing, Computer-Aided Engineering, Fundamentals of Design, FEA, Stereo Vision, PID
+control, Lead and Lag compensator, controllability, observability, Robustness, Estimator Design, Digital control, Image processing, 3D
+pose estimation, Visual servoing, feature extraction, Supervised and unsupervised Learning, Reinforcement Learning, CNN, DNN, DQN,
+forward & Inverse Kinematics, Mechanical Sensing, Biometric sensing, Sewing & Soft Goods, E-textile Fabrication,GD&T, Rapid
+Prototyping.
+Programming : Python, C++, Arduino IDE
+Hardware Platforms : Arduino, Raspberry Pi, Ardupilot, UR5e Cobot
+Software :Solidworks, FUSION 360, CREO, ANSYS fluent& Workbench, CURA, PrusaSlicer, chitubox, XFLR5, E-Calc, AutoCAD, MATLAB,
+RoboDK,TensorFlow, PyTorch, RobotiqGripper Python library, Anaconda.
+Experience
+RESEARCH AND DEVELOPMENT ENGINEER Nov 2022 – Nov 2023
+Indrones Solutions PVT LTD. Mumbai, INDIA
+
+Spearheaded the FUJIN VTOL project from inception to completion of the design and testing of the second prototype.
+Established a streamlined process for the efficient manufacturing of the VTOL aircraft reducing the time from prototype design to
+completion by 1.5 Weeks.
+Engineered a prototyping solution for EPP foam machining, reducing manufacturing costs by 10% and increasing prototype body
+durability, enabling 5 additional test flights.
+Conducted market analysis for UAVs, influencing aircraft parameters, target customer identification, and market differentiation
+strategies.
+Achieved optimized aerodynamic calculations, improving the coefficient of lift from MVP stage to near-prototype values, reaching
+0.428 for enhanced aircraft performance.
+Designed prototypes and components using SOLIDWORKS, AUTODESK FUSION 360 and collaborated with the manufacturing team
+also providing training on 3D printing using CURA and CHITU BOX.
+Evaluated and tested powerhouse options using ECALC for both VTOL and UAVs achieving a Time-of-flight increase by 25% for FUJIN
+VTOL , also established parameters for the aircraft prior to testing.
+Conducted aircraft testing and refined aerodynamics, and design based on results using XFLR5 and ANSYS fluent and analyzed flight
+data to document the design improvements.
+Documented the development of FUJIN VTOL and contributed to technical certification documentation for the S25 UAV.
+Created and tested components for the S25 and S75 UAVs, improving mechanical performance, including the development of a
+hot-swappable payload mechanism for the S75.
+DESIGN TEAM LEAD May 2019 – August 2019
+Team Onyx India Mumbai, India
+
+Fronted the design team for TEAM ONYX INDIA in SAE Aero Design 2021.
+Fostered and advised the design team during SAE Aero design 2022.
+Led key aircraft design decisions, material selection, and frame manufacturing for the regular class aircraft in SAE Aero Design East.
+Developed a self-gliding aircraft with a wingspan of 30cm that automatically landed after being dropped from the mothership,
+utilizing a flight controller for autonomous landing.
+Conducted market research and testing to identify flexible, durable, and cost-efficient alternatives to Aero ply, reducing material
+costs by 45%.
+Designed and implemented a torsion box to prevent tail torsion issues caused by the fuselage’s rectangular cross-section,
+improving aircraft stability.
+Engineered a tension spring-based nose landing gear attached to a fork mechanism for enhanced weight distribution and landing
+efficiency.
+Developed the vertical tail base to effectively mount the vertical tail, optimizing aerodynamic performance.
+Designed and 3D-printed joints for the carbon fiber chassis, improving structural integrity and cost-efficiency for multiple
+prototyping iterations.
+Analyzed and tested four aircraft prototypes through test flights to determine maximum takeoff weight and structural limits,
+ensuring compliance with performance standards.
+Academic Projects
+Wearable Ring Mouse Device Development May 2025
+
+Developed a wearable ring mouse using an Arduino Nano 33 BLE Sense Rev2 , enabling click, cursor movement (swipe-to-tab), and
+scroll functionalities.
+Engineered the device with a push button for clicks, IMUs for swipe gestures, and Hall effect sensors with magnets for scrolling.
+Created firmware (Wearable Mouse Controller.ino) to process sensor data and send BLE messages , and a Python script
+(wearablemousereceiver.py) to interpret messages and execute actions usingpynput.
+Designed and 3D-printed custom PLA ring and wrist modules to house components, including a 3.7V LiPo battery and step-up
+converter; assembled and wired components using Vectran-based conductive thread and sewing techniques for the wrist strap.
+Conducted user testing with 3 volunteers, achieving an average System Usability Scale (SUS) score of 35.67, indicating ease of use.
+Computer Vision Based Tool Sorting (ME5286 Robotics Lab) April 2025
+
+Developed a Python program to enable a UR5 robot to identify and sort tools into designated bins whose locations were
+dynamically estimated at runtime.
+Implemented computer vision techniques using OpenCV and its ArUco module for 6DoF pose estimation of tool bins.
+Trained and deployed a Convolutional Neural Network (CNN) using TensorFlow/Keras for tool identification from images captured
+by a Robotiq Wrist Camera.
+Integrated control of the UR5 arm (via RoboDK API) , Robotiq Gripper (via Python library and Modbus) , and camera image processing
+within a unified Python script.
+Programmed pick-and-place operations, applying homogeneous transformations for precise tool handling and camera positioning,
+simulated in RoboDK.
+Utilized Object-Oriented Programming (OOP) principles and developed custom modules within an Anaconda environment.
+Flashlight Assembly with UR5 Robot (ME5286 Robotics Lab) March 2025
+
+Programmed a UR5 robot using the RoboDK Python API to perform a multi-step assembly of a three-part flashlight (head, battery,
+endcap).
+Integrated and controlled a pneumatic chuck (via custom post-processor and URScript commands) to hold flashlight components
+during assembly, ensuring safe operation with a photoelectric sensor to detect part presence.
+Developed pick-and-place sequences for all parts, including endcap rotation and placement onto a 3D-printed pedestal, and
+precise battery insertion considering polarity.
+Implemented a screwing operation to attach the endcap to the flashlight head, utilizing custom code for initial rotations and a
+providedtightentorque()function (monitoring the Robotiq Force Torque sensor ) to achieve a specified 2Nm torque.
+Managed TCP and Robotiq gripper configurations , and developed functions for precise part handling from a custom tray to the
+chuck, optimizing the assembly sequence.
+Utilized the teach pendant for location finding and fine-tuning of part positions to ensure reliable grasping and assembly.
+Real-Time 3D Reconstruction with Custom Stereo Camera and OpenCV December 2024
+
+Designed and tested a custom stereo camera using Raspberry pi zero 2W and Arduino camera module 3.
+Implemented a Stereo camera-based 3D reconstruction system to generate 3D models of real world environment in real time within
+a acceptable time of 3 milliseconds.
+Calibrated the camera using checkerboard patterns using OpenCV with a 0.2 RMSE Error.
+Developed Disparity maps using Semi-global Block Matching(SGBM) for depth estimation.
+Utilized Open3D library to create 3D reconstruction from Depth Data.
+Classification of predefined set of fruits and vegetables using ResNet 18 (CNN) Model December 2024
+
+Developed a Deep Learning model for classifying 5 fruit categories using ResNet18 and transfer learning with PyTorch.
+Created and tested on custom dataset , combining images from Fruits-262 and Fruits-360, with additional unique test data
+Preprocessed the Dataset by resizing the images to 224x224 pixels and normalizing using imageNet parameters.
+Applied Data augmentation techniques including random, rotation and flipping and zooming to improve robustness and address
+class imbalance
+Achieved 99% training accuracy, 97.5% validation accuracy, and 85% testing accuracy, demonstrating strong generalization with
+minor challenges on unseen data.
+Evaluated performance using metrics such as accuracy, precision, recall, and F1-score , highlighting challenges with visually similar
+classes.
+Design and prototyping of a fruit/vegetable plucking Robot April 2022
+
+Implemented computer vision algorithms using RGB color segmentation using MATLAB.
+Calculated coordinates for bounding boxes around detected strawberries and transmitted them to an Arduino Uno via Bluetooth.
+Programmed an Arduino Uno to control stepper motors, actuating the robot’s frame based on a Gantry robot mechanism.
+Engineered and controlled a scissor-inspired gripper mechanism , powered by a servo motor, to cut the stems of the strawberries.
+This is a offline tool, your data stays locally and is not send to any server!
+

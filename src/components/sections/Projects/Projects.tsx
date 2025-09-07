@@ -20,35 +20,17 @@ const Projects: React.FC = () => {
   const projects = [
     {
       id: 1,
-      title: 'Smart Wearable Ring',
-      category: 'wearables',
-      description: 'IoT-enabled smart ring with biometric sensors for health monitoring, gesture control, and seamless device integration.',
-      image: '/api/placeholder/400/300',
-      technologies: ['IoT', 'Embedded Systems', 'Bluetooth LE', 'Sensor Fusion', 'Mobile App', 'PCB Design'],
-      achievements: [
-        'Integrated multiple biometric sensors in 8mm form factor',
-        'Achieved 7-day battery life with optimized power management',
-        'Implemented gesture recognition with 95% accuracy',
-        'Seamless connectivity with smartphones and smart home devices'
-      ],
-      status: 'completed',
-      timeline: 'Jan 2024 - Aug 2024',
-      github: null,
-      demo: '/projects/wearable-ring.html',
-      featured: true
-    },
-    {
-      id: 2,
       title: 'FUJIN VTOL Aircraft',
       category: 'aerospace',
-      description: 'Complete vertical take-off and landing aircraft design from concept to prototype testing with 25% flight time improvement.',
+      description: 'Complete VTOL aircraft design from inception to second prototype testing, achieving 25% flight time improvement and streamlined manufacturing process.',
       image: '/api/placeholder/400/300',
-      technologies: ['SOLIDWORKS', 'XFLR5', 'ANSYS Fluent', 'ECALC', 'Flight Testing'],
+      technologies: ['SOLIDWORKS', 'XFLR5', 'ANSYS Fluent', 'ECALC', 'EPP Foam Machining', 'Flight Testing'],
       achievements: [
-        'Led complete design cycle from inception to prototype',
-        'Achieved 25% improvement in flight time',
-        'Optimized aerodynamic performance to CL=0.428',
-        'Reduced development time by 1.5 weeks'
+        'Spearheaded complete design cycle from inception to prototype testing',
+        'Achieved 25% improvement in flight time performance',
+        'Reduced prototype design to completion time by 1.5 weeks',
+        'Engineered EPP foam machining solution reducing costs by 10%',
+        'Optimized aerodynamic performance to CL=0.428'
       ],
       status: 'completed',
       timeline: 'Nov 2022 - Nov 2023',
@@ -57,77 +39,121 @@ const Projects: React.FC = () => {
       featured: true
     },
     {
-      id: 3,
-      title: 'UR5 Robot',
-      category: 'robotics',
-      description: 'Advanced 6-DOF robotic arm with precision manipulation capabilities, path planning algorithms, and integrated vision systems for industrial automation.',
+      id: 2,
+      title: 'Wearable Ring Mouse Device',
+      category: 'wearables',
+      description: 'IoT-enabled wearable ring mouse with Arduino Nano 33 BLE, enabling click, cursor movement, and scroll functionalities with custom 3D-printed housing.',
       image: '/api/placeholder/400/300',
-      technologies: ['ROS', 'Python', 'Computer Vision', 'Path Planning', 'Industrial Automation', 'Robotics'],
+      technologies: ['Arduino', 'BLE', 'IMU Sensors', 'Hall Effect Sensors', '3D Printing', 'Python', 'PyNput'],
       achievements: [
-        'Implemented advanced path planning algorithms',
-        'Integrated computer vision for object recognition',
-        'Developed precision pick-and-place operations',
-        'Created seamless assembly line integration'
+        'Integrated push button, IMU, and Hall effect sensors in ring form factor',
+        'Created custom firmware for sensor data processing and BLE communication',
+        'Designed and 3D-printed custom PLA ring and wrist modules',
+        'Achieved SUS score of 35.67 through user testing with 3 volunteers',
+        'Implemented gesture recognition for swipe-to-tab functionality'
       ],
       status: 'completed',
-      timeline: 'Jan 2023 - Dec 2023',
+      timeline: 'May 2025',
+      github: null,
+      demo: '/projects/wearable-ring.html',
+      featured: true
+    },
+    {
+      id: 3,
+      title: 'UR5 Robot Vision & Assembly',
+      category: 'robotics',
+      description: 'Computer vision-based tool sorting and automated flashlight assembly using UR5 cobot with CNN-based object recognition and precise manipulation.',
+      image: '/api/placeholder/400/300',
+      technologies: ['UR5 Cobot', 'OpenCV', 'TensorFlow', 'Python', 'RoboDK', 'ArUco', 'Robotiq Gripper'],
+      achievements: [
+        'Developed CNN using TensorFlow/Keras for tool identification',
+        'Implemented 6DoF pose estimation using OpenCV and ArUco markers',
+        'Programmed multi-step flashlight assembly with pneumatic chuck control',
+        'Integrated force-torque sensor for precise screwing operations (2Nm torque)',
+        'Applied homogeneous transformations for precise manipulation'
+      ],
+      status: 'completed',
+      timeline: 'Mar 2025 - Apr 2025',
       github: null,
       demo: '/projects/ur5-robot.html',
       featured: true
     },
     {
       id: 4,
-      title: 'EPP Foam Machining Solution',
-      category: 'manufacturing',
-      description: 'Innovative prototyping solution for EPP foam processing that reduced manufacturing costs and improved durability.',
+      title: 'Real-Time 3D Reconstruction System',
+      category: 'robotics',
+      description: 'Custom stereo camera system for real-time 3D reconstruction using Raspberry Pi and OpenCV with sub-3ms processing time.',
       image: '/api/placeholder/400/300',
-      technologies: ['Manufacturing', 'Material Science', 'Process Optimization', 'Cost Analysis'],
+      technologies: ['Raspberry Pi', 'OpenCV', 'SGBM', 'Open3D', 'Stereo Vision', 'Python'],
       achievements: [
-        '10% reduction in manufacturing costs',
-        'Increased prototype durability',
-        'Enabled 5 additional test flights',
-        'Streamlined manufacturing process'
+        'Designed custom stereo camera using Raspberry Pi Zero 2W',
+        'Achieved real-time 3D reconstruction within 3 milliseconds',
+        'Camera calibration with 0.2 RMSE error using checkerboard patterns',
+        'Implemented Semi-Global Block Matching for depth estimation',
+        'Generated 3D point clouds using Open3D library'
       ],
       status: 'completed',
-      timeline: '2022 - 2023',
+      timeline: 'Dec 2024',
       github: null,
       demo: null,
       featured: false
     },
     {
       id: 5,
-      title: 'S25 & S75 UAV Components',
-      category: 'aerospace',
-      description: 'Development and testing of critical components for commercial UAV systems including hot-swappable payload mechanisms.',
+      title: 'Fruit Classification using ResNet18',
+      category: 'robotics',
+      description: 'Deep learning model for classifying 5 fruit categories using ResNet18 and transfer learning with comprehensive data augmentation.',
       image: '/api/placeholder/400/300',
-      technologies: ['Mechanical Design', 'Testing', 'UAV Systems', 'Payload Integration'],
+      technologies: ['PyTorch', 'ResNet18', 'Transfer Learning', 'Data Augmentation', 'Computer Vision'],
       achievements: [
-        'Created hot-swappable payload mechanism for S75',
-        'Improved mechanical performance metrics',
-        'Contributed to technical certification',
-        'Enhanced operational flexibility'
+        'Achieved 99% training accuracy and 97.5% validation accuracy',
+        'Applied data augmentation including rotation, flipping, and zooming',
+        'Combined Fruits-262 and Fruits-360 datasets with custom test data',
+        'Demonstrated 85% testing accuracy with strong generalization',
+        'Evaluated using precision, recall, and F1-score metrics'
       ],
       status: 'completed',
-      timeline: '2022 - 2023',
+      timeline: 'Dec 2024',
       github: null,
       demo: null,
       featured: false
     },
     {
       id: 6,
-      title: 'Advanced Control Systems',
-      category: 'robotics',
-      description: 'Current research project exploring machine learning applications in robotic control systems and vision processing.',
+      title: 'SAE Aero Design Aircraft',
+      category: 'aerospace',
+      description: 'Led design team for SAE Aero Design competition, developing autonomous landing aircraft with innovative cost-reduction solutions.',
       image: '/api/placeholder/400/300',
-      technologies: ['Machine Learning', 'Python', 'Control Theory', 'Computer Vision', 'Research'],
+      technologies: ['Aircraft Design', 'Flight Controller', 'Material Engineering', 'CAD', '3D Printing'],
       achievements: [
-        'Exploring ML applications in robotics',
-        'Developing vision-based control systems',
-        'Research in feedback control optimization',
-        'Integration of modern AI techniques'
+        'Developed self-gliding aircraft with 30cm wingspan and autonomous landing',
+        'Reduced material costs by 45% through alternative material research',
+        'Designed torsion box to prevent tail torsion issues',
+        'Engineered tension spring-based nose landing gear',
+        'Tested four aircraft prototypes to determine performance limits'
       ],
-      status: 'in-progress',
-      timeline: 'Sept 2024 - Present',
+      status: 'completed',
+      timeline: 'May 2019 - Aug 2021',
+      github: null,
+      demo: null,
+      featured: false
+    },
+    {
+      id: 7,
+      title: 'Fruit/Vegetable Plucking Robot',
+      category: 'robotics',
+      description: 'Automated strawberry harvesting robot with computer vision-based detection and precise gripper mechanism using gantry-style movement.',
+      image: '/api/placeholder/400/300',
+      technologies: ['MATLAB', 'Computer Vision', 'Arduino Uno', 'Stepper Motors', 'Bluetooth', 'Servo Control'],
+      achievements: [
+        'Implemented RGB color segmentation for strawberry detection',
+        'Calculated bounding box coordinates for precise targeting',
+        'Programmed Arduino-controlled gantry robot mechanism',
+        'Designed scissor-inspired gripper for stem cutting',
+        'Achieved wireless communication via Bluetooth for coordinate transmission'
+      ],
+      status: 'completed',
+      timeline: 'April 2022',
       github: null,
       demo: null,
       featured: false
@@ -460,11 +486,6 @@ const Projects: React.FC = () => {
               {filteredProjects.map((project) => (
                 <div key={project.id} className="project-card glass-card hover-lift">
                   <div className="card-header">
-                    <div className="card-meta">
-                      <span className={`card-status ${project.status}`}>
-                        {project.status === 'completed' ? '✓' : '⚡'}
-                      </span>
-                    </div>
                     <h4 className="card-title">{project.title}</h4>
                     <p className="card-timeline">{project.timeline}</p>
                   </div>

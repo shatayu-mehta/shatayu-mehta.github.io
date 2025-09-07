@@ -117,47 +117,6 @@ const Contact: React.FC = () => {
                   ))}
                 </div>
               </div>
-
-              <div className="interests-section">
-                <h3 className="interests-title">Areas of Interest</h3>
-                <p className="interests-description">
-                  Topics I'm particularly passionate about and always eager to discuss:
-                </p>
-                <div className="interests-grid">
-                  {interests.map((interest, index) => (
-                    <span key={index} className="interest-tag">
-                      {interest}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="availability-section">
-                <h3 className="availability-title">Current Availability</h3>
-                <div className="availability-content">
-                  <div className="availability-item">
-                    <div className="availability-icon">🎓</div>
-                    <div className="availability-text">
-                      <h4>Graduate Student</h4>
-                      <p>Currently pursuing MS in Robotics at University of Minnesota</p>
-                    </div>
-                  </div>
-                  <div className="availability-item">
-                    <div className="availability-icon">💼</div>
-                    <div className="availability-text">
-                      <h4>Open for Opportunities</h4>
-                      <p>Seeking internships, research positions, and collaborative projects</p>
-                    </div>
-                  </div>
-                  <div className="availability-item">
-                    <div className="availability-icon">🔬</div>
-                    <div className="availability-text">
-                      <h4>Research Focus</h4>
-                      <p>Actively involved in robotics research and academic projects</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="contact-form-section">
@@ -245,6 +204,49 @@ const Contact: React.FC = () => {
                     <span className="note-icon">🔒</span>
                     Your information is secure and will only be used to respond to your inquiry.
                   </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="interests-availability-wrapper">
+            <div className="interests-section">
+              <h3 className="interests-title">Areas of Interest</h3>
+              <p className="interests-description">
+                Topics I'm particularly passionate about and always eager to discuss:
+              </p>
+              <div className="interests-grid">
+                {interests.map((interest, index) => (
+                  <span key={index} className="interest-tag">
+                    {interest}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="availability-section">
+              <h3 className="availability-title">Current Availability</h3>
+              <div className="availability-content">
+                <div className="availability-item">
+                  <div className="availability-icon">🎓</div>
+                  <div className="availability-text">
+                    <h4>Graduate Student</h4>
+                    <p>Currently pursuing MS in Robotics at University of Minnesota</p>
+                  </div>
+                </div>
+                <div className="availability-item">
+                  <div className="availability-icon">💼</div>
+                  <div className="availability-text">
+                    <h4>Open for Opportunities</h4>
+                    <p>Seeking internships, research positions, and collaborative projects</p>
+                  </div>
+                </div>
+                <div className="availability-item">
+                  <div className="availability-icon">🔬</div>
+                  <div className="availability-text">
+                    <h4>Research Focus</h4>
+                    <p>Actively involved in robotics research and academic projects</p>
+                  </div>
                 </div>
               </div>
             </div>

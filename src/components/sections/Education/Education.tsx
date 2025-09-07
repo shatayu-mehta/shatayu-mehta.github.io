@@ -7,20 +7,22 @@ const Education: React.FC = () => {
       id: 1,
       degree: 'Masters of Science, Robotics',
       institution: 'University of Minnesota Twin Cities',
-      period: 'Sept. 2024 – Present',
+      period: 'Sept. 2024 – May 2026',
       location: 'Minneapolis, MN, USA',
       status: 'current',
+      gpa: '3.5/4.0',
       description: 'Advanced study in robotics with focus on machine learning, computer vision, and autonomous systems.',
       coursework: [
         'Machine Learning',
-        'Robot Vision and Feedback Control Systems',
-        'Advanced Robotics',
-        'Autonomous Systems'
+        'Robot Vision',
+        'Feedback Control Systems',
+        'Robotics and Principles',
+        'Design of Wearable Technology'
       ],
       highlights: [
+        'GPA: 3.5/4.0',
         'Research in autonomous systems and AI integration',
         'Focus on next-generation robotics technologies',
-        'Collaboration with industry partners',
         'Advanced laboratory research projects'
       ]
     },
@@ -31,7 +33,7 @@ const Education: React.FC = () => {
       period: 'July 2018 – June 2022',
       location: 'Mumbai, India',
       status: 'completed',
-      gpa: '8.64/10',
+      gpa: '3.4/4.0',
       description: 'Comprehensive mechanical engineering foundation with specialization in design, manufacturing, and aerospace applications.',
       coursework: [
         'Engineering Design',
@@ -42,7 +44,7 @@ const Education: React.FC = () => {
         'Control Systems'
       ],
       highlights: [
-        'Achieved 8.64/10 GPA with distinction',
+        'GPA: 3.4/4.0',
         'Led multiple engineering design projects',
         'Active in SAE Aero Design competitions',
         'Strong foundation in mechanical systems'
@@ -54,8 +56,8 @@ const Education: React.FC = () => {
     {
       icon: '🏆',
       title: 'Academic Excellence',
-      description: 'Maintained high academic standards throughout undergraduate studies',
-      metric: '8.64/10 GPA'
+      description: 'Maintained strong academic performance throughout studies',
+      metric: '3.5/4.0 GPA (MS)'
     },
     {
       icon: '🔬',
@@ -73,7 +75,7 @@ const Education: React.FC = () => {
       icon: '🌟',
       title: 'Innovation',
       description: 'Applied theoretical knowledge to real-world engineering solutions',
-      metric: '15+ Projects'
+      metric: '7+ Projects'
     }
   ];
 
@@ -195,17 +197,17 @@ const Education: React.FC = () => {
                 <h3 className="sidebar-title">Future Goals</h3>
                 <div className="future-content">
                   <div className="goal-item">
-                    <div className="goal-icon">🎓</div>
+                    <div className="goal-icon">�</div>
                     <div className="goal-text">
-                      <h4>PhD in Robotics</h4>
-                      <p>Advanced research in autonomous systems</p>
+                      <h4>Industry Leadership</h4>
+                      <p>Leading innovative robotics and aerospace engineering teams</p>
                     </div>
                   </div>
                   <div className="goal-item">
                     <div className="goal-icon">🚀</div>
                     <div className="goal-text">
-                      <h4>Industry Innovation</h4>
-                      <p>Leading breakthrough robotics solutions</p>
+                      <h4>Technical Innovation</h4>
+                      <p>Developing breakthrough robotics and autonomous systems</p>
                     </div>
                   </div>
                   <div className="goal-item">

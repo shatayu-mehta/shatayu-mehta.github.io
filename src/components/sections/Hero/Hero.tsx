@@ -182,11 +182,11 @@ const Hero: React.FC = () => {
           <div className="hero-visual">
             <div className="hero-stats animate-fade-in-right">
               <div className="stat-item">
-                <span className="stat-number gradient-text">5+</span>
+                <span className="stat-number gradient-text">6+</span>
                 <span className="stat-label">Years Experience</span>
               </div>
               <div className="stat-item">
-                <span className="stat-number gradient-text">8+</span>
+                <span className="stat-number gradient-text">7+</span>
                 <span className="stat-label">Projects Completed</span>
               </div>
             </div>

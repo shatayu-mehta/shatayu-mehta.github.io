@@ -23,13 +23,13 @@ const Experience: React.FC = () => {
       id: 2,
       company: 'Team Onyx India',
       position: 'Design Team Lead',
-      period: 'May 2019 – Aug 2019',
+      period: 'May 2019 – Aug 2021',
       location: 'Mumbai, India',
       type: 'Leadership Role',
       achievements: [
-        'Led design team for SAE Aero Design 2021 competition',
+        'Led design team for SAE Aero Design 2021 and fostered team for 2022',
         'Reduced material costs by 45% through alternative material research',
-        'Designed self-gliding aircraft with autonomous landing capabilities',
+        'Designed self-gliding aircraft with 30cm wingspan and autonomous landing',
         'Developed innovative torsion box solution for aircraft stability',
         'Analyzed 4 aircraft prototypes through comprehensive test flights'
       ],
@@ -55,7 +55,7 @@ const Experience: React.FC = () => {
           </div>
 
           <div className="experience-timeline">
-            {experiences.map((exp) => (
+            {experiences.map((exp, index) => (
               <div key={exp.id} className="timeline-item">
                 <div className="timeline-marker">
                   <div className="marker-dot"></div>
