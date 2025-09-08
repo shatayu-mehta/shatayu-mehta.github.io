@@ -236,7 +236,7 @@ const Contact: React.FC = () => {
                 </p>
               </div>
               <div className="footer-links">
-                <a href="/RESUME_S_A_M.pdf" target="_blank" className="footer-link">
+                <a href="/SHATAYU_RESUME_DESIGN.pdf" target="_blank" className="footer-link">
                   <span>Download Resume</span>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />

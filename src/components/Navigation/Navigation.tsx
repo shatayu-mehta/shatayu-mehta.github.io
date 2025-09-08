@@ -102,7 +102,7 @@ const Navigation: React.FC = () => {
         {/* Resume Download Button */}
         <div className="nav-actions">
           <a
-            href="/RESUME_S_A_M.pdf"
+            href="/SHATAYU_RESUME_DESIGN.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-secondary nav-resume-btn"
@@ -143,7 +143,7 @@ const Navigation: React.FC = () => {
             ))}
             <li className="nav-item">
               <a
-                href="/RESUME_S_A_M.pdf"
+                href="/SHATAYU_RESUME_DESIGN.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="nav-link"
