@@ -80,43 +80,43 @@ const App: React.FC = () => {
           <Hero />
           
           <LazySection>
-            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
+            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
               <About />
             </Suspense>
           </LazySection>
           
           <LazySection>
-            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
+            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
               <Experience />
             </Suspense>
           </LazySection>
           
           <LazySection>
-            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
+            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
               <Skills />
             </Suspense>
           </LazySection>
           
           <LazySection>
-            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
+            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
               <Projects />
             </Suspense>
           </LazySection>
           
           <LazySection>
-            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
+            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
               <Education />
             </Suspense>
           </LazySection>
           
           <LazySection>
-            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
+            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
               <Contact />
             </Suspense>
           </LazySection>
           
           <LazySection>
-            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
+            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
               <Credits />
             </Suspense>
           </LazySection>

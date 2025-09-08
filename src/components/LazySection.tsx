@@ -10,7 +10,7 @@ interface LazySectionProps {
 
 const LazySection: React.FC<LazySectionProps> = ({ 
   children, 
-  fallback = <div className="section-loading">Loading section...</div>,
+  fallback = <div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>,
   rootMargin = '100px',
   threshold = 0.1 
 }) => {
