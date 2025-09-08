@@ -27,7 +27,8 @@ const Contact: React.FC = () => {
     window.location.href = mailtoLink;
   };
 
-  const contactMethods = contactData.contactMethods;
+  // Filter out any phone contact method for privacy
+  const contactMethods = contactData.contactMethods.filter(method => method.title !== 'Phone');
 
   const interests = [
     'VTOL Aircraft Design',
