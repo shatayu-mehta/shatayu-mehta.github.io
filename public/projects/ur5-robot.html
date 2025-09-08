@@ -569,54 +569,57 @@
         function createFallbackModel() {
             console.log('Creating fallback UR5 robot model...');
             
-            // Create a simple robot arm-like shape as fallback
+            // Create a simple single-arm robot shape as fallback
             const group = new THREE.Group();
-            
+
             // Base
-            const baseGeometry = new THREE.CylinderGeometry(0.8, 0.8, 0.3, 16);
+            const baseGeometry = new THREE.CylinderGeometry(0.8, 0.8, 0.3, 24);
             const baseMaterial = new THREE.MeshLambertMaterial({ 
-                color: 0x2c3e50,
+                color: 0x222e3a,
                 emissive: 0x0f0f0f,
                 emissiveIntensity: 0.1
             });
             const base = new THREE.Mesh(baseGeometry, baseMaterial);
             base.position.y = 0.15;
             group.add(base);
-            
-            // First joint
-            const joint1Geometry = new THREE.CylinderGeometry(0.3, 0.3, 1.5, 8);
-            const jointMaterial = new THREE.MeshLambertMaterial({ 
-                color: 0x3498db,
-                emissive: 0x0a0a0a,
-                emissiveIntensity: 0.1
-            });
-            const joint1 = new THREE.Mesh(joint1Geometry, jointMaterial);
-            joint1.position.y = 1.05;
-            group.add(joint1);
-            
-            // Second arm segment
-            const arm1Geometry = new THREE.BoxGeometry(0.4, 1.2, 0.4);
+
+            // Main arm (vertical)
+            const armGeometry = new THREE.CylinderGeometry(0.25, 0.25, 2.2, 16);
             const armMaterial = new THREE.MeshLambertMaterial({ 
-                color: 0xe74c3c,
+                color: 0x2196f3,
                 emissive: 0x0a0a0a,
                 emissiveIntensity: 0.1
             });
-            const arm1 = new THREE.Mesh(arm1Geometry, armMaterial);
-            arm1.position.set(0.8, 1.8, 0);
-            arm1.rotation.z = Math.PI / 6;
-            group.add(arm1);
-            
-            // End effector
-            const endEffectorGeometry = new THREE.BoxGeometry(0.2, 0.2, 0.4);
-            const endEffectorMaterial = new THREE.MeshLambertMaterial({ 
-                color: 0xf39c12,
+            const arm = new THREE.Mesh(armGeometry, armMaterial);
+            arm.position.y = 1.4;
+            group.add(arm);
+
+            // Joint (shoulder)
+            const jointGeometry = new THREE.SphereGeometry(0.32, 16, 16);
+            const jointMaterial = new THREE.MeshLambertMaterial({ 
+                color: 0x1976d2,
                 emissive: 0x0a0a0a,
                 emissiveIntensity: 0.1
             });
-            const endEffector = new THREE.Mesh(endEffectorGeometry, endEffectorMaterial);
-            endEffector.position.set(1.4, 2.3, 0);
-            group.add(endEffector);
-            
+            const joint = new THREE.Mesh(jointGeometry, jointMaterial);
+            joint.position.y = 2.5;
+            group.add(joint);
+
+            // Gripper (end effector)
+            const gripperMaterial = new THREE.MeshLambertMaterial({ 
+                color: 0xffb300,
+                emissive: 0x0a0a0a,
+                emissiveIntensity: 0.1
+            });
+            const gripper1 = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.4, 0.1), gripperMaterial);
+            gripper1.position.set(0.13, 2.95, 0);
+            gripper1.rotation.z = Math.PI / 12;
+            group.add(gripper1);
+            const gripper2 = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.4, 0.1), gripperMaterial);
+            gripper2.position.set(-0.13, 2.95, 0);
+            gripper2.rotation.z = -Math.PI / 12;
+            group.add(gripper2);
+
             // Enable shadows
             group.traverse(function (child) {
                 if (child instanceof THREE.Mesh) {
@@ -624,13 +627,13 @@
                     child.receiveShadow = true;
                 }
             });
-            
+
             robotModel = group;
             scene.add(robotModel);
-            
+
             // Hide loading indicator
             document.getElementById('loadingIndicator').style.display = 'none';
-            
+
             console.log('Fallback UR5 robot model created');
         }
 

@@ -104,7 +104,6 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
-  background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 70%, transparent 100%);
 }
 
 .illustration-svg {

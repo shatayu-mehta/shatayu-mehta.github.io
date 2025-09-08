@@ -486,6 +486,103 @@ const Projects: React.FC = () => {
                           </defs>
                         </svg>
                       )}
+                      
+                      {project.title === 'UR5 Robot Vision & Assembly' && (
+                        <svg className="illustration-svg" viewBox="0 0 200 200" fill="none">
+                          {/* 6-DOF Robotic Arm - Natural Working Pose */}
+                          <defs>
+                            <linearGradient id="cleanArmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#3b82f6"/>
+                              <stop offset="100%" stopColor="#1e40af"/>
+                            </linearGradient>
+                            <linearGradient id="cleanBaseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#4b5563"/>
+                              <stop offset="100%" stopColor="#374151"/>
+                            </linearGradient>
+                            <linearGradient id="jointGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#64748b"/>
+                              <stop offset="100%" stopColor="#475569"/>
+                            </linearGradient>
+                          </defs>
+                          
+                          {/* Base Platform (J0) */}
+                          <circle cx="100" cy="175" r="28" fill="url(#cleanBaseGrad)" stroke="#6b7280" strokeWidth="2"/>
+                          <circle cx="100" cy="175" r="20" fill="url(#jointGrad)" stroke="#e5e7eb" strokeWidth="1"/>
+                          
+                          {/* Base Joint Housing */}
+                          <rect x="85" y="160" width="30" height="20" rx="8" fill="url(#cleanBaseGrad)" stroke="#6b7280" strokeWidth="2"/>
+                          
+                          {/* Joint 1 - Shoulder (J1) */}
+                          <circle cx="100" cy="155" r="12" fill="url(#jointGrad)" stroke="#e5e7eb" strokeWidth="2"/>
+                          <circle cx="100" cy="155" r="6" fill="#1e40af"/>
+                          
+                          {/* Link 1 - Lower Arm (Shoulder to Elbow) - Slight angle */}
+                          <rect x="92" y="120" width="16" height="35" rx="8" fill="url(#cleanArmGrad)" stroke="#e5e7eb" strokeWidth="2"/>
+                          
+                          {/* Joint 2 - Elbow (J2) */}
+                          <circle cx="108" cy="115" r="10" fill="url(#jointGrad)" stroke="#e5e7eb" strokeWidth="2"/>
+                          <circle cx="108" cy="115" r="5" fill="#1e40af"/>
+                          
+                          {/* Link 2 - Upper Arm (Elbow to Wrist) - Natural bend */}
+                          <rect x="108" y="80" width="12" height="35" rx="6" fill="url(#cleanArmGrad)" stroke="#e5e7eb" strokeWidth="2"/>
+                          
+                          {/* Joint 3 - Wrist 1 (J3) */}
+                          <circle cx="114" cy="75" r="8" fill="url(#jointGrad)" stroke="#e5e7eb" strokeWidth="2"/>
+                          <circle cx="114" cy="75" r="4" fill="#1e40af"/>
+                          
+                          {/* Link 3 - Wrist Link */}
+                          <rect x="110" y="60" width="8" height="15" rx="4" fill="url(#cleanArmGrad)" stroke="#e5e7eb" strokeWidth="1"/>
+                          
+                          {/* Joint 4 - Wrist 2 (J4) */}
+                          <circle cx="114" cy="55" r="6" fill="url(#jointGrad)" stroke="#e5e7eb" strokeWidth="1"/>
+                          <circle cx="114" cy="55" r="3" fill="#1e40af"/>
+                          
+                          {/* Joint 5 - Wrist 3 (J5) */}
+                          <circle cx="114" cy="45" r="5" fill="url(#jointGrad)" stroke="#e5e7eb" strokeWidth="1"/>
+                          <circle cx="114" cy="45" r="2" fill="#1e40af"/>
+                          
+                          {/* End Effector Mount */}
+                          <rect x="109" y="35" width="10" height="10" rx="2" fill="#f59e0b" stroke="#e5e7eb" strokeWidth="1"/>
+                          
+                          {/* Gripper Fingers */}
+                          <rect x="107" y="30" width="3" height="8" rx="1" fill="#f59e0b"/>
+                          <rect x="118" y="30" width="3" height="8" rx="1" fill="#f59e0b"/>
+                          
+                          {/* Hydraulic Cylinders/Actuators */}
+                          <rect x="95" y="135" width="4" height="15" rx="2" fill="#64748b" stroke="#e5e7eb" strokeWidth="1"/>
+                          <rect x="103" y="95" width="4" height="12" rx="2" fill="#64748b" stroke="#e5e7eb" strokeWidth="1"/>
+                          
+                          {/* DOF Labels */}
+                          <text x="75" y="175" fontSize="6" fill="#9ca3af" fontFamily="Arial">J0</text>
+                          <text x="75" y="155" fontSize="6" fill="#9ca3af" fontFamily="Arial">J1</text>
+                          <text x="85" y="115" fontSize="6" fill="#9ca3af" fontFamily="Arial">J2</text>
+                          <text x="125" y="75" fontSize="6" fill="#9ca3af" fontFamily="Arial">J3</text>
+                          <text x="125" y="55" fontSize="6" fill="#9ca3af" fontFamily="Arial">J4</text>
+                          <text x="125" y="45" fontSize="6" fill="#9ca3af" fontFamily="Arial">J5</text>
+                          
+                          {/* Joint Rotation Indicators */}
+                          <circle cx="100" cy="155" r="18" fill="none" stroke="rgba(59,130,246,0.2)" strokeWidth="1" strokeDasharray="2,2"/>
+                          <circle cx="108" cy="115" r="16" fill="none" stroke="rgba(59,130,246,0.2)" strokeWidth="1" strokeDasharray="2,2"/>
+                          <circle cx="114" cy="75" r="14" fill="none" stroke="rgba(59,130,246,0.2)" strokeWidth="1" strokeDasharray="2,2"/>
+                          
+                          {/* Cable Management */}
+                          <path d="M100 160 Q104 140 108 120 Q111 95 114 80" stroke="rgba(75,85,99,0.6)" strokeWidth="2" fill="none" strokeDasharray="3,2"/>
+                          
+                          {/* Status Indicators */}
+                          <circle cx="100" cy="175" r="2" fill="#10b981">
+                            <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/>
+                          </circle>
+                          <circle cx="100" cy="155" r="1.5" fill="#06b6d4">
+                            <animate attributeName="opacity" values="1;0.4;1" dur="1.8s" repeatCount="indefinite"/>
+                          </circle>
+                          <circle cx="108" cy="115" r="1.5" fill="#8b5cf6">
+                            <animate attributeName="opacity" values="1;0.4;1" dur="1.5s" repeatCount="indefinite"/>
+                          </circle>
+                          <circle cx="114" cy="75" r="1" fill="#f59e0b">
+                            <animate attributeName="opacity" values="1;0.4;1" dur="1.2s" repeatCount="indefinite"/>
+                          </circle>
+                        </svg>
+                      )}
                     </div>
                     
                     <div className="project-overlay">
@@ -529,52 +626,6 @@ const Projects: React.FC = () => {
                         <span className="tech-more">+{project.technologies.length - 4} more</span>
                       )}
                     </div>
-                    
-                    {project.github && (
-                      <div className="project-actions">
-                        {Array.isArray(project.github) ? (
-                          <div className="github-links">
-                            <span className="github-label">Repositories:</span>
-                            {(project.github as string[]).map((link: string, index: number) => (
-                              <a 
-                                key={index}
-                                href={link} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="github-link"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  e.preventDefault();
-                                  window.open(link, '_blank', 'noopener,noreferrer');
-                                }}
-                              >
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                {index === 0 ? 'Tool Sorting' : index === 1 ? 'Flashlight Assembly' : 'Pick & Place'}
-                              </a>
-                            ))}
-                          </div>
-                        ) : (
-                          <a 
-                            href={project.github} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="github-link"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              e.preventDefault();
-                              window.open(project.github as string, '_blank', 'noopener,noreferrer');
-                            }}
-                          >
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            View Repository
-                          </a>
-                        )}
-                      </div>
-                    )}
                   </div>
                 </div>
               ))}
@@ -683,7 +734,7 @@ const Projects: React.FC = () => {
                     <path d="M12 5l7 7-7 7" />
                   </svg>
                 </a>
-                <a href="/RESUME_S_A_M.pdf" target="_blank" className="btn btn-secondary">
+                <a href="/SHATAYU_RESUME_DESIGN.pdf" target="_blank" className="btn btn-secondary">
                   View Full Resume
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
