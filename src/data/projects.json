@@ -45,7 +45,7 @@
       "title": "UR5 Robot Vision & Assembly",
       "category": "robotics",
       "description": "Computer vision-based tool sorting and automated flashlight assembly using UR5 cobot with CNN-based object recognition and precise manipulation.",
-      "image": "/api/placeholder/400/300",
+      "image": "/ur5-robot-illustration.svg",
       "technologies": ["UR5 Cobot", "OpenCV", "TensorFlow", "Python", "RoboDK", "ArUco", "Robotiq Gripper"],
       "achievements": [
         "Developed CNN using TensorFlow/Keras for tool identification",

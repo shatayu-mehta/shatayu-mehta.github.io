@@ -1,0 +1,89 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="robotGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4080ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00e5ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="baseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c3e50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#34495e;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#baseGradient)" opacity="0.1"/>
+  
+  <!-- Robot Base -->
+  <ellipse cx="200" cy="280" rx="45" ry="15" fill="url(#baseGradient)" opacity="0.8"/>
+  <rect x="170" y="250" width="60" height="30" rx="5" fill="url(#baseGradient)" opacity="0.9"/>
+  
+  <!-- Base Joint -->
+  <circle cx="200" cy="250" r="20" fill="url(#robotGradient)" filter="url(#glow)"/>
+  <circle cx="200" cy="250" r="12" fill="#0a1117" opacity="0.6"/>
+  
+  <!-- First Arm Segment -->
+  <rect x="190" y="180" width="20" height="70" rx="10" fill="url(#robotGradient)" filter="url(#glow)"/>
+  
+  <!-- Second Joint -->
+  <circle cx="200" cy="180" r="15" fill="url(#robotGradient)" filter="url(#glow)"/>
+  <circle cx="200" cy="180" r="8" fill="#0a1117" opacity="0.6"/>
+  
+  <!-- Second Arm Segment (angled) -->
+  <rect x="200" y="110" width="70" height="18" rx="9" fill="url(#robotGradient)" filter="url(#glow)" transform="rotate(25 200 180)"/>
+  
+  <!-- Third Joint -->
+  <circle cx="255" cy="130" r="12" fill="url(#robotGradient)" filter="url(#glow)"/>
+  <circle cx="255" cy="130" r="6" fill="#0a1117" opacity="0.6"/>
+  
+  <!-- Third Arm Segment -->
+  <rect x="255" y="95" width="15" height="35" rx="7" fill="url(#robotGradient)" filter="url(#glow)"/>
+  
+  <!-- Wrist Joint -->
+  <circle cx="262" cy="95" r="10" fill="url(#robotGradient)" filter="url(#glow)"/>
+  <circle cx="262" cy="95" r="5" fill="#0a1117" opacity="0.6"/>
+  
+  <!-- End Effector -->
+  <rect x="255" y="75" width="14" height="20" rx="3" fill="#ff6600" filter="url(#glow)"/>
+  
+  <!-- Gripper Fingers -->
+  <rect x="250" y="75" width="8" height="3" fill="#ff6600" opacity="0.8"/>
+  <rect x="265" y="75" width="8" height="3" fill="#ff6600" opacity="0.8"/>
+  
+  <!-- Vision System (Camera) -->
+  <rect x="258" y="65" width="8" height="8" rx="2" fill="#00ff88" filter="url(#glow)"/>
+  <circle cx="262" cy="69" r="2" fill="#ffffff" opacity="0.9"/>
+  
+  <!-- Work Piece (Tool being sorted) -->
+  <rect x="280" y="160" width="25" height="8" rx="3" fill="#ff2080" filter="url(#glow)"/>
+  <text x="285" y="175" font-family="Arial, sans-serif" font-size="8" fill="#ff2080" opacity="0.8">Tool</text>
+  
+  <!-- ArUco Marker -->
+  <rect x="320" y="200" width="20" height="20" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+  <rect x="322" y="202" width="6" height="6" fill="#000000"/>
+  <rect x="330" y="202" width="6" height="6" fill="#000000"/>
+  <rect x="322" y="210" width="6" height="6" fill="#000000"/>
+  <rect x="330" y="214" width="6" height="6" fill="#000000"/>
+  <text x="342" y="215" font-family="Arial, sans-serif" font-size="6" fill="#00e5ff" opacity="0.8">ArUco</text>
+  
+  <!-- Connection Lines (representing computer vision) -->
+  <line x1="262" y1="75" x2="290" y2="164" stroke="#00ff88" stroke-width="1" opacity="0.6" stroke-dasharray="2,2" filter="url(#glow)"/>
+  <line x1="262" y1="75" x2="330" y2="210" stroke="#00ff88" stroke-width="1" opacity="0.6" stroke-dasharray="2,2" filter="url(#glow)"/>
+  
+  <!-- Title Text -->
+  <text x="50" y="40" font-family="Arial, sans-serif" font-size="16" fill="#00e5ff" filter="url(#glow)">UR5 Robot Vision System</text>
+  <text x="50" y="58" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" opacity="0.7">Computer Vision • Tool Sorting • Assembly</text>
+  
+  <!-- Technical Indicators -->
+  <circle cx="350" cy="50" r="3" fill="#00ff88" filter="url(#glow)"/>
+  <text x="358" y="54" font-family="Arial, sans-serif" font-size="8" fill="#00ff88">CNN Active</text>
+  
+  <circle cx="350" cy="70" r="3" fill="#ff6600" filter="url(#glow)"/>
+  <text x="358" y="74" font-family="Arial, sans-serif" font-size="8" fill="#ff6600">6DOF Tracking</text>
+</svg>

@@ -91,6 +91,8 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            overflow-y: auto;
+            max-height: calc(100vh - 120px);
         }
 
         .video-container {
@@ -182,6 +184,54 @@
             color: #00ff80;
             font-weight: 600;
             font-family: monospace;
+        }
+
+        .repository-links {
+            background: rgba(20, 25, 35, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .repo-title {
+            color: #00f5ff;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .repo-links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .repo-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .repo-link:hover {
+            background: rgba(0, 245, 255, 0.1);
+            border-color: rgba(0, 245, 255, 0.3);
+            color: #00f5ff;
+            transform: translateX(5px);
+        }
+
+        .repo-link svg {
+            flex-shrink: 0;
         }
 
         .close-btn {
@@ -323,6 +373,30 @@
                         Watch the FUJIN VTOL Aircraft in flight, demonstrating its advanced vertical take-off and landing capabilities. The video showcases the 25% improved flight time, aerodynamic efficiency with CL=0.428, and the complete flight envelope from hover to forward flight mode. See the optimization results in real-world testing conditions.
                     </div>
                 </div>
+
+                <div class="repository-links">
+                    <h3 class="repo-title">Source Code Repositories</h3>
+                    <div class="repo-links-grid">
+                        <a href="https://github.com/shatayu-mehta/FUJIN-VTOL-CFD-analysis-optimization.git" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="repo-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            CFD Analysis & Design Optimization
+                        </a>
+                        <a href="https://github.com/shatayu-mehta/Fujin-VTOL-design-and-analysis.git" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="repo-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            Complete Aircraft Design & Analysis
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
             </div>
@@ -403,47 +477,47 @@
             scene.add(mainLight);
             lights.push(mainLight);
 
-            // Secondary light (cyan accent) - brighter
-            const secondaryLight = new THREE.DirectionalLight(0x00f5ff, 0.8);
+            // Secondary light (cyan accent) - reduced intensity
+            const secondaryLight = new THREE.DirectionalLight(0x00f5ff, 0.4);
             secondaryLight.position.set(-5, 5, -5);
             scene.add(secondaryLight);
             lights.push(secondaryLight);
 
-            // Multiple fill lights from below to eliminate dark areas
-            const fillLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+            // Multiple fill lights from below to eliminate dark areas - reduced
+            const fillLight1 = new THREE.DirectionalLight(0xffffff, 0.3);
             fillLight1.position.set(0, -8, 5);
             scene.add(fillLight1);
             lights.push(fillLight1);
 
-            const fillLight2 = new THREE.DirectionalLight(0xffffff, 0.6);
+            const fillLight2 = new THREE.DirectionalLight(0xffffff, 0.2);
             fillLight2.position.set(5, -5, 0);
             scene.add(fillLight2);
             lights.push(fillLight2);
 
-            const fillLight3 = new THREE.DirectionalLight(0xffffff, 0.6);
+            const fillLight3 = new THREE.DirectionalLight(0xffffff, 0.2);
             fillLight3.position.set(-5, -5, 0);
             scene.add(fillLight3);
             lights.push(fillLight3);
 
-            // Orange accent light - brighter
-            const accentLight = new THREE.PointLight(0xff6600, 1.2, 25);
+            // Orange accent light - reduced
+            const accentLight = new THREE.PointLight(0xff6600, 0.6, 25);
             accentLight.position.set(3, 2, 3);
             scene.add(accentLight);
             lights.push(accentLight);
 
-            // Additional rim lights to brighten edges
-            const rimLight1 = new THREE.DirectionalLight(0xffffff, 0.6);
+            // Additional rim lights to brighten edges - reduced
+            const rimLight1 = new THREE.DirectionalLight(0xffffff, 0.2);
             rimLight1.position.set(-3, -3, -8);
             scene.add(rimLight1);
             lights.push(rimLight1);
 
-            const rimLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
+            const rimLight2 = new THREE.DirectionalLight(0xffffff, 0.2);
             rimLight2.position.set(8, 3, -3);
             scene.add(rimLight2);
             lights.push(rimLight2);
 
-            // Bottom hemisphere light for even illumination
-            const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.8);
+            // Bottom hemisphere light for even illumination - reduced
+            const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.4);
             hemiLight.position.set(0, 10, 0);
             scene.add(hemiLight);
             lights.push(hemiLight);
@@ -483,11 +557,11 @@
                         // Model loaded successfully
                         console.log('FUJIN VTOL STL loaded successfully:', geometry);
                         
-                        // Create enhanced material for better visibility - matte grey/white with emissive properties
+                        // Create enhanced material for better visibility - soft grey with subtle blue tint
                         const material = new THREE.MeshLambertMaterial({
-                            color: 0xf0f0f0, // Brighter light grey/white
-                            emissive: 0x202020, // Slight self-illumination to reduce shadow impact
-                            emissiveIntensity: 0.15, // Subtle glow to maintain detail visibility
+                            color: 0xb8c5d1, // Soft blue-grey instead of bright white
+                            emissive: 0x0a0f14, // Very subtle dark blue emissive
+                            emissiveIntensity: 0.05, // Much lower glow
                         });
                         
                         // Create mesh from geometry
