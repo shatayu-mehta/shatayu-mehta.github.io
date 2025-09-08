@@ -63,7 +63,7 @@
 
 /* Smooth transitions between sections */
 .section + .section {
-  margin-top: -2px;
+  margin-top: -0.125rem;
 }
 
 /* Parallax effects */
@@ -83,10 +83,10 @@
 /* Glass morphism effects */
 .glass-morphism {
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  backdrop-filter: blur(0.625rem);
+  -webkit-backdrop-filter: blur(0.625rem);
+  border: 0.0625rem solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
 }
 
 /* Responsive design */

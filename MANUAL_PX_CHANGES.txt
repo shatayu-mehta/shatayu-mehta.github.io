@@ -1,0 +1,99 @@
+# Manual px to rem/em Conversion Needed
+
+Below are all the hardcoded px values in your CSS files that require manual conversion to rem/em or other relative units. Please search for these lines and update them as needed.
+
+---
+
+## src/styles/global.css
+- width: 1px;
+- height: 1px;
+- margin: -1px;
+- transform: translateX(0px); (multiple occurrences)
+- transform: translateX(-10px) skew(2deg);
+- transform: translateX(5px) skew(-1deg);
+- transform: translateX(-3px) skew(0.5deg);
+- transform: translateX(8px) skew(-1.5deg);
+- transform: translateX(-12px) skew(1deg);
+- transform: translateX(-15px) skew(3deg);
+- transform: translateX(20px) skew(-2deg);
+- transform: translateX(-8px) skew(1deg);
+- transform: translateX(6px) skew(-0.8deg);
+
+## src/styles/global_backup.css
+- width: 1px;
+- height: 1px;
+- margin: -1px;
+- border-radius: 8px;
+- transform: translateY(-2px);
+- box-shadow: 0 8px 25px rgba(0, 245, 255, 0.4);
+- border: 2px solid var(--primary-cyan);
+- outline: 2px solid var(--primary-cyan);
+- outline-offset: 2px;
+- transform: translateX(0px); (multiple occurrences)
+- transform: translateX(-10px) skew(2deg);
+- transform: translateX(5px) skew(-1deg);
+- transform: translateX(-3px) skew(0.5deg);
+- transform: translateX(8px) skew(-1.5deg);
+- transform: translateX(-12px) skew(1deg);
+- transform: translateX(-15px) skew(3deg);
+- transform: translateX(20px) skew(-2deg);
+- transform: translateX(-8px) skew(1deg);
+- transform: translateX(6px) skew(-0.8deg);
+
+## src/components/Navigation/Navigation.css
+- backdrop-filter: blur(10px);
+- -webkit-backdrop-filter: blur(10px);
+- border-bottom: 1px solid var(--border-subtle);
+- box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+- border-radius: 6px;
+- bottom: -2px;
+- height: 2px;
+- transform: translateY(2px);
+- gap: 4px;
+- width: 24px;
+- height: 2px;
+- transform: rotate(45deg) translate(6px, 6px);
+- transform: rotate(-45deg) translate(6px, -6px);
+- backdrop-filter: blur(15px);
+- -webkit-backdrop-filter: blur(15px);
+- border: 1px solid var(--border-subtle);
+- max-height: 500px;
+
+## src/components/sections/Education/Education.css
+- max-width: 1200px;
+- grid-template-columns: 1fr 350px;
+- left: 20px;
+- width: 2px;
+- border-radius: 1px;
+- left: -32px;
+- width: 16px;
+- height: 16px;
+- border: 3px solid var(--background-dark);
+- box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+- width: 2px;
+- height: 60px;
+- border-radius: 8px;
+- border-radius: 20px;
+- padding: 6px 12px;
+- font-size: 1.2rem;
+- padding: 4px 12px;
+- top: 100px;
+- width: 40px;
+- height: 40px;
+- margin-bottom: 4px;
+- padding: 6px 12px;
+- border-radius: 16px;
+- margin-bottom: 2px;
+- left: 12px;
+- left: -24px;
+- width: 12px;
+- height: 12px;
+- border-width: 2px;
+- left: 8px;
+- left: -20px;
+- width: 50px;
+- height: 50px;
+
+---
+
+For each line, replace the px value with an appropriate rem or em value. If you need help with specific conversions, let me know!
