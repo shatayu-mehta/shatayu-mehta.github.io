@@ -5,8 +5,14 @@
       "title": "Email",
       "value": "shatayumehta.2000@gmail.com",
       "link": "mailto:shatayumehta.2000@gmail.com",
-  "description": "Best for detailed discussions and project inquiries"
-
+      "description": "Best for detailed discussions and project inquiries"
+    },
+    {
+      "icon": "💼",
+      "title": "LinkedIn",
+      "value": "linkedin.com/in/shatayumehta",
+      "link": "https://www.linkedin.com/in/shatayumehta",
+      "description": "Professional networking and career opportunities"
     },
     {
       "icon": "🐙",
