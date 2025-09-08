@@ -80,43 +80,43 @@ const App: React.FC = () => {
           <Hero />
           
           <LazySection>
-            <Suspense fallback={<div className="section-loading">Loading About...</div>}>
+            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
               <About />
             </Suspense>
           </LazySection>
           
           <LazySection>
-            <Suspense fallback={<div className="section-loading">Loading Experience...</div>}>
+            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
               <Experience />
             </Suspense>
           </LazySection>
           
           <LazySection>
-            <Suspense fallback={<div className="section-loading">Loading Skills...</div>}>
+            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
               <Skills />
             </Suspense>
           </LazySection>
           
           <LazySection>
-            <Suspense fallback={<div className="section-loading">Loading Projects...</div>}>
+            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
               <Projects />
             </Suspense>
           </LazySection>
           
           <LazySection>
-            <Suspense fallback={<div className="section-loading">Loading Education...</div>}>
+            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
               <Education />
             </Suspense>
           </LazySection>
           
           <LazySection>
-            <Suspense fallback={<div className="section-loading">Loading Contact...</div>}>
+            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
               <Contact />
             </Suspense>
           </LazySection>
           
           <LazySection>
-            <Suspense fallback={<div className="section-loading">Loading...</div>}>
+            <Suspense fallback={<div style={{ display: 'none' }}></div>}>
               <Credits />
             </Suspense>
           </LazySection>
