@@ -802,45 +802,52 @@
 .github-links {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: 8px;
 }
 
 .github-label {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  font-weight: 600;
-  margin-bottom: var(--spacing-xs);
+  font-size: 0.9rem;
+  color: var(--primary-cyan);
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .github-link {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  color: var(--text-bright);
+  padding: 10px 16px;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+  color: var(--primary-cyan);
   text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 600;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 212, 255, 0.1);
 }
 
 .github-link:hover {
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(0, 212, 255, 0.2);
   border-color: var(--primary-cyan);
-  color: var(--primary-cyan);
-  transform: translateY(-1px);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.25);
 }
 
 .github-link svg {
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
+  width: 16px;
+  height: 16px;
+  opacity: 0.9;
+  transition: all 0.3s ease;
 }
 
 .github-link:hover svg {
   opacity: 1;
+  transform: scale(1.1);
 }
 
 /* Card Actions for Regular Project Cards */
@@ -852,7 +859,7 @@
 
 .github-links-small {
   display: flex;
-  gap: var(--spacing-xs);
+  gap: 8px;
   justify-content: flex-end;
 }
 
@@ -860,30 +867,35 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  color: var(--text-muted);
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+  color: var(--text-bright);
   text-decoration: none;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 212, 255, 0.1);
 }
 
 .github-link-small:hover {
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(0, 212, 255, 0.15);
   border-color: var(--primary-cyan);
   color: var(--primary-cyan);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.2);
 }
 
 .github-link-small svg {
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  width: 18px;
+  height: 18px;
+  opacity: 0.9;
+  transition: all 0.3s ease;
 }
 
 .github-link-small:hover svg {
   opacity: 1;
+  transform: scale(1.1);
 }
 
 .card-footer {

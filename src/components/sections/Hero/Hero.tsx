@@ -142,7 +142,7 @@ const Hero: React.FC = () => {
               </a>
               
               <a 
-                href="mailto:mehta405@umn.edu"
+                href="mailto:shatayumehta.2000@gmail.com"
                 className="social-link"
                 aria-label="Email Contact"
               >

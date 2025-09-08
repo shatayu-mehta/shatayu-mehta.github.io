@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Contact.css';
+import contactData from '../../../data/contact.json';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -20,40 +21,13 @@ const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // For now, we'll create a mailto link
-    const mailtoLink = `mailto:mehta405@umn.edu?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+    const emailContact = contactMethods.find(method => method.title === 'Email');
+    const emailAddress = emailContact ? emailContact.value : 'shatayumehta.2000@gmail.com';
+    const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
     window.location.href = mailtoLink;
   };
 
-  const contactMethods = [
-    {
-      icon: '📧',
-      title: 'Email',
-      value: 'mehta405@umn.edu',
-      link: 'mailto:mehta405@umn.edu',
-      description: 'Best for detailed discussions and project inquiries'
-    },
-    {
-      icon: '📱',
-      title: 'Phone',
-      value: '+1 (763) 245-3257',
-      link: 'tel:+17632453257',
-      description: 'For urgent matters and direct conversations'
-    },
-    {
-      icon: '💼',
-      title: 'LinkedIn',
-      value: 'linkedin.com/in/shatayumehta',
-      link: 'https://www.linkedin.com/in/shatayumehta',
-      description: 'Professional networking and career opportunities'
-    },
-    {
-      icon: '📍',
-      title: 'Location',
-      value: 'Minneapolis, MN, USA',
-      link: null,
-      description: 'Available for local collaborations and meetings'
-    }
-  ];
+  const contactMethods = contactData.contactMethods;
 
   const interests = [
     'VTOL Aircraft Design',
