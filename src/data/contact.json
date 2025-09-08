@@ -6,20 +6,8 @@
       "value": "shatayumehta.2000@gmail.com",
       "link": "mailto:shatayumehta.2000@gmail.com",
       "description": "Best for detailed discussions and project inquiries"
-    },
-    {
-      "icon": "📱",
-      "title": "Phone",
-      "value": "+1 (763) 245-3257",
-      "link": "tel:+17632453257",
-      "description": "For urgent matters and direct conversations"
-    },
-    {
-      "icon": "💼",
-      "title": "LinkedIn",
-      "value": "linkedin.com/in/shatayumehta",
-      "link": "https://www.linkedin.com/in/shatayumehta",
-      "description": "Professional networking and career opportunities"
+  // Phone contact removed for privacy
+
     },
     {
       "icon": "🐙",
