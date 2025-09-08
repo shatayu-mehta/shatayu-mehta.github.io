@@ -1,0 +1,21 @@
+{
+  "repositories": {
+    "real-time-3d-reconstruction": "https://github.com/shatayu-mehta/Real-time-3D-recosntruction-using-Stereo-vision.git",
+    "wearable-mouse-ring": "https://github.com/shatayu-mehta/Werable-Mouise-ring.git",
+    "ur5-pick-and-place": "https://github.com/shatayu-mehta/UR5-Cobot-Pick-and-Place.git",
+    "ur5-flashlight-assembly": "https://github.com/shatayu-mehta/UR5-cobot-Flashlight-Assembly.git",
+    "ur5-cv-tool-sorting": "https://github.com/shatayu-mehta/UR5-Cobot-Computer-Vision-based-tool-sorting.git"
+  },
+  "contact": {
+    "github": "https://github.com/shatayu-mehta",
+    "linkedin": "https://www.linkedin.com/in/shatayumehta",
+    "email": "shatayumehta.2000@gmail.com"
+  },
+  "project_mappings": {
+    "Real-Time 3D Reconstruction System": "real-time-3d-reconstruction",
+    "Wearable Ring Mouse Device": "wearable-mouse-ring",
+    "UR5 Robot Vision & Assembly": "ur5-cv-tool-sorting",
+    "UR5 Pick and Place": "ur5-pick-and-place",
+    "UR5 Flashlight Assembly": "ur5-flashlight-assembly"
+  }
+}

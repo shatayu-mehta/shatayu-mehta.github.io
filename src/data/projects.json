@@ -36,7 +36,7 @@
       ],
       "status": "completed",
       "timeline": "May 2025",
-      "github": null,
+      "github": "https://github.com/shatayu-mehta/Werable-Mouise-ring.git",
       "demo": "/projects/wearable-ring.html",
       "featured": true
     },
@@ -56,7 +56,11 @@
       ],
       "status": "completed",
       "timeline": "Mar 2025 - Apr 2025",
-      "github": null,
+      "github": [
+        "https://github.com/shatayu-mehta/UR5-Cobot-Computer-Vision-based-tool-sorting.git",
+        "https://github.com/shatayu-mehta/UR5-cobot-Flashlight-Assembly.git",
+        "https://github.com/shatayu-mehta/UR5-Cobot-Pick-and-Place.git"
+      ],
       "demo": "/projects/ur5-robot.html",
       "featured": true
     },
@@ -76,7 +80,7 @@
       ],
       "status": "completed",
       "timeline": "Dec 2024",
-      "github": null,
+      "github": "https://github.com/shatayu-mehta/Real-time-3D-recosntruction-using-Stereo-vision.git",
       "demo": "/projects/3d-reconstruction.html",
       "featured": true
     },

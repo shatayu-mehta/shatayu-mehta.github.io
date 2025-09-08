@@ -791,3 +791,108 @@
     transform: none;
   }
 }
+
+/* GitHub Links Styling */
+.project-actions {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.github-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.github-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  color: var(--text-bright);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.github-link:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: var(--primary-cyan);
+  color: var(--primary-cyan);
+  transform: translateY(-1px);
+}
+
+.github-link svg {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.github-link:hover svg {
+  opacity: 1;
+}
+
+/* Card Actions for Regular Project Cards */
+.card-actions {
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.github-links-small {
+  display: flex;
+  gap: var(--spacing-xs);
+  justify-content: flex-end;
+}
+
+.github-link-small {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.github-link-small:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: var(--primary-cyan);
+  color: var(--primary-cyan);
+  transform: translateY(-1px);
+}
+
+.github-link-small svg {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.github-link-small:hover svg {
+  opacity: 1;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--spacing-sm);
+}
+
+.card-technologies {
+  flex: 1;
+}
