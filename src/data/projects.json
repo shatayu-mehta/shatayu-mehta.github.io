@@ -143,6 +143,25 @@
       "github": null,
       "demo": null,
       "featured": false
+    },
+    {
+      "id": 8,
+      "title": "VGGT 3D Scene Reconstruction",
+      "category": "robotics",
+      "description": "Advanced 3D scene reconstruction using Visual Geometry Grounded Transformer with dual segmentation methods (YOLO+SAM and geometric propagation) for accurate depth estimation and point cloud generation.",
+      "image": "/vggt-3d-reconstruction-illustration.svg",
+      "technologies": ["VGGT", "YOLO-World", "SAM", "PyTorch", "OpenCV", "Open3D", "Viser", "TUM RGB-D"],
+      "achievements": [
+        "Implemented two segmentation methods: YOLO+SAM detection-based and geometric propagation",
+        "Achieved feed-forward 3D reconstruction from multiple views with automatic camera pose estimation",
+        "Developed interactive 3D point cloud visualization with real-time rendering",
+        "Evaluated depth accuracy against TUM RGB-D ground truth with comprehensive metrics",
+        "Created robust processing pipeline handling large-scale reconstructions (100+ images)"
+      ],
+      "status": "completed",
+      "timeline": "Fall 2025",
+      "github": "https://github.com/shatayu-mehta/-cv5561-f25-team-VGGT.git",
+      "featured": false
     }
   ],
   "filters": [
