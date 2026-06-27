@@ -1,0 +1,15 @@
+Videos and where they go
+
+FUJIN VTOL project
+video link: https://youtu.be/fQQ7oUqMmLQ
+
+UR5 robot proejct
+Videolinks:	1. robot pick and place: https://youtu.be/Au_O2Yl_eVs
+		2. Flashlight assembly: https://youtu.be/nqhKF3DbSgI
+		3. Computer vision based tools pick and place: https://youtu.be/tXHNHhsDScQ
+
+Wearable ring  mosue
+Video link: https://youtube.com/shorts/i6dgZjPodck
+
+3D reconstruction using cusstom stereo camera:
+Video Link: https://youtu.be/raQM6ubJ47A

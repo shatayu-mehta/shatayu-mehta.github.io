@@ -1,0 +1,1 @@
+import{j as o}from"./three-DcHkT1H8.js";import{u as n,m as u,f as d}from"./index-Bc7WG8rS.js";const x=({children:i,variants:r=d,delay:e=0,className:t,once:s=!0})=>n()?o.jsx("div",{className:t,children:i}):o.jsx(u.div,{className:t,initial:"hidden",whileInView:"visible",viewport:{once:s,margin:"-80px"},variants:r,custom:e,transition:{delay:e},children:i});export{x as R};

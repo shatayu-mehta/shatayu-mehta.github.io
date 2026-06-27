@@ -1,0 +1,65 @@
+SHATAYU AVINASH MEHTA
+Saint Paul, MN | mehta405@umn.edu | LinkedIn | +1(763)245- 3257
+PROFESSIONAL SUMMARY
+Master of Science in Robotics candidate with hands-on experience in the end-to-end design, prototyping, and testing of autonomous aerial vehicles.
+Proficient in Python, C++, Computer Vision (OpenCV), and Machine Learning for developing complex robotic systems. Seeking to apply integrated
+skills in hardware, software, and control systems to solve challenging robotics engineering problems.
+EDUCATION (^)
+
+University of Minnesota Twin Cities- Master of Science in Robotics Technology. GPA: 3. 5 /4 Sept. 2024 - May 2026
+Relevant Coursework: Robotics, Principles Wearable Technology, Machine Learning, Robot Vision, Linear Control Systems, Deep Learning,
+Optimal Estimation, Introduction to Nonlinear Optimization with ML & AI.
+K.J. Somaiya College of Engineering- BTech in Mechanical Engineering. GPA: 3.4/4 July. 2018 - May 2022
+TECHNICAL SKILLS
+• CAD & Design: SolidWorks, Fusion 360, AutoCAD, ANSYS, Rapid Prototyping, CREO, ANSYS fluent & workbench, CURA, Prusa Slicer, chitubox,
+XFLR5, E-calc, AutoCAD, Design verification.
+• Programming & Software: Python, PyTorch, C, C++ , TensorFlow, MATLAB, Docker container, Arduino IDE, RoboDK, Mujoco, Gazebo, Linux, mavSDK.
+• Fundamentals: Computer Vision, Machine Learning, convolutional neural networks Robot Manipulation, Feedback Control, CNC Milling,
+Laser Cutting, Fundamentals of Design, FEA, Stereo Vision, PID control, Digital Control, Visual Servoing, Reinforcement learning, Deep learning,
+forward & Inverse Kinematics, Mechanical Sensing, Biometric sensing, Sewing & Soft Goods, E-textile Fabrication, GD&T.
+• Hardware: Arduino, Raspberry Pi, Ardupilot, UR5e Cobot, px4.
+EXPERIENCE (^)
+
+Research & Development Engineer- Indrones Solution PVT. LTD. Nov. 2022 – Nov. 2023
+• Spearheaded FUJIN VTOL project from inception to testing of second prototype. Established a streamlined process for manufacturing of the VTOL
+aircraft reducing the time from prototype design to completion by 1.5 weeks.
+• Engineering a Prototyping solution for EPP foam machining, reducing the manufacturing costs by 10%. Achieved optimized aerodynamic
+calculations, improving the coefficient of lift from MVP stage to near-prototype values, reaching 0.428 for enhanced aircraft performance.
+• Evaluated and tested powerhouse options using E-CALC for both VTOL and UAVs achieving a Time-of-flight increase by 25% for FUJIN VTOL, also
+established parameters for the aircraft prior to testing. Conducted aircraft testing and refined aerodynamics, and design based on results using
+XFLR5 and ANSYS fluent and analyzed flight data to document the design improvements.
+Team Onyx India | Design team Lead May.20 19 - August. 2021
+• Fronted the design team for TEAM ONYX INDIA in SAE Aero Design 2021. Fostered and advised the design team during SAE Aero design 2022.
+• Developed a self-gliding aircraft with a wingspan of 30cm that automatically landed after being dropped from the mothership, utilizing a flight
+controller for autonomous landing. Conducted market research and testing to identify flexible, durable, and cost-efficient alternatives to Aero ply,
+reducing material costs by 45%.
+PROJECTS
+1. Wearable Ring Mouse Device Development (Arduino, 3D printing, Sensor Integration, Python)
+• Developed a wearable ring mouse using an Arduino Nano 33 BLE Sense Rev2, enabling click, cursor movement (swipe-to-tab), and scroll
+functionalities. Engineered the device with a push button for clicks, IMUs for swipe gestures, and Hall effect sensors with magnets for scrolling.
+• Created firmware (Wearable Mouse Controller.ino) to process sensor data and send BLE messages, and a Python script (wearable mouse receiver.py) to
+interpret messages and execute actions using pynput. Designed and 3D-printed custom PLA ring and wrist modules to house components, including a
+3.7V LiPo battery and step-up converter; assembled and wired components using Vectran-based conductive thread and sewing techniques for the wrist
+strap.
+• Conducted user testing with 3 volunteers, achieving an average System Usability Scale (SUS) score of 35.67, indicating ease of use.
+2. Computer vision based tool sorting and flashlight assembly (UR5 Cobot, OpenCV, Tensorflow, python, RoboDK)
+• Developed a Python program to enable a UR5 robot to identify and sort tools into designated bins whose locations were dynamically estimated
+at runtime. Implemented computer vision techniques using OpenCV and its ArUco module for 6DoF pose estimation of tool bins. Trained and
+deployed a Convolutional Neural Network (CNN) using TensorFlow/Keras for tool identification from images captured
+by a Robotiq Wrist Camera.
+• Integrated control of the UR5 arm (via RoboDK API), Robotiq Gripper (via Python library and Modbus), and camera image processing within a
+unified Python script. Programmed pick-and-place operations, applying homogeneous transformations for precise tool handling and camera
+positioning, simulated in RoboDK.
+• Utilized Object-Oriented Programming (OOP) principles and developed custom modules within an Anaconda environment.
+• Integrated and controlled a pneumatic chuck (via custom post-processor and URScript commands) to hold flashlight components during
+assembly, ensuring safe operation with a photoelectric sensor to detect part presence.
+• Developed pick-and-place sequences for all parts, including endcap rotation and placement onto a 3D-printed pedestal, and precise battery
+insertion considering polarity.
+• Implemented a screwing operation to attach the endcap to the flashlight head, utilizing custom code for initial rotations and a provided tighten
+torque() function (monitoring the Robotiq Force Torque sensor) to achieve a specified 2Nm torque.
+3. Real-Time 3D Reconstruction with Custom Stereo Camera and OpenCV (Raspberry Pi, Stereo Camera, OpenCV, SGBM)
+• Designed and tested a custom stereo camera using Raspberry pi zero 2W and Arduino camera module 3. Implemented a Stereo camera-based 3D
+reconstruction system to generate 3D models of real world environment in real time within a acceptable time of 3 milliseconds.
+• Calibrated the camera using checkerboard patterns using OpenCV with a 0.2 RMSE Error. Developed Disparity maps using Semi-global Block
+Matching(SGBM) for depth estimation.
+• Utilized Open3D library to create 3D reconstruction from Depth Data.
