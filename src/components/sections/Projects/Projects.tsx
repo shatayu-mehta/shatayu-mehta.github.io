@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Reveal from '../../motion/Reveal';
-import { stagger, childFadeUp, EASE_EXPO } from '../../motion/variants';
-import { fadeUp } from '../../motion/variants';
+import { stagger, childFadeUp, fadeUp } from '../../motion/variants';
 import projectsData from '../../../data/projects.json';
 import './Projects.css';
 

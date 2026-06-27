@@ -28,7 +28,7 @@ const SplitText: React.FC<SplitTextProps> = ({
   className,
   wordClassName,
   mode = 'words',
-  staggerDelay = 0.06,
+  staggerDelay: _staggerDelay = 0.06,
   variants = wordVariants,
   once = true,
 }) => {
