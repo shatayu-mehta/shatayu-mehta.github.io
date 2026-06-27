@@ -199,19 +199,11 @@ const Contact: React.FC = () => {
                   </div>
                   <div className="tb-row">
                     <span className="tb-key text-mono">INSTITUTION</span>
-                    <span className="tb-val text-mono">U. MINNESOTA</span>
+                    <span className="tb-val text-mono">UNIVERSITY OF MINNESOTA</span>
                   </div>
                   <div className="tb-row">
                     <span className="tb-key text-mono">DWG NO.</span>
                     <span className="tb-val text-mono">SM-CTCT-001</span>
-                  </div>
-                  <div className="tb-row">
-                    <span className="tb-key text-mono">SCALE</span>
-                    <span className="tb-val text-mono">1:1</span>
-                  </div>
-                  <div className="tb-row">
-                    <span className="tb-key text-mono">REV</span>
-                    <span className="tb-val text-mono">A</span>
                   </div>
                   <div className="tb-row">
                     <span className="tb-key text-mono">STATUS</span>

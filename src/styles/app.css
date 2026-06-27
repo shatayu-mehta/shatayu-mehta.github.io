@@ -164,6 +164,12 @@
   }
 }
 
+@media (max-width: 480px) {
+  .section {
+    padding: var(--spacing-sm) 0;
+  }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .section {

@@ -325,6 +325,24 @@
 
 @media (max-width: 600px) {
   .panel-text {
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1.25rem;
+  }
+
+  .panel-media {
+    padding-top: 52%;
+  }
+}
+
+@media (max-width: 420px) {
+  .compact-header {
+    padding: 1rem 0;
+  }
+
+  .compact-meta {
+    gap: 0.6rem;
+  }
+
+  .compact-period {
+    display: none;
   }
 }

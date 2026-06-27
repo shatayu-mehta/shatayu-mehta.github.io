@@ -187,6 +187,22 @@
   }
 }
 
+@media (max-width: 380px) {
+  .hero-container {
+    padding-top: clamp(5rem, 16vh, 10rem);
+    padding-bottom: clamp(3rem, 8vh, 6rem);
+  }
+
+  .hero-name {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .scroll-line {
