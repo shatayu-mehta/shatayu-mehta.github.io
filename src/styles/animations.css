@@ -1,3 +1,194 @@
+/* ══════════════════════════════════════
+   CYBERPUNK ANIMATION SUITE
+   ══════════════════════════════════════ */
+
+/* ── Glitch text effect ── */
+.glitch-text {
+  position: relative;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.glitch-text::before {
+  color: var(--primary-cyan);
+  -webkit-text-fill-color: var(--primary-cyan);
+  animation: glitch-1 4s infinite steps(1);
+  clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
+  left: -2px;
+  opacity: 0;
+}
+.glitch-text::after {
+  color: var(--primary-magenta);
+  -webkit-text-fill-color: var(--primary-magenta);
+  animation: glitch-2 4s infinite steps(1);
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  left: 2px;
+  opacity: 0;
+}
+@keyframes glitch-1 {
+  0%, 89%, 100% { opacity: 0; transform: translate(0); }
+  90%           { opacity: 1; transform: translate(-3px, 1px); }
+  91%           { opacity: 1; transform: translate(2px, -1px); }
+  92%           { opacity: 0; }
+  95%           { opacity: 1; transform: translate(-1px, 0); }
+  96%           { opacity: 0; }
+}
+@keyframes glitch-2 {
+  0%, 89%, 100% { opacity: 0; transform: translate(0); }
+  90%           { opacity: 1; transform: translate(3px, -1px); }
+  91%           { opacity: 1; transform: translate(-2px, 1px); }
+  92%           { opacity: 0; }
+  95%           { opacity: 1; transform: translate(1px, 0); }
+  96%           { opacity: 0; }
+}
+
+/* ── Section scan-line reveal ── */
+.section-reveal {
+  position: relative;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+}
+.section-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Neon scan line uses a wrapper span to avoid ::after conflict with neon-border-hover */
+
+/* ── Stagger children ── */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(0.75rem);
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+}
+.stagger-children.revealed > *:nth-child(1) { transition-delay: 0ms; }
+.stagger-children.revealed > *:nth-child(2) { transition-delay: 60ms; }
+.stagger-children.revealed > *:nth-child(3) { transition-delay: 120ms; }
+.stagger-children.revealed > *:nth-child(4) { transition-delay: 180ms; }
+.stagger-children.revealed > *:nth-child(5) { transition-delay: 240ms; }
+.stagger-children.revealed > *:nth-child(6) { transition-delay: 300ms; }
+.stagger-children.revealed > *:nth-child(7) { transition-delay: 360ms; }
+.stagger-children.revealed > *:nth-child(8) { transition-delay: 420ms; }
+.stagger-children.revealed > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Neon text glow (section titles) ── */
+.neon-title {
+  text-shadow:
+    0 0 10px rgba(0, 245, 255, 0.6),
+    0 0 30px rgba(0, 245, 255, 0.2);
+}
+
+/* ── Power-on flicker for section tags ── */
+.power-on {
+  animation: powerOn 0.8s ease-out forwards;
+}
+@keyframes powerOn {
+  0%   { opacity: 0; }
+  10%  { opacity: 0.8; }
+  15%  { opacity: 0.1; }
+  20%  { opacity: 0.9; }
+  25%  { opacity: 0.2; }
+  30%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* ── Racing neon border (card hover) ── */
+.neon-border-hover {
+  position: relative;
+  isolation: isolate;
+}
+.neon-border-hover::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--_angle, 0deg),
+    transparent 0deg,
+    var(--primary-cyan) 60deg,
+    var(--primary-magenta) 120deg,
+    transparent 180deg
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+/* Inner mask to show only border */
+.neon-border-hover::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: var(--background-dark);
+  z-index: -1;
+  pointer-events: none;
+}
+.neon-border-hover:hover::before {
+  opacity: 1;
+  animation: borderSpin 1.8s linear infinite;
+}
+@keyframes borderSpin {
+  to { --_angle: 360deg; }
+}
+
+/* ── Terminal cursor blink ── */
+.cursor-blink::after {
+  content: '_';
+  color: var(--primary-cyan);
+  animation: cursorBlink 1s step-end infinite;
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Marquee cert ticker ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Wireframe pulse (Showcase placeholders) ── */
+@keyframes wirePulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50%       { opacity: 0.8; transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitch-text::before,
+  .glitch-text::after,
+  .section-reveal.revealed::after,
+  .neon-border-hover::before {
+    animation: none !important;
+  }
+  .section-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .stagger-children > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ══════════════════════════════════════
+   LEGACY KEYFRAMES (kept for Hero animations)
+   ══════════════════════════════════════ */
+
 /* Keyframe Animations */
 @keyframes fadeInUp {
   from {
@@ -307,7 +498,57 @@
   will-change: transform;
 }
 
-/* Scroll-triggered animations */
+/* Scroll-triggered section reveal */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.section-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Stagger children inside a revealed block */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.stagger-children.revealed > *:nth-child(1) { transition-delay: 0ms; }
+.stagger-children.revealed > *:nth-child(2) { transition-delay: 70ms; }
+.stagger-children.revealed > *:nth-child(3) { transition-delay: 140ms; }
+.stagger-children.revealed > *:nth-child(4) { transition-delay: 210ms; }
+.stagger-children.revealed > *:nth-child(5) { transition-delay: 280ms; }
+.stagger-children.revealed > *:nth-child(6) { transition-delay: 350ms; }
+.stagger-children.revealed > *:nth-child(7) { transition-delay: 420ms; }
+.stagger-children.revealed > *:nth-child(8) { transition-delay: 490ms; }
+
+.stagger-children.revealed > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-children > *,
+  .stagger-children.revealed > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Legacy: keep for any remaining usages */
 .scroll-animate {
   opacity: 0;
   transform: translateY(3.125rem);

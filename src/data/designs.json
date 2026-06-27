@@ -1,0 +1,46 @@
+{
+  "designs": [
+    {
+      "id": 1,
+      "title": "FUJIN VTOL Aircraft",
+      "description": "VTOL designed for long-range autonomous flight.",
+      "modelPath": "/FUJIN.stl",
+      "modelScale": 0.8,
+      "modelColor": "#e87040",
+      "tags": ["SOLIDWORKS", "XFLR5", "ANSYS", "EPP Foam"],
+      "status": "ready",
+      "link": null
+    },
+    {
+      "id": 2,
+      "title": "UR5 Cobot Arm",
+      "description": "Computer vision-guided 6-DOF cobot used for tool sorting and autonomous flashlight assembly.",
+      "modelPath": null,
+      "modelScale": 1.2,
+      "tags": ["RoboDK", "OpenCV", "TensorFlow", "ArUco"],
+      "status": "coming-soon",
+      "link": null
+    },
+    {
+      "id": 3,
+      "title": "Autonomous Drone Platform",
+      "description": "Next-generation multi-rotor platform with onboard SLAM and vision-based obstacle avoidance.",
+      "modelPath": null,
+      "modelScale": 1.0,
+      "tags": ["PX4", "ROS", "Stereo Vision"],
+      "status": "coming-soon",
+      "link": null
+    },
+    {
+      "id": 4,
+      "title": "Wearable Ring Mouse",
+      "description": "IoT ring mouse using IMU + Hall-effect sensors with BLE communication and custom 3D-printed housing.",
+      "modelPath": "/Ring Assemblyh.obj",
+      "modelScale": 1.0,
+      "modelColor": "#00c8d4",
+      "tags": ["Arduino BLE", "3D Print", "IMU"],
+      "status": "ready",
+      "link": null
+    }
+  ]
+}

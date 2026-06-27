@@ -10,10 +10,9 @@ interface NavigationItem {
 const navigationItems: NavigationItem[] = [
   { id: 'hero', label: 'Home', href: '#hero' },
   { id: 'about', label: 'About', href: '#about' },
-  { id: 'experience', label: 'Experience', href: '#experience' },
   { id: 'skills', label: 'Skills', href: '#skills' },
   { id: 'projects', label: 'Projects', href: '#projects' },
-  { id: 'education', label: 'Education', href: '#education' },
+  { id: 'showcase', label: 'Designs', href: '#showcase' },
   { id: 'contact', label: 'Contact', href: '#contact' },
 ];
 
@@ -102,7 +101,7 @@ const Navigation: React.FC = () => {
         {/* Resume Download Button */}
         <div className="nav-actions">
           <a
-            href="/SHATAYU_RESUME_DESIGN.pdf"
+            href="/ROBOTICS_ENGINEER_SHATAYU_MEHTA.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-secondary nav-resume-btn"
@@ -143,7 +142,7 @@ const Navigation: React.FC = () => {
             ))}
             <li className="nav-item">
               <a
-                href="/SHATAYU_RESUME_DESIGN.pdf"
+                href="/ROBOTICS_ENGINEER_SHATAYU_MEHTA.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="nav-link"

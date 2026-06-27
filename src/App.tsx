@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, lazy } from 'react';
+import React, { lazy } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import Navigation from './components/Navigation/Navigation';
@@ -8,122 +8,67 @@ import LoadingScreen from './components/UI/LoadingScreen';
 import LazySection from './components/LazySection';
 import './styles/app.css';
 
-// Lazy load non-critical components
 const About = lazy(() => import('./components/sections/About/About'));
-const Experience = lazy(() => import('./components/sections/Experience/Experience'));
 const Skills = lazy(() => import('./components/sections/Skills/Skills'));
 const Projects = lazy(() => import('./components/sections/Projects/Projects'));
-const Education = lazy(() => import('./components/sections/Education/Education'));
+const Showcase = lazy(() => import('./components/sections/Showcase/Showcase'));
 const Contact = lazy(() => import('./components/sections/Contact/Contact'));
 const Background3D = lazy(() => import('./components/3D/Background3D'));
 const MovingShips = lazy(() => import('./components/MovingShips'));
-const Credits = lazy(() => import('./components/Credits'));
 
-const App: React.FC = () => {
-  const appRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Smooth scroll behavior
-    const handleScroll = () => {
-      const sections = document.querySelectorAll('.section');
-      const scrollTop = window.pageYOffset;
-      const windowHeight = window.innerHeight;
-
-      sections.forEach((section) => {
-        const sectionTop = (section as HTMLElement).offsetTop;
-        const sectionHeight = (section as HTMLElement).offsetHeight;
-        const sectionCenter = sectionTop + sectionHeight / 2;
-
-        if (scrollTop + windowHeight / 2 > sectionCenter - windowHeight / 4 && 
-            scrollTop + windowHeight / 2 < sectionCenter + windowHeight / 4) {
-          section.classList.add('active');
-        } else {
-          section.classList.remove('active');
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  return (
-    <div className="app" ref={appRef}>
-      <Suspense fallback={<LoadingScreen />}>
-        {/* JavaScript-powered moving ships */}
-        <Suspense fallback={<div style={{ minHeight: '10px' }} />}>
-          <MovingShips />
-        </Suspense>
-
-        {/* 3D Background Canvas */}
-        <div className="background-canvas">
-          <Canvas
-            camera={{ position: [0, 0, 5], fov: 75 }}
-            gl={{ antialias: true, alpha: true }}
-          >
-            <Suspense fallback={null}>
-              <Background3D />
-            </Suspense>
-          </Canvas>
-        </div>
-
-        {/* Navigation */}
-        <Navigation />
-
-        {/* Scroll Progress Indicator */}
-        <ScrollProgress />
-
-        {/* Main Content */}
-        <main className="main-content">
-          <Hero />
-          
-          <LazySection>
-            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
-              <About />
-            </Suspense>
-          </LazySection>
-          
-          <LazySection>
-            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
-              <Experience />
-            </Suspense>
-          </LazySection>
-          
-          <LazySection>
-            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
-              <Skills />
-            </Suspense>
-          </LazySection>
-          
-          <LazySection>
-            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
-              <Projects />
-            </Suspense>
-          </LazySection>
-          
-          <LazySection>
-            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
-              <Education />
-            </Suspense>
-          </LazySection>
-          
-          <LazySection>
-            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
-              <Contact />
-            </Suspense>
-          </LazySection>
-          
-          <LazySection>
-            <Suspense fallback={<div style={{ display: 'none', height: 0, width: 0, overflow: 'hidden', position: 'absolute', visibility: 'hidden' }}></div>}>
-              <Credits />
-            </Suspense>
-          </LazySection>
-        </main>
+const App: React.FC = () => (
+  <div className="app">
+    <Suspense fallback={<LoadingScreen />}>
+      <Suspense fallback={null}>
+        <MovingShips />
       </Suspense>
-    </div>
-  );
-};
+
+      <div className="background-canvas">
+        <Canvas camera={{ position: [0, 0, 5], fov: 75 }} gl={{ antialias: true, alpha: true }}>
+          <Suspense fallback={null}>
+            <Background3D />
+          </Suspense>
+        </Canvas>
+      </div>
+
+      <Navigation />
+      <ScrollProgress />
+
+      <main className="main-content">
+        <Hero />
+
+        <LazySection>
+          <Suspense fallback={null}>
+            <About />
+          </Suspense>
+        </LazySection>
+
+        <LazySection>
+          <Suspense fallback={null}>
+            <Skills />
+          </Suspense>
+        </LazySection>
+
+        <LazySection>
+          <Suspense fallback={null}>
+            <Projects />
+          </Suspense>
+        </LazySection>
+
+        <LazySection>
+          <Suspense fallback={null}>
+            <Showcase />
+          </Suspense>
+        </LazySection>
+
+        <LazySection>
+          <Suspense fallback={null}>
+            <Contact />
+          </Suspense>
+        </LazySection>
+      </main>
+    </Suspense>
+  </div>
+);
 
 export default App;

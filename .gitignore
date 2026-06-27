@@ -22,3 +22,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Unused large assets — not referenced by the site
+public/FUJIN.glb
+public/UR5.glb
+public/Work\ and\ gaming\ Desk_full_scene_cleaned.obj
+public/Work\ and\ gaming\ Desk_full_scene_cleaned.ply
+public/Work\ and\ gaming\ Desk_full_scene_cleaned.mtl
+public/ImageToStl.com_Work+and+gaming+Desk_full_scene_cleaned.stl
+
+# Internal notes
+public/RESUME1.txt
+public/REUSME2.txt
+public/Videos_and_where_they_are.txt

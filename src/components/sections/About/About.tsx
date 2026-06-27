@@ -1,156 +1,181 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import Reveal from '../../motion/Reveal';
+import { stagger, childFadeUp, lineGrow, EASE_EXPO } from '../../motion/variants';
 import './About.css';
 
-const About: React.FC = () => {
-  const achievements = [
-    {
-      icon: '🚁',
-      title: 'FUJIN VTOL Project',
-      description: 'Led complete design cycle from inception to prototype testing',
-      metric: '25% flight time improvement'
-    },
-    {
-      icon: '⚡',
-      title: 'Manufacturing Optimization',
-      description: 'Streamlined prototyping process reducing development time',
-      metric: '1.5 weeks faster'
-    },
-    {
-      icon: '💰',
-      title: 'Cost Reduction',
-      description: 'Engineered EPP foam machining solution',
-      metric: '10% cost savings'
-    },
-    {
-      icon: '🎯',
-      title: 'Team Leadership',
-      description: 'Led design teams through multiple successful projects',
-      metric: '15+ team members'
-    }
-  ];
+const timelineItems = [
+  {
+    id: 'ms',
+    type: 'education',
+    period: '2024 – 2026',
+    title: 'M.S. Robotics',
+    org: 'University of Minnesota',
+    current: true,
+  },
+  {
+    id: 'indrones',
+    type: 'work',
+    period: '2022 – 2023',
+    title: 'R&D Engineer',
+    org: 'Indrones Solutions',
+    current: false,
+  },
+  {
+    id: 'btech',
+    type: 'education',
+    period: '2018 – 2022',
+    title: 'B.Tech Mechanical',
+    org: 'KJ Somaiya',
+    current: false,
+  },
+  {
+    id: 'onyx',
+    type: 'work',
+    period: '2019 – 2021',
+    title: 'Design Team Lead',
+    org: 'Team Onyx India',
+    current: false,
+  },
+];
+
+const stats = [
+  { value: 6, suffix: '+', label: 'Years Experience' },
+  { value: 8, suffix: '+', label: 'Projects Built' },
+  { value: 3.5, suffix: '', label: 'GPA' },
+];
+
+function useCountUp(target: number, duration = 1.4, enabled = false) {
+  const [count, setCount] = useState(0);
+  const raf = useRef<number>(0);
+
+  useEffect(() => {
+    if (!enabled) return;
+    const start = performance.now();
+    const step = (now: number) => {
+      const t = Math.min((now - start) / (duration * 1000), 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setCount(parseFloat((eased * target).toFixed(1)));
+      if (t < 1) raf.current = requestAnimationFrame(step);
+    };
+    raf.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf.current);
+  }, [enabled, target, duration]);
+
+  return count;
+}
+
+const StatCounter: React.FC<{ value: number; suffix: string; label: string; delay: number }> = ({
+  value, suffix, label, delay,
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [started, setStarted] = useState(false);
+  const count = useCountUp(value, 1.2, started);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setStarted(true); obs.disconnect(); } },
+      { threshold: 0.5 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const display = value % 1 === 0 ? Math.round(count) : count.toFixed(1);
 
   return (
-    <section id="about" className="section about">
-      <div className="container">
-        <div className="about-content">
-          <div className="about-header">
-            <div className="section-tag">
-              <span className="tag-number text-mono">01</span>
-              <span className="tag-label">About Me</span>
-            </div>
-            <h2 className="section-title">
-              Passionate about <span className="gradient-text">Innovation</span>
-            </h2>
-            <p className="section-subtitle">
-              Bridging the gap between theoretical robotics and practical engineering solutions
-            </p>
-          </div>
-
-          <div className="about-main">
-            <div className="about-story">
-              <div className="story-content">
-                <h3 className="story-title">My Journey</h3>
-                <div className="story-text">
-                  <p>
-                    My journey in robotics began during my undergraduate studies in Mechanical Engineering 
-                    at KJ Somaiya College of Engineering, where I discovered my passion for autonomous systems 
-                    and aircraft design. The intersection of mechanical engineering, computer science, and 
-                    cutting-edge technology fascinated me.
-                  </p>
-                  <p>
-                    As a Research and Development Engineer at Indrones Solutions, I spearheaded the 
-                    <span className="text-accent"> FUJIN VTOL project</span>, taking it from concept to 
-                    successful prototype. This experience taught me the importance of iterative design, 
-                    rigorous testing, and cross-functional collaboration.
-                  </p>
-                  <p>
-                    Currently pursuing my Masters in Robotics at the University of Minnesota, I'm diving 
-                    deeper into machine learning, robot vision, and control systems - preparing for the 
-                    next generation of autonomous technologies.
-                  </p>
-                </div>
-
-                <div className="story-quote">
-                  <blockquote>
-                    "The future belongs to those who can seamlessly integrate mechanical precision 
-                    with intelligent automation."
-                  </blockquote>
-                </div>
-              </div>
-
-              <div className="story-visual">
-                <div className="visual-grid">
-                  <div className="visual-item">
-                    <div className="visual-icon">🎓</div>
-                    <div className="visual-text">
-                      <h4>Education</h4>
-                      <p>Masters in Robotics</p>
-                    </div>
-                  </div>
-                  <div className="visual-item">
-                    <div className="visual-icon">💼</div>
-                    <div className="visual-text">
-                      <h4>Experience</h4>
-                      <p>R&D Engineer</p>
-                    </div>
-                  </div>
-                  <div className="visual-item">
-                    <div className="visual-icon">🏆</div>
-                    <div className="visual-text">
-                      <h4>Focus</h4>
-                      <p>VTOL & Autonomous Navigation</p>
-                    </div>
-                  </div>
-                  <div className="visual-item">
-                    <div className="visual-icon">🌍</div>
-                    <div className="visual-text">
-                      <h4>Impact</h4>
-                      <p>Global Innovation</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="about-achievements">
-              <h3 className="achievements-title">Key Achievements</h3>
-              <div className="achievements-grid">
-                {achievements.map((achievement, index) => (
-                  <div key={index} className="achievement-card glass-card hover-lift">
-                    <div className="achievement-icon">{achievement.icon}</div>
-                    <div className="achievement-content">
-                      <h4 className="achievement-title">{achievement.title}</h4>
-                      <p className="achievement-description">{achievement.description}</p>
-                      <div className="achievement-metric gradient-text">
-                        {achievement.metric}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="about-cta">
-              <div className="cta-content">
-                <h3>Let's Build the Future Together</h3>
-                <p>
-                  I'm always excited to collaborate on innovative projects that push the boundaries 
-                  of robotics and autonomous systems.
-                </p>
-                <a href="#contact" className="btn btn-primary">
-                  Start a Conversation
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M5 12h14" />
-                    <path d="M12 5l7 7-7 7" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <motion.div
+      ref={ref}
+      className="stat-item"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.65, ease: EASE_EXPO, delay }}
+    >
+      <span className="stat-value">
+        {display}<span className="stat-suffix">{suffix}</span>
+      </span>
+      <span className="stat-label text-mono">{label}</span>
+    </motion.div>
   );
 };
+
+const About: React.FC = () => (
+  <section id="about" className="section about" data-section="about">
+    <div className="container">
+
+      <Reveal>
+        <div className="section-tag">
+          <span className="tag-number text-mono">02</span>
+          <span className="tag-label">About</span>
+        </div>
+      </Reveal>
+
+      {/* Pull-quote */}
+      <Reveal delay={0.05}>
+        <h2 className="about-headline">
+          I build machines<br />
+          <span className="gradient-text">that think.</span>
+        </h2>
+      </Reveal>
+
+      <Reveal delay={0.12}>
+        <p className="about-bio">
+          MS Robotics student at the University of Minnesota — previously R&D engineer
+          designing VTOL aircraft at Indrones and team lead for SAE Aero Design.
+          My work lives at the intersection of mechanical design, computer vision,
+          and intelligent control.
+        </p>
+      </Reveal>
+
+      {/* Stats band */}
+      <div className="stats-band">
+        {stats.map((s, i) => (
+          <StatCounter key={s.label} value={s.value} suffix={s.suffix} label={s.label} delay={i * 0.1} />
+        ))}
+      </div>
+
+      {/* Timeline */}
+      <Reveal delay={0.08}>
+        <h3 className="tl-heading text-mono">// journey</h3>
+      </Reveal>
+
+      {/* Horizontal rail */}
+      <div className="tl-rail-wrap">
+        <motion.div
+          className="tl-rule"
+          variants={lineGrow}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+        />
+
+        <motion.div
+          className="tl-items"
+          variants={stagger(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+        >
+          {timelineItems.map((item) => (
+            <motion.div
+              key={item.id}
+              className={`tl-item tl-${item.type}${item.current ? ' tl-current' : ''}`}
+              variants={childFadeUp}
+            >
+              <span className="tl-period text-mono">{item.period}</span>
+              <span className="tl-dot" />
+              <h4 className="tl-title">{item.title}</h4>
+              <span className="tl-org">{item.org}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+    </div>
+  </section>
+);
 
 export default About;

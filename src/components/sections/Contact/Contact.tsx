@@ -1,265 +1,241 @@
 import React, { useState } from 'react';
+import Reveal from '../../motion/Reveal';
 import './Contact.css';
-import contactData from '../../../data/contact.json';
+
+type Status = 'idle' | 'sending' | 'sent' | 'error';
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [status, setStatus] = useState<Status>('idle');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // For now, we'll create a mailto link
-    const emailContact = contactMethods.find(method => method.title === 'Email');
-    const emailAddress = emailContact ? emailContact.value : 'shatayumehta.2000@gmail.com';
-    const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
-    window.location.href = mailtoLink;
+    setStatus('sending');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '310fc2ee-92ae-4ca9-8701-921b48cd868a',
+          from_name: 'Portfolio Contact',
+          ...form,
+        }),
+      });
+      const data = await res.json();
+      setStatus(data.success ? 'sent' : 'error');
+    } catch {
+      setStatus('error');
+    }
   };
-
-  // Filter out any phone contact method for privacy
-  const contactMethods = contactData.contactMethods.filter(method => method.title !== 'Phone');
-
-  const interests = [
-    'VTOL Aircraft Design',
-    'Autonomous Systems',
-    'Robotics Research',
-    'Machine Learning Applications',
-    'Aerospace Engineering',
-    'Rapid Prototyping',
-    'Startup Opportunities',
-    'Academic Collaboration'
-  ];
 
   return (
-    <section id="contact" className="section contact">
+    <section id="contact" className="section contact" data-section="contact">
       <div className="container">
-        <div className="contact-content">
-          <div className="contact-header">
-            <div className="section-tag">
-              <span className="tag-number text-mono">06</span>
-              <span className="tag-label">Contact</span>
-            </div>
-            <h2 className="section-title">
-              Let's <span className="gradient-text">Connect</span>
-            </h2>
-            <p className="section-subtitle">
-              Ready to collaborate on innovative robotics projects or discuss exciting opportunities
-            </p>
+
+        <Reveal>
+          <div className="section-tag">
+            <span className="tag-number text-mono">06</span>
+            <span className="tag-label">Contact</span>
           </div>
+        </Reveal>
 
-          <div className="contact-main">
-            <div className="contact-info">
-              <div className="info-section">
-                <h3 className="info-title">Get In Touch</h3>
-                <p className="info-description">
-                  I'm always excited to connect with fellow engineers, researchers, and innovators. 
-                  Whether you have a project idea, collaboration opportunity, or just want to chat 
-                  about robotics and technology, I'd love to hear from you.
-                </p>
+        <Reveal delay={0.08}>
+          <div className="dwg-sheet">
 
-                <div className="contact-methods">
-                  {contactMethods.map((method, index) => (
-                    <div key={index} className="contact-method">
-                      <div className="method-icon">{method.icon}</div>
-                      <div className="method-content">
-                        <h4 className="method-title">{method.title}</h4>
-                        <p className="method-description">{method.description}</p>
-                        {method.link ? (
-                          <a 
-                            href={method.link} 
-                            className="method-link"
-                            target={method.link.startsWith('http') ? '_blank' : '_self'}
-                            rel={method.link.startsWith('http') ? 'noopener noreferrer' : ''}
-                          >
-                            {method.value}
-                          </a>
-                        ) : (
-                          <span className="method-value">{method.value}</span>
-                        )}
+            {/* ── Sheet border marks ── */}
+            <div className="dwg-mark dwg-mark--tl" />
+            <div className="dwg-mark dwg-mark--tr" />
+            <div className="dwg-mark dwg-mark--bl" />
+            <div className="dwg-mark dwg-mark--br" />
+            <div className="dwg-center dwg-center--t" />
+            <div className="dwg-center dwg-center--b" />
+            <div className="dwg-center dwg-center--l" />
+            <div className="dwg-center dwg-center--r" />
+
+            <div className="dwg-inner">
+
+              {/* ── Left: form area ── */}
+              <div className="dwg-main">
+                <div className="dwg-zone-label text-mono">// TRANSMISSION FORM · REQ-01</div>
+
+                {status === 'sent' ? (
+                  <div className="dwg-confirmed">
+                    <p className="text-mono dwg-confirmed-title">APPROVED & TRANSMITTED</p>
+                    <p className="text-mono dwg-confirmed-sub">Response within 24h · DWG SM-CTCT-001 · REV A</p>
+                  </div>
+                ) : (
+                  <form className="dwg-form" onSubmit={handleSubmit} noValidate>
+
+                    <div className="dwg-row">
+                      <div className="dwg-field">
+                        <div className="dwg-annotation">
+                          <span className="dwg-dim-label text-mono">SENDER_ID</span>
+                          <span className="dwg-dim-line" />
+                        </div>
+                        <input
+                          name="name"
+                          value={form.name}
+                          onChange={handleChange}
+                          placeholder="your name"
+                          required
+                          className="dwg-input text-mono"
+                          autoComplete="name"
+                        />
+                      </div>
+                      <div className="dwg-field">
+                        <div className="dwg-annotation">
+                          <span className="dwg-dim-label text-mono">REPLY_ADDR</span>
+                          <span className="dwg-dim-line" />
+                        </div>
+                        <input
+                          type="email"
+                          name="email"
+                          value={form.email}
+                          onChange={handleChange}
+                          placeholder="your@email.com"
+                          required
+                          className="dwg-input text-mono"
+                          autoComplete="email"
+                        />
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-            </div>
 
-            <div className="contact-form-section">
-              <div className="form-container glass-card">
-                <h3 className="form-title">Send a Message</h3>
-                <p className="form-description">
-                  Drop me a line and I'll get back to you as soon as possible.
-                </p>
-
-                <form onSubmit={handleSubmit} className="contact-form">
-                  <div className="form-row">
-                    <div className="form-group">
-                      <label htmlFor="name" className="form-label">Name</label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        className="form-input"
-                        placeholder="Your full name"
+                    <div className="dwg-field">
+                      <div className="dwg-annotation">
+                        <span className="dwg-dim-label text-mono">INQUIRY_TYPE</span>
+                        <span className="dwg-dim-line" />
+                      </div>
+                      <select
+                        name="subject"
+                        value={form.subject}
+                        onChange={handleChange}
                         required
+                        className="dwg-input dwg-select text-mono"
+                      >
+                        <option value="">SELECT TYPE</option>
+                        <option value="Job Opportunity">ROLE INQUIRY</option>
+                        <option value="Research Collaboration">COLLAB REQUEST</option>
+                        <option value="Project Inquiry">PROJECT BRIEF</option>
+                        <option value="General Question">GENERAL COMM</option>
+                      </select>
+                    </div>
+
+                    <div className="dwg-field dwg-field--tall">
+                      <div className="dwg-annotation">
+                        <span className="dwg-dim-label text-mono">MESSAGE_BODY</span>
+                        <span className="dwg-dim-line" />
+                      </div>
+                      <textarea
+                        name="message"
+                        value={form.message}
+                        onChange={handleChange}
+                        placeholder="describe your inquiry..."
+                        required
+                        rows={5}
+                        className="dwg-input dwg-textarea text-mono"
                       />
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="email" className="form-label">Email</label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="form-input"
-                        placeholder="your.email@example.com"
-                        required
-                      />
+
+                    <div className="dwg-submit-row">
+                      <button
+                        type="submit"
+                        className="dwg-submit text-mono"
+                        disabled={status === 'sending'}
+                      >
+                        {status === 'sending' ? '■  PROCESSING...' : '▷  RELEASE FOR REVIEW'}
+                      </button>
+                      {status === 'error' && (
+                        <span className="dwg-error text-mono">
+                          ECR FAILED — contact shatayumehta.2000@gmail.com directly
+                        </span>
+                      )}
                     </div>
+
+                  </form>
+                )}
+              </div>
+
+              {/* ── Right: notes + title block ── */}
+              <div className="dwg-right">
+
+                <div className="dwg-notes">
+                  <span className="dwg-notes-header text-mono">GENERAL NOTES:</span>
+                  <ol className="dwg-notes-list">
+                    <li className="text-mono">RESPONSE TIME &lt; 24 HOURS</li>
+                    <li className="text-mono">ALL FIELDS REQUIRED</li>
+                    <li className="text-mono">OPEN TO FULL-TIME &amp; RESEARCH ROLES</li>
+                  </ol>
+
+                  <div className="dwg-channels">
+                    <span className="dwg-channels-label text-mono">DIRECT CHANNELS:</span>
+                    <a href="mailto:shatayumehta.2000@gmail.com" className="dwg-channel text-mono">
+                      <span className="dwg-ch-ref">REF-01</span> EMAIL ↗
+                    </a>
+                    <a href="https://www.linkedin.com/in/shatayumehta" target="_blank" rel="noopener noreferrer" className="dwg-channel text-mono">
+                      <span className="dwg-ch-ref">REF-02</span> LINKEDIN ↗
+                    </a>
+                    <a href="https://github.com/shatayu-mehta" target="_blank" rel="noopener noreferrer" className="dwg-channel text-mono">
+                      <span className="dwg-ch-ref">REF-03</span> GITHUB ↗
+                    </a>
+                    <a href="/ROBOTICS_ENGINEER_SHATAYU_MEHTA.pdf" target="_blank" rel="noopener noreferrer" className="dwg-channel text-mono">
+                      <span className="dwg-ch-ref">REF-04</span> RESUME ↗
+                    </a>
                   </div>
-
-                  <div className="form-group">
-                    <label htmlFor="subject" className="form-label">Subject</label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className="form-select"
-                      required
-                    >
-                      <option value="">Select a subject</option>
-                      <option value="Collaboration Opportunity">Collaboration Opportunity</option>
-                      <option value="Internship/Job Opportunity">Internship/Job Opportunity</option>
-                      <option value="Research Discussion">Research Discussion</option>
-                      <option value="Project Consultation">Project Consultation</option>
-                      <option value="General Inquiry">General Inquiry</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="message" className="form-label">Message</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      className="form-textarea"
-                      placeholder="Tell me about your project, idea, or how we can work together..."
-                      rows={6}
-                      required
-                    />
-                  </div>
-
-                  <button type="submit" className="form-submit btn btn-primary">
-                    <span>Send Message</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M22 2L11 13" />
-                      <path d="M22 2l-7 20-4-9-9-4 20-7z" />
-                    </svg>
-                  </button>
-                </form>
-
-                <div className="form-footer">
-                  <p className="form-note">
-                    <span className="note-icon">🔒</span>
-                    Your information is secure and will only be used to respond to your inquiry.
-                  </p>
                 </div>
+
+                {/* Title block */}
+                <div className="title-block">
+                  <div className="tb-company">
+                    <span className="tb-company-name text-mono">S. MEHTA ENGINEERING</span>
+                    <span className="tb-company-sub text-mono">ROBOTICS · CAD · AUTONOMOUS SYSTEMS</span>
+                  </div>
+                  <div className="tb-row">
+                    <span className="tb-key text-mono">DESIGNED BY</span>
+                    <span className="tb-val text-mono">SHATAYU MEHTA</span>
+                  </div>
+                  <div className="tb-row">
+                    <span className="tb-key text-mono">INSTITUTION</span>
+                    <span className="tb-val text-mono">U. MINNESOTA</span>
+                  </div>
+                  <div className="tb-row">
+                    <span className="tb-key text-mono">DWG NO.</span>
+                    <span className="tb-val text-mono">SM-CTCT-001</span>
+                  </div>
+                  <div className="tb-row">
+                    <span className="tb-key text-mono">SCALE</span>
+                    <span className="tb-val text-mono">1:1</span>
+                  </div>
+                  <div className="tb-row">
+                    <span className="tb-key text-mono">REV</span>
+                    <span className="tb-val text-mono">A</span>
+                  </div>
+                  <div className="tb-row">
+                    <span className="tb-key text-mono">STATUS</span>
+                    <span className="tb-val text-mono tb-status">OPEN TO WORK</span>
+                  </div>
+                  <div className="tb-row">
+                    <span className="tb-key text-mono">SHEET</span>
+                    <span className="tb-val text-mono">1 OF 1</span>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
+        </Reveal>
 
-          <div className="interests-availability-wrapper">
-            <div className="interests-section">
-              <h3 className="interests-title">Areas of Interest</h3>
-              <p className="interests-description">
-                Topics I'm particularly passionate about and always eager to discuss:
-              </p>
-              <div className="interests-grid">
-                {interests.map((interest, index) => (
-                  <span key={index} className="interest-tag">
-                    {interest}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="availability-section">
-              <h3 className="availability-title">Current Availability</h3>
-              <div className="availability-content">
-                <div className="availability-item">
-                  <div className="availability-icon">🎓</div>
-                  <div className="availability-text">
-                    <h4>Graduate Student</h4>
-                    <p>Currently pursuing MS in Robotics at University of Minnesota</p>
-                  </div>
-                </div>
-                <div className="availability-item">
-                  <div className="availability-icon">💼</div>
-                  <div className="availability-text">
-                    <h4>Open for Opportunities</h4>
-                    <p>Seeking internships, research positions, and collaborative projects</p>
-                  </div>
-                </div>
-                <div className="availability-item">
-                  <div className="availability-icon">🔬</div>
-                  <div className="availability-text">
-                    <h4>Research Focus</h4>
-                    <p>Actively involved in robotics research and academic projects</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="contact-footer">
-            <div className="footer-content">
-              <div className="footer-text">
-                <h3>Thank you for visiting!</h3>
-                <p>
-                  I appreciate your interest in my work. Let's build the future of robotics together.
-                </p>
-              </div>
-              <div className="footer-links">
-                <a href="/SHATAYU_RESUME_DESIGN.pdf" target="_blank" className="footer-link">
-                  <span>Download Resume</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7,10 12,15 17,10" />
-                    <line x1="12" y1="15" x2="12" y2="3" />
-                  </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/shatayumehta" target="_blank" className="footer-link">
-                  <span>LinkedIn Profile</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M5 12h14" />
-                    <path d="M12 5l7 7-7 7" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-            
-            <div className="copyright">
-              <p>&copy; 2024 Shatayu Mehta. Built with passion for innovation.</p>
-            </div>
-          </div>
-        </div>
       </div>
+
+      <footer className="site-footer">
+        <div className="container footer-inner">
+          <p className="footer-copy">&copy; {new Date().getFullYear()} Shatayu Mehta — Robotics Engineer</p>
+          <p className="footer-stack text-mono">React · Three.js · Framer Motion · Vite</p>
+        </div>
+      </footer>
     </section>
   );
 };
