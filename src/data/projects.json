@@ -145,6 +145,23 @@
       "timeline": "Fall 2025",
       "github": "https://github.com/shatayu-mehta/-cv5561-f25-team-VGGT.git",
       "demo": null,
+      "video": "hN3VS-PGDjI",
+      "featured": true
+    },
+    {
+      "id": 9,
+      "title": "CAD to Simulation Pipeline",
+      "category": "robotics",
+      "description": "Building the full pipeline from Fusion 360 mechanical design to simulation-ready robot: URDF export, USD conversion, and Isaac Sim deployment with correctly configured joint limits and velocity-controlled wheel drives.",
+      "technologies": ["Fusion 360", "URDF", "USD", "NVIDIA Isaac Sim", "ROS 2", "Python"],
+      "achievements": [
+        "Exporting CAD assemblies to URDF using fusion2URDF with correct joint hierarchy and mass/inertia data",
+        "Configuring joint limits and velocity-controlled wheel drives in Isaac Sim",
+        "Using NVIDIA Nova Carter as reference AMR for drive configuration benchmarking"
+      ],
+      "timeline": "2026 – Present",
+      "github": null,
+      "demo": null,
       "video": null,
       "featured": true
     }

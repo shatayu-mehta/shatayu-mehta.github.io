@@ -117,7 +117,7 @@ const About: React.FC = () => (
       <Reveal delay={0.05}>
         <h2 className="about-headline">
           I build machines<br />
-          <span className="gradient-text">that think.</span>
+          <span className="gradient-text">that move.</span>
         </h2>
       </Reveal>
 
@@ -125,8 +125,11 @@ const About: React.FC = () => (
         <p className="about-bio">
           MS Robotics student at the University of Minnesota — previously R&D engineer
           designing VTOL aircraft at Indrones and team lead for SAE Aero Design.
-          My work lives at the intersection of mechanical design, computer vision,
-          and intelligent control.
+          Mechanical engineering is my foundation — I learned computer vision and controls
+          to understand what robots really are. What I'm building now is the bridge between
+          design and deployment: translating CAD into URDF and USD, getting joints defined
+          and exposed in Isaac Sim, so the robots I design don't just exist on paper.
+          First frontier: agricultural robotics.
         </p>
       </Reveal>
 

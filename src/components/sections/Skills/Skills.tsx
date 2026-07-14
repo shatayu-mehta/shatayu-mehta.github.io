@@ -8,7 +8,7 @@ const skillRows = [
   {
     id: 'cad',
     category: 'CAD & Analysis',
-    skills: ['SOLIDWORKS', 'SolidWorks Simulation', 'CREO', 'AutoCAD', 'ANSYS Fluent', 'XFLR5', 'FEA / CFD', 'GD&T'],
+    skills: ['Fusion 360', 'SOLIDWORKS', 'SolidWorks Simulation', 'CREO', 'AutoCAD', 'ANSYS Fluent', 'XFLR5', 'FEA / CFD', 'GD&T'],
   },
   {
     id: 'ml',
@@ -23,7 +23,7 @@ const skillRows = [
   {
     id: 'ctrl',
     category: 'Control & Robotics',
-    skills: ['PID Control', 'Kinematics', 'ROS2 / RoboDK', 'SLAM / Sensor Fusion', 'Path Planning', 'UR5e', 'MuJoCo', 'Isaac Sim', 'Gazebo'],
+    skills: ['URDF', 'USD', 'Isaac Sim', 'ROS2 / RoboDK', 'PID Control', 'Kinematics', 'SLAM / Sensor Fusion', 'Path Planning', 'UR5e', 'MuJoCo', 'Gazebo'],
   },
   {
     id: 'uav',

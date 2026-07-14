@@ -105,8 +105,8 @@ const Hero: React.FC = () => {
             initial="hidden"
             animate="visible"
           >
-            Building autonomous systems at the intersection of
-            mechanical design, computer vision, and intelligent control.
+            Mechanical Engineer. Roboticist. An avid enjoyer of Mecha Anime!
+            Scroll down and hold on for the lore.
           </motion.p>
 
           <motion.div
