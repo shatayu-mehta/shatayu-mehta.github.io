@@ -13,3 +13,6 @@ Video link: https://youtube.com/shorts/i6dgZjPodck
 
 3D reconstruction using cusstom stereo camera:
 Video Link: https://youtu.be/raQM6ubJ47A
+
+3D Object Reconstruction with VGGT & YOLO:
+Video Link: https://youtube.com/shorts/hN3VS-PGDjI
