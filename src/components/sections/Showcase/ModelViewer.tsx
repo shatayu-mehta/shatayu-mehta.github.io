@@ -19,9 +19,13 @@ const GLBModel: React.FC<ModelProps> = ({ path, scale }) => {
     if (!ref.current) return;
     const box = new THREE.Box3().setFromObject(ref.current);
     const center = box.getCenter(new THREE.Vector3());
-    ref.current.position.sub(center);
-  }, []);
-  return <primitive ref={ref} object={scene} scale={scale} />;
+    const size = box.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const s = maxDim > 0 ? (scale * 2) / maxDim : scale;
+    ref.current.scale.setScalar(s);
+    ref.current.position.set(-center.x * s, -center.y * s, -center.z * s);
+  }, [scale]);
+  return <primitive ref={ref} object={scene} />;
 };
 
 /* ── STL — geometry only, apply color material ── */

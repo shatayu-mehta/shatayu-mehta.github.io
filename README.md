@@ -16,7 +16,7 @@ Personal portfolio website for Shatayu Mehta, MS Robotics student at the Univers
 |---|---|
 | Hero | Animated intro with name and role |
 | About | Background, education, what I'm looking for |
-| Showcase | Live 3D viewers — FUJIN VTOL drone (STL) + Wearable Ring Mouse (OBJ) |
+| Showcase | Live 3D viewers — FUJIN VTOL drone (STL), Wearable Ring Mouse (OBJ) + Agricultural Robot Dog (Draco-compressed GLB) |
 | Projects | Featured built work + additional projects |
 | Skills | CAD, ML/Vision, Manufacturing, Control, Drone/UAV, Hardware, Code |
 | Contact | Engineering drawing-style contact form |
@@ -41,6 +41,7 @@ Deployment is automated via `.github/workflows/deploy.yml` — push to `main` an
 
 - **New project**: add an entry to `src/data/projects.json`
 - **New 3D model**: drop the file in `public/`, add to `src/data/designs.json`, add its `id` to `SHOWCASE_IDS` in `src/components/sections/Showcase/Showcase.tsx`
+- **Large GLB files**: compress before adding (`npx @gltf-transform/cli optimize in.glb out.glb --compress draco --texture-compress webp`); the robot dog went from 45 MB to ~2.9 MB. Keep the source copy in `GLBFIles/`.
 - **VGGT YouTube link**: set `"video": "YOUR_VIDEO_ID"` for id 8 in `src/data/projects.json`
 - **Google Analytics**: replace `G-XXXXXXXXXX` in `index.html` with your GA4 Measurement ID
 

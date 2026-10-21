@@ -41,6 +41,16 @@
       "tags": ["Arduino BLE", "3D Print", "IMU"],
       "status": "ready",
       "link": null
+    },
+    {
+      "id": 5,
+      "title": "Agricultural Robot Dog",
+      "description": "Quadruped robot concept designed for agricultural field inspection.",
+      "modelPath": "/Robot_Dog_for_agri.glb",
+      "modelScale": 1.0,
+      "tags": ["Quadruped", "Agri-Robotics", "CAD"],
+      "status": "ready",
+      "link": null
     }
   ]
 }

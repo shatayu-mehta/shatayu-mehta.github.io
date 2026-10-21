@@ -18,7 +18,7 @@ interface Design {
   link: string | null;
 }
 
-const SHOWCASE_IDS = [1, 4]; // FUJIN VTOL, Wearable Ring Mouse
+const SHOWCASE_IDS = [1, 4, 5]; // FUJIN VTOL, Wearable Ring Mouse, Robot Dog
 
 const ShowcaseWindow: React.FC<{ design: Design }> = ({ design }) => {
   const ref = useRef<HTMLDivElement>(null);
